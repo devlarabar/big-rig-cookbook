@@ -1,0 +1,113 @@
+/* ********************
+html / body styles
+******************** */
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    box-sizing:         border-box;
+}
+html {
+    font-size: 10px;
+}
+body {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: #222;
+}
+
+/* ********************
+layout styles
+******************** */
+main {
+    padding: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ********************
+header styles
+******************** */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+header a {
+    text-decoration: none;
+    color: inherit;
+}
+header .logo {
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+header nav {
+    display: flex;
+    gap: 15px;
+}
+
+/* ********************
+post styles
+******************** */
+.post img {
+    max-width: 100%;
+}
+.post {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.post h2 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+.postInfo {
+    margin: 0;
+    color: #888;
+    font-size: 1.3rem;
+    display: flex;
+    gap: 10px;
+}
+.postAuthor {
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+.postSummary {
+    margin: 10px 0;
+}
+
+/* ********************
+form styles
+******************** */
+.login {
+    max-width: 400px;
+    margin: 0 auto;
+}
+input {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    padding: 5px 7px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+.login button {
+    width: 100%;
+    display: block;
+    background-color: #555;
+    border: 0;
+    color: #fff;
+    border-radius: 5px;
+    padding: 7px;
+}
+form h2 {
+    text-align: center;
+}
+
+/* ********************
+media queries 
+******************** */
