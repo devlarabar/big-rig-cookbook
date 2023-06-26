@@ -95,7 +95,7 @@ input {
     border: 2px solid #ccc;
     border-radius: 5px;
 }
-.login button {
+form button {
     width: 100%;
     display: block;
     background-color: #555;
@@ -104,7 +104,7 @@ input {
     border-radius: 5px;
     padding: 7px;
 }
-form h2 {
+.login h2 {
     text-align: center;
 }
 
