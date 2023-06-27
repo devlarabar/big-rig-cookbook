@@ -22,6 +22,7 @@ app.use(cors({
 }))
 app.use(express.json())
 app.use(cookieParser())
+app.use('/uploads', express.static(__dirname + '/uploads'))
 
 const db = (async function() {
     await mongoose.connect('mongodb+srv://laraalexander:5ncMtOXbr6FiyTH5@big-rig-cookbook.qzimbog.mongodb.net/big-rig-cookbook?retryWrites=true&w=majority')
@@ -81,19 +82,59 @@ app.post('/createpost', uploadMiddleware.single('file'), async (req, res) => {
     const newPath = path+'.'+ext
     fs.renameSync(path, newPath)
 
-    const { title, summary, content } = req.body
-    const postDoc = await Post.create({
-        title,
-        summary,
-        content,
-        cover: newPath,
+    const { token } = req.cookies
+    jwt.verify(token, secret, {}, async (err, info) => {
+        if (err) throw err
+        const { title, summary, content } = req.body
+        const postDoc = await Post.create({
+            title,
+            summary,
+            content,
+            cover: newPath,
+            author: info.id,
+        })
+        res.json({ postDoc })
     })
+})
 
-    res.json({ postDoc })
+app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
+    let newPath = null
+    if (req.file) {
+        // refactor this so no copy/paste
+        const { originalname, path } = req.file
+        const parts = originalname.split('.')
+        const ext = parts[parts.length-1]
+        newPath = path+'.'+ext
+        fs.renameSync(path, newPath)
+    }
+
+    const { token } = req.cookies
+    jwt.verify(token, secret, {}, async (err, info) => {
+        if (err) throw err
+        const { id, title, summary, content } = req.body
+        const postDoc = await Post.findById(id)
+        const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id)
+        
+        if (!isAuthor) {
+            return res.status(400).json('You are not the author of this post!')
+        }
+        await postDoc.updateOne({
+            title,
+            summary,
+            content,
+            cover: newPath ? newPath : postDoc.cover,
+        });
+        
+        res.json(postDoc)
+    })
 })
 
 app.get('/viewposts', async (req, res) => {
-    const posts = await Post.find()
+    const posts = await Post
+        .find()
+        .populate('author', [ 'username' ])
+        .sort({ createdAt: -1 })
+        .limit(20)
     res.json(posts)
 })
 
@@ -103,6 +144,12 @@ app.post('/logout', (req, res) => {
 
 app.get('/test', (req, res) => {
     res.json(`Server is running on post ${PORT}`)
+})
+
+app.get('/post/:id', async (req, res) => {
+    const {id} = req.params
+    const postDoc = await Post.findById(id).populate('author', ['username'])
+    res.json(postDoc)
 })
 
 app.listen(process.env.PORT || PORT, () => {
