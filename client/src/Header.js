@@ -16,7 +16,7 @@ const Header = () => {
   }, [])
 
   function logout(e) {
-    e.preventDefault()
+    //e.preventDefault()
     fetch('http://localhost:4000/logout', {
       method: 'post',
       credentials: 'include'
@@ -28,7 +28,7 @@ const Header = () => {
 
   return (
     <header>
-        <Link to="/" className="logo">MyBlog</Link>
+        <Link to="/" className="logo">Big Rig Cookbook</Link>
         <nav>
           {username && (
             <>
