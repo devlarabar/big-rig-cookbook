@@ -37,7 +37,19 @@ const PostPage = () => {
                 </div>
             )}
             <div className="coverImage">
-                <img src={`http://localhost:4000/${postInfo.cover}`} alt="" />
+                <img src={postInfo.cover ? `http://localhost:4000/${postInfo.cover}` : `http://localhost:4000/public/placeholder.png`} alt={postInfo.title} />
+            </div>
+            <div className="postIngredents">
+                <ul>
+                    {postInfo.ingredients.length > 0 ? postInfo.ingredients.map((x, i) => {
+                            return (
+                                <li>
+                                    { x.ingredientName } - { x.ingredientQty }
+                                </li>
+                            )
+                        }) : 'No ingredients specified.'
+                    }
+                </ul>
             </div>
             <div dangerouslySetInnerHTML={{__html:postInfo.content}} />
         </div>

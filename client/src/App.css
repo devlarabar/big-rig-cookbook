@@ -118,7 +118,7 @@ misc styles
     border-radius: 5px;
     gap: 5px;
 }
-.editPostLink svg {
+.editPostLink, .ingredientAdd svg {
     height: 18px;
     stroke: #fff;
 }
@@ -142,14 +142,37 @@ input {
 form button {
     width: 100%;
     display: block;
-    background-color: #555;
+    background-color: #4997a3;
     border: 0;
     color: #fff;
     border-radius: 5px;
-    padding: 7px;
+    padding: 7px 10px;
+    font-weight: bold;
+}
+form button:hover {
+    background-color: #59b1bd;
 }
 .login h2 {
     text-align: center;
+}
+
+.ingredientsInputList input {
+    width: 40%;
+    display: inline-block;
+}
+.ingredientListButtons {
+    display: inline-block;
+}
+.ingredientListButtons button {
+    width: fit-content;
+    display: inline-block;
+}
+.ingredientAdd {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 /* ********************

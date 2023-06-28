@@ -23,6 +23,7 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
+app.use('/public', express.static(__dirname + '/public'))
 
 const db = (async function() {
     await mongoose.connect('mongodb+srv://laraalexander:5ncMtOXbr6FiyTH5@big-rig-cookbook.qzimbog.mongodb.net/big-rig-cookbook?retryWrites=true&w=majority')
@@ -76,20 +77,24 @@ app.get('/profile', (req, res) => {
 })
 
 app.post('/createpost', uploadMiddleware.single('file'), async (req, res) => {
-    const { originalname, path } = req.file
-    const parts = originalname.split('.')
-    const ext = parts[parts.length-1]
-    const newPath = path+'.'+ext
-    fs.renameSync(path, newPath)
+    let newPath = ''
+    if (req.file) {
+        const { originalname, path } = req.file
+        const parts = originalname.split('.')
+        const ext = parts[parts.length-1]
+        newPath = path+'.'+ext
+        fs.renameSync(path, newPath)
+    }
 
     const { token } = req.cookies
     jwt.verify(token, secret, {}, async (err, info) => {
         if (err) throw err
-        const { title, summary, content } = req.body
+        const { title, summary, content, ingredients } = req.body
         const postDoc = await Post.create({
             title,
             summary,
             content,
+            ingredients,
             cover: newPath,
             author: info.id,
         })
@@ -101,17 +106,19 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
     let newPath = null
     if (req.file) {
         // refactor this so no copy/paste
-        const { originalname, path } = req.file
-        const parts = originalname.split('.')
-        const ext = parts[parts.length-1]
-        newPath = path+'.'+ext
-        fs.renameSync(path, newPath)
+        if (req.file) {
+            const { originalname, path } = req.file
+            const parts = originalname.split('.')
+            const ext = parts[parts.length-1]
+            newPath = path+'.'+ext
+            fs.renameSync(path, newPath)
+        }
     }
 
     const { token } = req.cookies
     jwt.verify(token, secret, {}, async (err, info) => {
         if (err) throw err
-        const { id, title, summary, content } = req.body
+        const { id, title, summary, content, ingredients } = req.body
         const postDoc = await Post.findById(id)
         const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id)
         
@@ -122,6 +129,7 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
             title,
             summary,
             content,
+            ingredients,
             cover: newPath ? newPath : postDoc.cover,
         });
         
