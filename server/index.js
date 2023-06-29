@@ -10,6 +10,10 @@ const cookieParser = require('cookie-parser')
 const multer = require('multer')
 const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs')
+require('dotenv').config()
+
+const dbConnectionStr = process.env.DB_STRING
+const dbName = 'tea'
 
 const PORT = 4000
 
@@ -26,7 +30,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use('/public', express.static(__dirname + '/public'))
 
 const db = (async function() {
-    await mongoose.connect('mongodb+srv://laraalexander:5ncMtOXbr6FiyTH5@big-rig-cookbook.qzimbog.mongodb.net/big-rig-cookbook?retryWrites=true&w=majority')
+    await mongoose.connect(dbConnectionStr)
     console.log('Connected to the DB')
 }())
 
