@@ -174,9 +174,12 @@ form button:hover {
 .login h2 {
     text-align: center;
 }
-
+.ingredientsInputList {
+    display: flex;
+    gap: 5px;
+}
 .ingredientsInputList input {
-    width: 40%;
+    flex: 1;
     display: inline-block;
 }
 .ingredientListButtons {
@@ -192,6 +195,7 @@ form button:hover {
     align-items: center;
     justify-content: center;
     gap: 5px;
+    margin-bottom: 10px;
 }
 
 /* ********************

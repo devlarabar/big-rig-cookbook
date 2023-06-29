@@ -71,6 +71,8 @@ const CreatePost = () => {
 
   return (
     <form onSubmit={createNewPost}>
+        <h2>Create a Recipe</h2>
+        <h3>Title & Summary</h3>
         <input 
             type="title" 
             placeholder={'Title'} 
@@ -83,29 +85,32 @@ const CreatePost = () => {
             value={summary} 
             onChange={e => setSummary(e.target.value)}
         />
+        <h3>Ingredients</h3>
         {ingList.map((x, i) => {
             return (
-                <div className="ingredientsInputList">
-                    <input
-                        type="text"
-                        name="ingredientName"
-                        value={x.ingredientName}
-                        onChange={e => handleInputChange(e, i)}
-                        required
-                    />
-                    <input
-                        type="text"
-                        className="ingredientQty"
-                        name="ingredientQty"
-                        value={x.ingredientQty}
-                        onChange={e => handleInputChange(e, i)}
-                        required
-                    />
-                    <div className="ingredientListButtons">
-                        {ingList.length !== 1 && <button 
-                            type="button" 
-                            className="ingredientRm" 
-                            onClick={() => handleRemoveClick(i)}>Remove</button>}
+                <div>
+                    <div className="ingredientsInputList">
+                        <input
+                            type="text"
+                            name="ingredientName"
+                            value={x.ingredientName}
+                            onChange={e => handleInputChange(e, i)}
+                            required
+                        />
+                        <input
+                            type="text"
+                            className="ingredientQty"
+                            name="ingredientQty"
+                            value={x.ingredientQty}
+                            onChange={e => handleInputChange(e, i)}
+                            required
+                        />
+                        <div className="ingredientListButtons">
+                            {ingList.length !== 1 && <button 
+                                type="button" 
+                                className="ingredientRm" 
+                                onClick={() => handleRemoveClick(i)}>Remove</button>}
+                        </div>
                     </div>
                     {ingList.length - 1 === i && <button 
                         type="button" 
@@ -117,9 +122,11 @@ const CreatePost = () => {
                 )
             }
         )}
+        <h3>Image</h3>
         <input type="file"
             onChange={e => setFiles(e.target.files)} 
         />
+        <h3>Directions</h3>
         <Editor onChange={setContent} value={content} />
         <button type="submit" style={{marginTop:'5px'}}>Create Post</button>
     </form>

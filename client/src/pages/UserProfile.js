@@ -18,23 +18,6 @@ const UserProfile = () => {
         }())
     }, [])
 
-    // useEffect (() => {
-    //     (async function() {
-    //         fetch('http://localhost:4000/profile', { credentials: 'include' }).then(res => {
-    //     res.json().then(userInfo => {
-    //         setUserInfo(userInfo)
-    //         fetch(`http://localhost:4000/viewposts/?author=${userInfo?.username}`)
-    //             .then(response => {
-    //                 response.json().then(posts => {
-    //                 setPosts(posts)
-    //                 console.log(userInfo?.username)
-    //                 })
-    //             })
-    //         })
-    //     })
-    //     }())
-    // }, [])
-
     const username = userInfo?.username
 
     return (
@@ -45,6 +28,7 @@ const UserProfile = () => {
                 <li><a href="/">Cookbook</a></li>
                 <li><a href="/">Stretches</a></li>
             </ul>
+            <p className="text-center">Total recipes created: {posts.length}</p>
             {posts.length > 0 && posts.map(post => (
                 <Post {...post} key={post._id} />
             ))}
