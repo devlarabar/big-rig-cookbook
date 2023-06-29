@@ -23,6 +23,8 @@ The project is in its early stages of development. The plan is to make it easily
 
 Next steps are outlines here, for easy reference. This is not an exhaustive list; only a list of the immediate next steps for the project. This list will be updated as needed.
 
-- Add user profiles
+- Enhance user profiles
 - Improve entering directions for recipes
 - Cook time & tools used inputs for recipes
+- Remove image uploads; replace with SVGs depending on ingredients & cook time
+- Begin creating stretch database
