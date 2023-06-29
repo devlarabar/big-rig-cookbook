@@ -46,18 +46,38 @@ header nav {
     display: flex;
     gap: 15px;
 }
+nav a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+nav svg {
+    width: 30px;
+}
 
 /* ********************
 post styles
 ******************** */
-.post img {
-    max-width: 100%;
+.post-image img {
+    width: 100%;
+    margin: auto;
+    object-fit: fill;
+    object-position: center center;
+}
+.post-image {
+    height: 125px;
+    overflow: hidden;
 }
 .post {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-    margin-bottom: 30px;
+    margin: 0 auto 30px auto;
 }
 .post h2 {
     margin: 0;
@@ -67,19 +87,18 @@ post styles
     text-decoration: none;
     color: inherit;
 }
-.postInfo {
+.post-info {
     margin: 0;
     color: #888;
     font-size: 1.3rem;
-    display: flex;
     gap: 10px;
 }
-.postAuthor {
+.post-author {
     font-weight: bold;
     text-decoration: none;
     color: #333;
 }
-.postSummary {
+.post-summary {
     margin: 10px 0;
 }
 
@@ -173,6 +192,40 @@ form button:hover {
     align-items: center;
     justify-content: center;
     gap: 5px;
+}
+
+/* ********************
+user profile
+******************** */
+.user-header {
+    text-align: center;
+    text-transform: capitalize;
+}
+.user-nav {
+    padding: 0;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+.user-nav li, .user-nav a {
+    display: inline-block;
+}
+.user-nav a {
+    background: #ddd;
+    padding: 5px 12px;
+    border-radius: 12px;
+    text-decoration: none;
+}
+
+/* ********************
+utility
+******************** */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text-center {
+    text-align: center;
 }
 
 /* ********************

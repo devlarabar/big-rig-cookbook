@@ -30,42 +30,11 @@ const db = (async function() {
     console.log('Connected to the DB')
 }())
 
-app.post('/register', async (req, res) => {
-    const { username, password } = req.body
-    try {
-        const userDoc = await User.create({
-            username,
-            // Encrypt password
-            password:bcrypt.hashSync(password, salt)
-        })
-        res.json(userDoc)
-    } catch(err) {
-        res.status(400).json(err)
-    }
-})
+// ***************************** User Profile
 
-app.post('/login', async (req, res) => {
-    const { username, password } = req.body
-    const userDoc = await User.findOne({ username })
-    // Check if password matches encrypted password in db
-    const passOk = bcrypt.compareSync(password, userDoc.password)
-
-    if (passOk) {
-        // Create session token
-        jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
-            if (err) throw err;
-            res.cookie('token', token).json({
-                id: userDoc._id,
-                username
-            })
-        })
-    } else {
-        res.status(400).json('Wrong credentials')
-    }
-})
-
-app.get('/profile', (req, res) => {
+app.get('/user/:username', (req, res) => {
     // Grab token from cookies (from Header.js)
+    const username = req.params.username
     const { token } = req.cookies
 
     jwt.verify(token, secret, {}, (err, info) => {
@@ -73,8 +42,10 @@ app.get('/profile', (req, res) => {
         res.json(info)
     })
 
-    // res.json(req.cookies)
+    res.json(req.cookies)
 })
+
+// ***************************** Create & Update Posts
 
 app.post('/createpost', uploadMiddleware.single('file'), async (req, res) => {
     let newPath = ''
@@ -137,6 +108,8 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
     })
 })
 
+// ***************************** View Posts
+
 app.get('/viewposts', async (req, res) => {
     const posts = await Post
         .find()
@@ -144,6 +117,71 @@ app.get('/viewposts', async (req, res) => {
         .sort({ createdAt: -1 })
         .limit(20)
     res.json(posts)
+})
+
+app.get('/viewposts/:author', async (req, res) => {
+    const authorUsername = req.params.author ? req.params.author : null
+    const author = (await User.find({ username: authorUsername }))
+    const posts = await Post
+        .find({ author: author })
+        .populate('author', [ 'username' ])
+        .sort({ createdAt: -1 })
+        .limit(20)
+    res.json(posts)
+})
+
+app.get('/post/:id', async (req, res) => {
+    const {id} = req.params
+    const postDoc = await Post.findById(id).populate('author', ['username'])
+    res.json(postDoc)
+})
+
+// ***************************** Login, Logout, Header Profile Info
+
+app.post('/register', async (req, res) => {
+    const { username, password } = req.body
+    try {
+        const userDoc = await User.create({
+            username,
+            // Encrypt password
+            password:bcrypt.hashSync(password, salt)
+        })
+        res.json(userDoc)
+    } catch(err) {
+        res.status(400).json(err)
+    }
+})
+
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body
+    const userDoc = await User.findOne({ username })
+    // Check if password matches encrypted password in db
+    const passOk = bcrypt.compareSync(password, userDoc.password)
+
+    if (passOk) {
+        // Create session token
+        jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
+            if (err) throw err;
+            res.cookie('token', token).json({
+                id: userDoc._id,
+                username
+            })
+        })
+    } else {
+        res.status(400).json('Wrong credentials')
+    }
+})
+
+app.get('/profile', (req, res) => {
+    // Grab token from cookies (from Header.js)
+    const { token } = req.cookies
+
+    jwt.verify(token, secret, {}, (err, info) => {
+        if (err) throw err
+        res.json(info)
+    })
+
+    // res.json(req.cookies)
 })
 
 app.post('/logout', (req, res) => {
@@ -154,11 +192,7 @@ app.get('/test', (req, res) => {
     res.json(`Server is running on post ${PORT}`)
 })
 
-app.get('/post/:id', async (req, res) => {
-    const {id} = req.params
-    const postDoc = await Post.findById(id).populate('author', ['username'])
-    res.json(postDoc)
-})
+
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server running on port ${PORT}`)

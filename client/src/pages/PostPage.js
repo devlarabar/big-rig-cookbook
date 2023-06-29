@@ -43,7 +43,7 @@ const PostPage = () => {
                 <ul>
                     {postInfo.ingredients.length > 0 ? postInfo.ingredients.map((x, i) => {
                             return (
-                                <li>
+                                <li key={`${i}-${x.ingredientName}`}>
                                     { x.ingredientName } - { x.ingredientQty }
                                 </li>
                             )
