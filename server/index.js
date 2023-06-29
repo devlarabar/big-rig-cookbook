@@ -13,7 +13,6 @@ const fs = require('fs')
 require('dotenv').config()
 
 const dbConnectionStr = process.env.DB_STRING
-const dbName = 'tea'
 
 const PORT = 4000
 
