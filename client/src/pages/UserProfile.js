@@ -7,6 +7,7 @@ import Spinner from '../Spinner'
 const UserProfile = () => {
     const { userInfo, setUserInfo } = useContext(UserContext)
     const [ user, setUser ] = useState('')
+    const [ section, setSection ] = useState('')
     // const [ posts, setPosts ] = useState([])
 
     const userFromUrl = useLocation().pathname.split('/').reverse()[0].trim()
@@ -31,6 +32,10 @@ const UserProfile = () => {
     const username = userInfo?.username
     const isViewersProfile = username === user
 
+    function changeSection(x) {
+        setSection(x)
+    }
+
     if (user !== userFromUrl) {
         return (
             <>
@@ -43,10 +48,11 @@ const UserProfile = () => {
             <h2 className="user-header">{user}'s profile</h2>
             {isViewersProfile && <span className="block-center text-center">This is your profile!</span>}
             <ul className="user-nav flex-center">
-                <li><a href="/">Recipes</a></li>
-                <li><a href="/">Cookbook</a></li>
-                <li><a href="/">Stretches</a></li>
+                <li><button onClick={() => changeSection('Recipes')}>Recipes</button></li>
+                <li><button onClick={() => changeSection('Cookbook')}>Cookbook</button></li>
+                <li><button onClick={() => changeSection('Stretches')}>Stretches</button></li>
             </ul>
+            {section}
             <UserRecipes user={user} />
         </>
     )
