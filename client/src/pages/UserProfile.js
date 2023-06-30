@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../UserContext'
 import UserRecipes from '../UserRecipes'
 import { useLocation } from 'react-router-dom'
+import Spinner from '../Spinner'
 
 const UserProfile = () => {
     const { userInfo, setUserInfo } = useContext(UserContext)
@@ -30,6 +31,13 @@ const UserProfile = () => {
     const username = userInfo?.username
     const isViewersProfile = username === user
 
+    if (user !== userFromUrl) {
+        return (
+            <>
+            <Spinner/>
+            </>
+        )
+    } else {
     return (
         <>
             <h2 className="user-header">{user}'s profile</h2>
@@ -42,6 +50,7 @@ const UserProfile = () => {
             <UserRecipes user={user} />
         </>
     )
+}
 }
 
 export default UserProfile
