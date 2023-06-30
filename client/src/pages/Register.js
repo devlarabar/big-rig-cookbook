@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { Navigate } from 'react-router-dom'
 
 const Register = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+    const [redirect, setRedirect] = useState(false)
 
 	async function register(e) {
 		// Prevent redirection
@@ -18,10 +20,16 @@ const Register = () => {
 		// Alert status (failed here is UN is not unique)
 		if (response.status === 200) {
 			alert('Registration successful')
+            setRedirect(true)
 		} else {
 			alert('Registration failed')
 		}
 	}
+	
+	// If redirect state is true (^^^), redirect to home page
+    if (redirect) {
+        return <Navigate to={'/login'} />
+    }
 
 	return (
 		<div>

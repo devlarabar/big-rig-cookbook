@@ -231,6 +231,10 @@ utility
 .text-center {
     text-align: center;
 }
+.block-center {
+    display: block;
+    margin: auto;
+}
 
 /* ********************
 media queries 

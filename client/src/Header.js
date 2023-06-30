@@ -13,7 +13,7 @@ const Header = () => {
 				setUserInfo(userInfo)
 			})
 		})
-	}, [])
+	}, [setUserInfo])
 
 	function logout(e) {
 		//e.preventDefault()
