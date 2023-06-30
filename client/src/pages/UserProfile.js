@@ -8,14 +8,12 @@ const UserProfile = () => {
     const [ user, setUser ] = useState('')
     // const [ posts, setPosts ] = useState([])
 
-    const location = useLocation()
+    const userFromUrl = useLocation().pathname.split('/').reverse()[0].trim()
 
     useEffect(() => {
         // execute on location change
-        const userViewing = location.pathname.split('/').reverse()[0].trim()
-        setUser(userViewing);
-        console.log('Location changed!', location.pathname, user);
-    }, [location, user]);
+        setUser(userFromUrl);
+    }, [userFromUrl, user]);
 
     useEffect(() => {
         (async function () {
