@@ -21,14 +21,21 @@ const UserRecipes = ({ user }) => {
     // const username = userInfo?.username
     // const isViewersProfile = username === user
 
-    return (
-        <>
-            <p className="text-center">Total recipes created: {posts.length}</p>
-            {posts.length > 0 && posts.map(post => (
-                <Post {...post} key={post._id} />
-            ))}
-        </>
-    )
+    if (posts.length < 1) {
+        return (
+            <span className="block-center text-center">Loading...</span>
+        )
+    } else {
+
+        return (
+            <>
+                <p className="text-center">Total recipes created: {posts.length}</p>
+                {posts.length > 0 && posts.map(post => (
+                    <Post {...post} key={post._id} />
+                ))}
+            </>
+        )
+    }
 }
 
 export default UserRecipes
