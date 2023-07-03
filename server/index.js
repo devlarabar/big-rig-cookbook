@@ -139,6 +139,34 @@ app.get('/post/:id', async (req, res) => {
     res.json(postDoc)
 })
 
+// ***************************** Save Posts, Get Saved Posts from User
+
+app.put('/savepost', async (req, res) => {
+    const postId = req.body.post
+    const userId = req.body.user
+    // const postDoc = await Post.findById(postId)
+    const userDoc = await User.findById(userId)
+
+    if (userDoc.savedPosts?.includes(postId)) {
+        newSavedPosts = userDoc.savedPosts.filter(x => x != postId)
+        await userDoc.updateOne({
+            savedPosts: [ ... newSavedPosts ]
+        });
+        res.json(`Post id ${postId} removed.`)
+    } else {
+        await userDoc.updateOne({
+            savedPosts: [...userDoc.savedPosts, postId]
+        }, { upsert: true });
+        res.json(`Post id ${postId} saved.`)
+    }
+})
+
+app.get('/getuserdata/:id', async (req, res) => {
+    const id = req.params.id
+    const userDoc = await User.findById(id)
+    res.json(userDoc)
+})
+
 // ***************************** Login, Logout, Header Profile Info
 
 app.post('/register', async (req, res) => {
