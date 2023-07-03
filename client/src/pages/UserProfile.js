@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../UserContext'
 import UserRecipes from '../UserRecipes'
+import UserCookbook from '../UserCookbook'
+import UserStretches from '../UserStretches'
 import { useLocation } from 'react-router-dom'
 import Spinner from '../Spinner'
 
@@ -53,7 +55,9 @@ const UserProfile = () => {
                 <li><button onClick={() => changeSection('Stretches')}>Stretches</button></li>
             </ul>
             {section}
-            <UserRecipes user={user} />
+            {section === 'Recipes' && <UserRecipes user={user} />}
+            {section === 'Cookbook' && <UserCookbook user={user} />}
+            {section === 'Stretches' && <UserStretches user={user} />}
         </>
     )
 }
