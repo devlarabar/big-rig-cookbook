@@ -1,11 +1,9 @@
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-//import { UserContext } from './UserContext'
 
 const Post = ({ _id, title, summary, cover, content, author, createdAt, userId, userDetails }) => {
 	const [ savedPost, setSavedPost ] = useState(false)
-	const [ updateSaveStatus, setUpdateSaveStatus ] = useState(false)
 
 	let userSavedPosts = userDetails.savedPosts
 
@@ -18,7 +16,7 @@ const Post = ({ _id, title, summary, cover, content, author, createdAt, userId, 
 				}
 			}
 		
-	}, [userSavedPosts, setSavedPost, _id, updateSaveStatus, setUpdateSaveStatus])
+	}, [userSavedPosts, setSavedPost, _id])
 	
 	async function saveRecipe(post_id) {
 		await fetch('http://localhost:4000/savepost', {
@@ -29,11 +27,8 @@ const Post = ({ _id, title, summary, cover, content, author, createdAt, userId, 
             },
             credentials: 'include'
 		})
-		setUpdateSaveStatus(true)
-		console.log(updateSaveStatus)
+		setSavedPost(!savedPost)
 	}
-
-	console.log(userSavedPosts)
 
 	return (
 		<div className="post" key={_id}>
