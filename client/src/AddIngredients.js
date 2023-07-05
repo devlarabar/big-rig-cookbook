@@ -2,8 +2,6 @@ const AddIngredients = (ingredients) => {
 
     const { ingList, setIngList } = ingredients
 
-    console.log(ingredients)
-
     // Ingredients List: Handle input change
     const handleInputChange = (e, index) => {
         const { name, value } = e.target
