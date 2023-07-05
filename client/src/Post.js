@@ -15,7 +15,6 @@ const Post = ({ _id, title, summary, cover, content, author, createdAt, userId, 
 					setSavedPost(false)
 				}
 			}
-		
 	}, [userSavedPosts, setSavedPost, _id])
 	
 	async function saveRecipe(post_id) {
@@ -47,6 +46,7 @@ const Post = ({ _id, title, summary, cover, content, author, createdAt, userId, 
 				</p>
 				<p className="post-summary text-center">{summary}
 				</p>
+				
 				{!savedPost && <span className="savePost" onClick={() => saveRecipe(_id)}>Save Recipe</span>}
 				{savedPost && <span className="unsavePost" onClick={() => saveRecipe(_id)}>Un-save Recipe</span>}
 				
