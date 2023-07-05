@@ -1,34 +1,8 @@
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import SaveButton from './SaveButton'
 
 const Post = ({ _id, title, summary, cover, content, author, createdAt, userId, userDetails }) => {
-	const [ savedPost, setSavedPost ] = useState(false)
-
-	let userSavedPosts = userDetails.savedPosts
-
-	useEffect(() => {
-			if (userSavedPosts) {
-				if (userSavedPosts.includes(_id)) {
-					setSavedPost(true)
-				} else {
-					setSavedPost(false)
-				}
-			}
-	}, [userSavedPosts, setSavedPost, _id])
-	
-	async function saveRecipe(post_id) {
-		await fetch('http://localhost:4000/savepost', {
-			method: 'PUT',
-            body: JSON.stringify({ post: post_id, user: userId }),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-		})
-		setSavedPost(!savedPost)
-	}
-
 	return (
 		<div className="post" key={_id}>
 			<div className="post-image">
@@ -46,10 +20,7 @@ const Post = ({ _id, title, summary, cover, content, author, createdAt, userId, 
 				</p>
 				<p className="post-summary text-center">{summary}
 				</p>
-				
-				{!savedPost && <span className="savePost" onClick={() => saveRecipe(_id)}>Save Recipe</span>}
-				{savedPost && <span className="unsavePost" onClick={() => saveRecipe(_id)}>Un-save Recipe</span>}
-				
+				<SaveButton postId={_id} author={author} userId={userId} username={userDetails.username} userSavedPosts={userDetails.savedPosts} />
 			</div>
 		</div>
 	)
