@@ -10,6 +10,7 @@ const UserProfile = () => {
     const { userInfo, setUserInfo } = useContext(UserContext)
     const [userDetails, setUserDetails] = useState({})
     const [user, setUser] = useState('')
+    const [userProfile, setUserProfile] = useState('')
     const [section, setSection] = useState('')
 
     const userFromUrl = useLocation().pathname.split('/').reverse()[0].trim()
@@ -20,14 +21,7 @@ const UserProfile = () => {
         setSection('')
     }, [userFromUrl, user]);
 
-    useEffect(() => {
-        (async function () {
-            const userInfoResponse = await fetch('http://localhost:4000/profile', { credentials: 'include' })
-            const userInfo = await userInfoResponse.json()
-            setUserInfo(userInfo)
-        }())
-    }, [setUserInfo])
-
+    // Get userInfo for the user currently logged in
     useEffect(() => {
         (async function () {
             const userInfoResponse = await fetch('http://localhost:4000/profile', { credentials: 'include' })
@@ -40,6 +34,17 @@ const UserProfile = () => {
             }
         }())
     }, [setUserInfo, setUserDetails])
+
+    // Get user information of the profile being viewed
+    useEffect(() => {
+        (async function() {
+            if (user) {
+                const userProfileResponse = await fetch(`http://localhost:4000/getuserdata_un/${user}`)
+                const userProfile = await userProfileResponse.json()
+                setUserProfile(userProfile)
+            }
+        }())
+    }, [user])
 
     const username = userInfo?.username
     const isViewersProfile = username === user
@@ -66,8 +71,8 @@ const UserProfile = () => {
                     <li><button onClick={() => changeSection('Stretches')}>Stretches</button></li>
                 </ul>
                 {section}
-                {section === 'Recipes' && <UserRecipes user={user} userId={userInfo.id} userDetails={userDetails} />}
-                {section === 'Cookbook' && <UserCookbook user={user} userId={userInfo.id} userDetails={userDetails} />}
+                {section === 'Recipes' && <UserRecipes user={userProfile} userId={userInfo.id} userDetails={userDetails} />}
+                {section === 'Cookbook' && <UserCookbook user={userProfile} userId={userInfo.id} userDetails={userDetails} />}
                 {section === 'Stretches' && <UserStretches user={user} />}
             </>
         )

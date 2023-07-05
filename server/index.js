@@ -35,17 +35,30 @@ const db = (async function () {
 
 // ***************************** User Profile
 
-app.get('/user/:username', (req, res) => {
+app.get('/user/:username', async (req, res) => {
     // Grab token from cookies (from Header.js)
     const username = req.params.username
     const { token } = req.cookies
-
+    
     jwt.verify(token, secret, {}, (err, info) => {
         if (err) throw err
         res.json(info)
     })
 
-    res.json(req.cookies)
+    const userDoc = (await User.find({ username: username }))
+    
+    res.json(userDoc)
+})
+
+app.get('/getuserdata_un/:username', async (req, res) => {
+    const username = req.params.username
+    const userDoc = await User.findOne({ username })
+    const response = {
+        id: userDoc._id,
+        username: userDoc.username,
+        savedPosts: userDoc.savedPosts
+    }
+    res.json(response)
 })
 
 // ***************************** Create & Update Posts
@@ -164,7 +177,12 @@ app.put('/savepost', async (req, res) => {
 app.get('/getuserdata/:id', async (req, res) => {
     const id = req.params.id
     const userDoc = await User.findById(id)
-    res.json(userDoc)
+    const response = {
+        id: userDoc._id,
+        username: userDoc.username,
+        savedPosts: userDoc.savedPosts
+    }
+    res.json(response)
 })
 
 // ***************************** Login, Logout, Header Profile Info

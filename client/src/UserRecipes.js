@@ -6,7 +6,7 @@ const UserRecipes = ({ user, userId, userDetails }) => {
 
     useEffect(() => {
         (async function () {
-            const fetchUserPosts = await fetch(`http://localhost:4000/viewposts/${user}`)
+            const fetchUserPosts = await fetch(`http://localhost:4000/viewposts/${user.username}`)
             const posts = await fetchUserPosts.json()
             setPosts(posts)
         }())
