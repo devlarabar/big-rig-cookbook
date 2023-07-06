@@ -37,7 +37,7 @@ const UserProfile = () => {
         }())
     }, [setUserInfo, setUserDetails])
 
-    // Get user information of the profile being viewed
+    // Get user information of the profile being viewed (todo: maybe convert these all into one request)
     useEffect(() => {
         (async function() {
             if (user) {

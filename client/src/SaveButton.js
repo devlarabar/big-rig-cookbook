@@ -1,20 +1,10 @@
 import { useState, useEffect } from "react"
 
-const SaveButton = ({ postId, author, savedBy, userId, username, userSavedPosts }) => {
+const SaveButton = ({ postId, author, savedBy, userId, username }) => {
     const [savedPost, setSavedPost] = useState(false)
 
     const isAuthor = username === author.username
     const text = savedPost ? 'Un-save' : 'Save'
-
-    // useEffect(() => {
-    //     if (userSavedPosts) {
-    //         if (userSavedPosts.includes(postId)) {
-    //             setSavedPost(true)
-    //         } else {
-    //             setSavedPost(false)
-    //         }
-    //     }
-    // }, [userSavedPosts, setSavedPost, postId])
 
     useEffect(() => {
         if (savedBy) {

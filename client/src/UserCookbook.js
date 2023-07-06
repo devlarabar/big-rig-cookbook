@@ -15,7 +15,7 @@ const UserCookbook = ({ user, userCookbook, userId, userDetails }) => {
 
         return (
             <>
-                <p className="text-center">Total recipes saved: (total here)</p>
+                <p className="text-center">Total recipes saved: {userCookbook.length}</p>
                 {userCookbook.length > 0 && userCookbook.map(post => (
                     <Post {...post} key={post._id} userId={userId} userDetails={userDetails} />
                 ))}
