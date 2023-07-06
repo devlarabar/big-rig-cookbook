@@ -49,7 +49,6 @@ const UserProfile = () => {
                 const fetchUserCookbook = await fetch(`http://localhost:4000/cookbook/${user}`)
                 const cookbook = await fetchUserCookbook.json()
                 setUserCookbook(cookbook)
-                console.log(cookbook)
 
                 // Get this user's recipes
                 const fetchUserRecipes = await fetch(`http://localhost:4000/viewposts/${user}`)
@@ -83,7 +82,7 @@ const UserProfile = () => {
                     <li><button onClick={() => changeSection('Cookbook')}>Cookbook</button></li>
                     <li><button onClick={() => changeSection('Stretches')}>Stretches</button></li>
                 </ul>
-                {section}
+                <h3>{section}</h3>
                 {section === 'Recipes' && <UserRecipes user={userProfile} userRecipes={userRecipes} userId={userInfo.id} userDetails={userDetails} />}
                 {section === 'Cookbook' && <UserCookbook user={userProfile} userCookbook={userCookbook} userId={userInfo.id} userDetails={userDetails} />}
                 {section === 'Stretches' && <UserStretches user={user} />}

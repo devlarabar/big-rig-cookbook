@@ -120,7 +120,7 @@ post styles
 }
 
 /* ********************
-misc styles
+edit post
 ******************** */
 .editPost {
     text-align: center;
@@ -140,6 +140,33 @@ misc styles
 .editPostLink, .ingredientAdd svg {
     height: 18px;
     stroke: #fff;
+}
+
+/* ********************
+save button
+******************** */
+.saveButton {
+    border: 2px solid #999;
+    border-radius: 5px;
+    background: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+    padding: 5px;
+}
+.saveButton:hover {
+    background: #f1f1f1;
+}
+
+/* ********************
+headings
+******************** */
+h3 {
+    font-size: 1.55rem;
+    color: inherit;
+    text-align: center;
+    padding: 10px 0;
 }
 
 /* ********************
@@ -223,10 +250,17 @@ user profile
 /* ********************
 utility
 ******************** */
+.flex {
+    display: flex;
+}
 .flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.flex-end {
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 .text-center {
     text-align: center;
