@@ -146,6 +146,15 @@ app.get('/viewposts/:author', async (req, res) => {
     res.json(posts)
 })
 
+app.get('/cookbook/:username', async (req, res) => {
+    const username = req.params.username
+    const user = (await User.find({ username: username }))
+    const cookbook = (await Post
+        .find({ savedBy: { "$in" : [user]} })
+        .sort({ createdAt: -1 }))
+    res.json(cookbook)
+})
+
 app.get('/post/:id', async (req, res) => {
     const { id } = req.params
     const postDoc = await Post.findById(id).populate('author', ['username'])
@@ -157,21 +166,35 @@ app.get('/post/:id', async (req, res) => {
 app.put('/savepost', async (req, res) => {
     const postId = req.body.post
     const userId = req.body.user
-    // const postDoc = await Post.findById(postId)
+    const postDoc = await Post.findById(postId)
     const userDoc = await User.findById(userId)
 
-    if (userDoc.savedPosts?.includes(postId)) {
-        newSavedPosts = userDoc.savedPosts.filter(x => x != postId)
-        await userDoc.updateOne({
-            savedPosts: [ ... newSavedPosts ]
+    if (postDoc.savedBy?.includes(userDoc._id)) {
+        newSavedPosts = postDoc.savedBy.filter(x => x != String(userDoc._id))
+        await postDoc.updateOne({
+            savedBy: [ ... newSavedPosts ]
         });
-        res.json(`Post id ${postId} removed.`)
+        res.json(`User id ${userId} removed from post ${postId}.`)
     } else {
-        await userDoc.updateOne({
-            savedPosts: [...userDoc.savedPosts, postId]
+        await postDoc.updateOne({
+            savedBy: [...postDoc.savedBy, userDoc]
         }, { upsert: true });
-        res.json(`Post id ${postId} saved.`)
+        res.json(`User id ${userId} saved to post ${postId}.`)
     }
+
+    // Saving post to User model; no longer needed
+    // if (userDoc.savedPosts?.includes(postId)) {
+    //     newSavedPosts = userDoc.savedPosts.filter(x => x != postId)
+    //     await userDoc.updateOne({
+    //         savedPosts: [ ... newSavedPosts ]
+    //     });
+    //     res.json(`Post id ${postId} removed.`)
+    // } else {
+    //     await userDoc.updateOne({
+    //         savedPosts: [...userDoc.savedPosts, postId]
+    //     }, { upsert: true });
+    //     res.json(`Post id ${postId} saved.`)
+    // }
 })
 
 app.get('/getuserdata/:id', async (req, res) => {

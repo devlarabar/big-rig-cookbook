@@ -8,10 +8,12 @@ import Spinner from '../Spinner'
 
 const UserProfile = () => {
     const { userInfo, setUserInfo } = useContext(UserContext)
-    const [userDetails, setUserDetails] = useState({})
-    const [user, setUser] = useState('')
-    const [userProfile, setUserProfile] = useState('')
-    const [section, setSection] = useState('')
+    const [ userDetails, setUserDetails] = useState({})
+    const [ user, setUser ] = useState('')
+    const [ userProfile, setUserProfile ] = useState('')
+    const [ userRecipes, setUserRecipes ] = useState([])
+    const [ userCookbook, setUserCookbook ] = useState('')
+    const [ section, setSection ] = useState('')
 
     const userFromUrl = useLocation().pathname.split('/').reverse()[0].trim()
 
@@ -42,6 +44,17 @@ const UserProfile = () => {
                 const userProfileResponse = await fetch(`http://localhost:4000/getuserdata_un/${user}`)
                 const userProfile = await userProfileResponse.json()
                 setUserProfile(userProfile)
+
+                // Get this user's cookbook
+                const fetchUserCookbook = await fetch(`http://localhost:4000/cookbook/${user}`)
+                const cookbook = await fetchUserCookbook.json()
+                setUserCookbook(cookbook)
+                console.log(cookbook)
+
+                // Get this user's recipes
+                const fetchUserRecipes = await fetch(`http://localhost:4000/viewposts/${user}`)
+                const recipes = await fetchUserRecipes.json()
+                setUserRecipes(recipes)
             }
         }())
     }, [user])
@@ -71,8 +84,8 @@ const UserProfile = () => {
                     <li><button onClick={() => changeSection('Stretches')}>Stretches</button></li>
                 </ul>
                 {section}
-                {section === 'Recipes' && <UserRecipes user={userProfile} userId={userInfo.id} userDetails={userDetails} />}
-                {section === 'Cookbook' && <UserCookbook user={userProfile} userId={userInfo.id} userDetails={userDetails} />}
+                {section === 'Recipes' && <UserRecipes user={userProfile} userRecipes={userRecipes} userId={userInfo.id} userDetails={userDetails} />}
+                {section === 'Cookbook' && <UserCookbook user={userProfile} userCookbook={userCookbook} userId={userInfo.id} userDetails={userDetails} />}
                 {section === 'Stretches' && <UserStretches user={user} />}
             </>
         )

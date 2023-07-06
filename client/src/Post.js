@@ -1,8 +1,19 @@
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
+//import { useEffect, useState } from 'react'
 import SaveButton from './SaveButton'
 
-const Post = ({ _id, title, summary, cover, content, author, createdAt, userId, userDetails }) => {
+const Post = ({ _id, title, summary, cover, content, author, createdAt, savedBy, userId, userDetails }) => {
+	// const [ postInfo, setPostInfo ] = useState('')
+
+	// useEffect(() => {
+    //     (async function () {
+    //         const fetchPostInfo = await fetch(`http://localhost:4000/post/${user.username}`)
+    //         const post = await fetchPostInfo.json()
+    //         setPostInfo(post)
+    //     }())
+    // }, [postInfo])
+
 	return (
 		<div className="post" key={_id}>
 			<div className="post-image">
@@ -20,7 +31,7 @@ const Post = ({ _id, title, summary, cover, content, author, createdAt, userId, 
 				</p>
 				<p className="post-summary text-center">{summary}
 				</p>
-				<SaveButton postId={_id} author={author} userId={userId} username={userDetails.username} userSavedPosts={userDetails.savedPosts} />
+				<SaveButton postId={_id} author={author} savedBy={savedBy} userId={userId} username={userDetails.username} userSavedPosts={userDetails.savedPosts} />
 			</div>
 		</div>
 	)

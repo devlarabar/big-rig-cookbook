@@ -7,7 +7,8 @@ const PostSchema = new Schema({
     content: String,
     ingredients: Array,
     cover: String,
-    author: {type: Schema.Types.ObjectId, ref: 'User'}
+    author: {type: Schema.Types.ObjectId, ref: 'User'},
+    savedBy: [{type: Schema.Types.ObjectId, ref: 'User'}]
 }, {
     timestamps: true
 })
