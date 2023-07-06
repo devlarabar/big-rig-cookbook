@@ -1,6 +1,7 @@
 import Post from './Post'
 
 const UserRecipes = ({ user, userId, userDetails, userRecipes }) => {
+    // todo: if userId doesn't match the current profile, display loading icon
     if (!userRecipes) {
         return (
             <span className="block-center text-center">Loading...</span>
