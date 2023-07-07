@@ -269,6 +269,18 @@ utility
     display: block;
     margin: auto;
 }
+.green {
+    color: green;
+}
+.yellow {
+    color: orange;
+}
+.red {
+    color: red;
+}
+.bold {
+    font-weight: bold;
+}
 
 /* ********************
 media queries 
