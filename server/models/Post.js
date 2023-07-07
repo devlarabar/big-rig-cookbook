@@ -6,7 +6,9 @@ const PostSchema = new Schema({
     summary: String,
     content: String,
     ingredients: Array,
-    cover: String,
+    prepTime: Number,
+    cookTime: Number,
+    //cover: String,
     author: {type: Schema.Types.ObjectId, ref: 'User'},
     savedBy: [{type: Schema.Types.ObjectId, ref: 'User'}]
 }, {

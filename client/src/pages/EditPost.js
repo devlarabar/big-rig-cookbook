@@ -5,11 +5,13 @@ import AddIngredients from '../AddIngredients'
 
 const EditPost = () => {
     const { id } = useParams()
-    const [title, setTitle] = useState('')
-    const [summary, setSummary] = useState('')
-    const [content, setContent] = useState('')
-    const [files, setFiles] = useState('')
-    const [redirect, setRedirect] = useState(false)
+    const [ title, setTitle ] = useState('')
+    const [ summary, setSummary ] = useState('')
+    const [ content, setContent ] = useState('')
+    const [ prepTime, setPrepTime ] = useState('')
+    const [ cookTime, setCookTime ] = useState('')
+    const [ redirect, setRedirect ] = useState(false)
+    //const [files, setFiles] = useState('')
 
     const [ ingList, setIngList ] = useState([{ ingredientName: '', ingredientQty: '' }]);
 
@@ -20,31 +22,11 @@ const EditPost = () => {
                 setSummary(postInfo.summary)
                 setContent(postInfo.content)
                 setIngList(postInfo.ingredients)
+                setPrepTime(postInfo.prepTime)
+                setCookTime(postInfo.cookTime)
             })
         })
     }, [])
-
-    
-
-    // Ingredients List: Handle input change
-    const handleInputChange = (e, index) => {
-        const { name, value } = e.target
-        const list = [...ingList]
-        list[index][name] = value
-        setIngList(list)
-    }
-   
-    // Ingredients List: Handle click event of the Remove button
-    const handleRemoveClick = (index) => {
-        const list = [...ingList]
-        list.splice(index, 1)
-        setIngList(list)
-    }
-   
-    // Ingredients List: Handle click event of the Add button
-    const handleAddClick = () => {
-        setIngList([...ingList, { ingredientName: '', ingredientQty: '' }])
-    }
 
     async function updatePost(e) {
         e.preventDefault()
@@ -64,7 +46,9 @@ const EditPost = () => {
             summary,
             content,
             ingredients: ingList[0].ingredientName ? ingList : [],
-            file: files[0]
+            prepTime,
+            cookTime,
+            //file: files[0]
         }
 
         const response = await fetch('http://localhost:4000/post/', {
@@ -101,9 +85,23 @@ const EditPost = () => {
             onChange={e => setSummary(e.target.value)}
         />
         <AddIngredients ingList={ingList} setIngList={setIngList}/>
-        <h3>Image</h3>
+        {/* <h3>Image</h3>
         <input type="file"
             onChange={e => setFiles(e.target.files)} 
+        /> */}
+        <input
+            type="number"
+            min="1"
+            placeholder={'prepTime'}
+            value={prepTime}
+            onChange={e => setPrepTime(e.target.value)}
+        />
+        <input
+            type="number"
+            min="1"
+            placeholder={'cookTime'}
+            value={cookTime}
+            onChange={e => setCookTime(e.target.value)}
         />
         <h3>Directions</h3>
         <Editor onChange={setContent} value={content} />
