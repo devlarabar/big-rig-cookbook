@@ -32,6 +32,7 @@ const SaveButton = ({ postId, author, savedBy, userId, username }) => {
         <>
         <div className="flex flex-end">
             {!isAuthor && <button className="saveButton" onClick={() => saveRecipe(postId)}>{text}</button>}
+            {isAuthor && <span className="text-small">This is your recipe!</span>}
         </div>
         </>
         
