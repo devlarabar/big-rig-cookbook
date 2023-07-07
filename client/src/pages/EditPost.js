@@ -26,7 +26,7 @@ const EditPost = () => {
                 setCookTime(postInfo.cookTime)
             })
         })
-    }, [])
+    }, [id])
 
     async function updatePost(e) {
         e.preventDefault()
