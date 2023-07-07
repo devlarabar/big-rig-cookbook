@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 /* ********************
 variables
 ******************** */
 :root {
+    --font-main: "Ubuntu", "Verdana", sans-serif;
     --text-main: #1E1E1E;
     --text-heading: #6AA702;
     --text-accent: #59B1BD;
@@ -26,6 +29,7 @@ html {
 }
 body {
     font-size: 1.5rem;
+    font-family: var(--font-main);
     line-height: 1.5;
     color: var(--text-main);
     background: var(--bg-main)
@@ -38,6 +42,38 @@ main {
     padding: 10px;
     max-width: 600px;
     margin: 0 auto;
+}
+
+/* ********************
+text, general
+******************** */
+a {
+    color: var(--color-accent3);
+    text-decoration: none;
+    font-weight: bold;
+}
+a:hover {
+    color: var(--color-accent1)
+}
+
+/* ********************
+headings
+******************** */
+h1 {
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: var(--text-heading)
+}
+h2 {
+    font-size: 1.6rem;
+    color: var(--text-main);
+    margin: 0 0 5px 0;
+}
+h3 {
+    font-size: 1.55rem;
+    color: inherit;
+    text-align: center;
+    padding: 10px 0;
 }
 
 /* ********************
@@ -76,6 +112,7 @@ nav a {
 }
 nav a:hover {
     background: var(--color-accent1);
+    color: #fff;
 }
 nav svg {
     width: 30px;
@@ -84,16 +121,6 @@ nav svg {
 /* ********************
 post styles
 ******************** */
-.post-image img {
-    width: 100%;
-    margin: auto;
-    object-fit: fill;
-    object-position: center center;
-}
-.post-image {
-    height: 125px;
-    overflow: hidden;
-}
 .post {
     margin: 0 auto 40px auto;
     width: 95%;
@@ -103,44 +130,11 @@ post styles
     background-color: var(--bg-post);
     text-align: left;
 }
-.post h2 {
-    margin: 0;
-    font-size: 1.8rem;
-}
-.post a {
-    text-decoration: none;
-    color: inherit;
-}
 .post-info {
     margin: 0;
     color: #888;
     font-size: 1.3rem;
     gap: 10px;
-}
-.post-author {
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-}
-.post-summary {
-    margin: 10px 0;
-}
-
-.postPage .coverImage {
-    max-width: 100%;
-    max-height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin: auto;
-}
-.coverImage img {
-    object-fit: contain;
-    object-position: center center;
-}
-.postPage h2 {
-    text-align: center;
 }
 
 /* ********************
@@ -181,21 +175,6 @@ save button
 }
 .saveButton:hover {
     background: #f1f1f1;
-}
-
-/* ********************
-headings
-******************** */
-h1 {
-    font-weight: bold;
-    font-size: 1.8rem;
-    color: var(--text-heading)
-}
-h3 {
-    font-size: 1.55rem;
-    color: inherit;
-    text-align: center;
-    padding: 10px 0;
 }
 
 /* ********************
