@@ -3,25 +3,24 @@ import { UserContext } from '../UserContext'
 import UserRecipes from '../UserRecipes'
 import UserCookbook from '../UserCookbook'
 import UserStretches from '../UserStretches'
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Spinner from '../Spinner'
 
 const UserProfile = () => {
+    const { user } = useParams()
     const { userInfo, setUserInfo } = useContext(UserContext)
     const [ userDetails, setUserDetails] = useState({})
-    const [ user, setUser ] = useState('')
     const [ userProfile, setUserProfile ] = useState('')
     const [ userRecipes, setUserRecipes ] = useState([])
     const [ userCookbook, setUserCookbook ] = useState('')
     const [ section, setSection ] = useState('')
 
-    const userFromUrl = useLocation().pathname.split('/').reverse()[0].trim()
-
-    useEffect(() => {
-        // execute on location change
-        setUser(userFromUrl);
-        setSection('')
-    }, [userFromUrl, user]);
+    // useEffect(() => {
+    //     // execute on location change
+    //     setUserRecipes('')
+    //     setUserCookbook('')
+    //     setSection('')
+    // }, [user]);
 
     // Get userInfo for the user currently logged in
     useEffect(() => {
@@ -40,21 +39,23 @@ const UserProfile = () => {
     // Get user information of the profile being viewed (todo: maybe convert these all into one request)
     useEffect(() => {
         (async function() {
-            if (user) {
-                const userProfileResponse = await fetch(`http://localhost:4000/getuserdata_un/${user}`)
-                const userProfile = await userProfileResponse.json()
-                setUserProfile(userProfile)
+            setUserRecipes('')
+            setUserCookbook('')
+            setSection('')
+            
+            const userProfileResponse = await fetch(`http://localhost:4000/getuserdata_un/${user}`)
+            const userProfile = await userProfileResponse.json()
+            setUserProfile(userProfile)
 
-                // Get this user's cookbook
-                const fetchUserCookbook = await fetch(`http://localhost:4000/cookbook/${user}`)
-                const cookbook = await fetchUserCookbook.json()
-                setUserCookbook(cookbook)
+            // Get this user's cookbook
+            const fetchUserCookbook = await fetch(`http://localhost:4000/cookbook/${user}`)
+            const cookbook = await fetchUserCookbook.json()
+            setUserCookbook(cookbook)
 
-                // Get this user's recipes
-                const fetchUserRecipes = await fetch(`http://localhost:4000/viewposts/${user}`)
-                const recipes = await fetchUserRecipes.json()
-                setUserRecipes(recipes)
-            }
+            // Get this user's recipes
+            const fetchUserRecipes = await fetch(`http://localhost:4000/viewposts/${user}`)
+            const recipes = await fetchUserRecipes.json()
+            setUserRecipes(recipes)
         }())
     }, [user])
 
@@ -65,7 +66,7 @@ const UserProfile = () => {
         setSection(x)
     }
 
-    if (user !== userFromUrl) {
+    if (!user) {
         return (
             <>
                 <Spinner />

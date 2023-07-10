@@ -21,7 +21,7 @@ function App() {
 					<Route path={'/create'} element={<CreatePost />} />
 					<Route path={'/post/:id'} element={<PostPage />} />
 					<Route path={'/editpost/:id'} element={<EditPost />} />
-					<Route path={'/user/:username'} element={<UserProfile />} />
+					<Route path={'/user/:user'} element={<UserProfile />} />
 				</Route>
 			</Routes>
 		</UserContextProvider>
