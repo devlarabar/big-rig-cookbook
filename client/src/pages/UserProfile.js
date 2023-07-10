@@ -66,7 +66,7 @@ const UserProfile = () => {
         setSection(x)
     }
 
-    if (!user) {
+    if (!userRecipes && !userCookbook) {
         return (
             <>
                 <Spinner />
