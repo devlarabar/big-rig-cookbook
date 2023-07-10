@@ -9,6 +9,7 @@ import EditPost from './pages/EditPost'
 import UserProfile from './pages/UserProfile'
 import { Route, Routes } from 'react-router-dom'
 import { UserContextProvider } from './UserContext'
+import NotFound from './pages/NotFound'
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 					<Route path={'/post/:id'} element={<PostPage />} />
 					<Route path={'/editpost/:id'} element={<EditPost />} />
 					<Route path={'/user/:user'} element={<UserProfile />} />
+					<Route path='*' element={<NotFound />} />
 				</Route>
 			</Routes>
 		</UserContextProvider>

@@ -154,13 +154,21 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
 
 app.delete('/deletepost/:id', async (req, res) => {
     const postId = req.params.id
-    try {
-        await Post.deleteOne({_id: postId})
-        res.json(`Post ${postId} deleted.`)
-    } catch(err) {
-        res.json({ 'error': err }).status(204)
-    }
-    
+    const postDoc = await Post.findById(postId)
+    const { token } = req.cookies
+    jwt.verify(token, secret, {}, async (err, info) => {
+        if (err) throw err
+        const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id)
+        if (!isAuthor) {
+            return res.status(400).json('You are not the author of this post!')
+        }
+        try {
+            await Post.deleteOne({_id: postId})
+            res.json(`Post ${postId} deleted.`)
+        } catch(err) {
+            res.json({ 'error': err }).status(204)
+        }
+    })
 })
 
 // ***************************** View Posts
