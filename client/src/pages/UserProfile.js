@@ -15,12 +15,14 @@ const UserProfile = () => {
     const [ userCookbook, setUserCookbook ] = useState('')
     const [ section, setSection ] = useState('')
 
+    // Old code: get username from URL instead of using useParams()
+    // const [ user, setUser ] = useState('')
+    // const userFromUrl = useLocation().pathname.split('/').reverse()[0].trim()
     // useEffect(() => {
     //     // execute on location change
-    //     setUserRecipes('')
-    //     setUserCookbook('')
+    //     setUser(userFromUrl);
     //     setSection('')
-    // }, [user]);
+    // }, [userFromUrl, user]);
 
     // Get userInfo for the user currently logged in
     useEffect(() => {
@@ -66,6 +68,7 @@ const UserProfile = () => {
         setSection(x)
     }
 
+    // if (user !== userFromUrl)
     if (!userRecipes && !userCookbook) {
         return (
             <>
