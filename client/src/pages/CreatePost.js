@@ -32,6 +32,7 @@ const CreatePost = () => {
             summary,
             content,
             ingredients: ingList[0].ingredientName ? ingList : [],
+            cookware: cookwareList,
             prepTime,
             cookTime,
             // file: files[0]

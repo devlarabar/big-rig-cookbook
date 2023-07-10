@@ -100,12 +100,13 @@ app.post('/createpost', uploadMiddleware.single('file'), async (req, res) => {
     const { token } = req.cookies
     jwt.verify(token, secret, {}, async (err, info) => {
         if (err) throw err
-        const { title, summary, content, ingredients, prepTime, cookTime } = req.body
+        const { title, summary, content, ingredients, cookware, prepTime, cookTime } = req.body
         const postDoc = await Post.create({
             title,
             summary,
             content,
             ingredients,
+            cookware,
             prepTime,
             cookTime,
             // cover: newPath,

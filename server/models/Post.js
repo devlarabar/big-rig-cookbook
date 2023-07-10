@@ -6,6 +6,7 @@ const PostSchema = new Schema({
     summary: String,
     content: String,
     ingredients: Array,
+    cookware: Array,
     prepTime: Number,
     cookTime: Number,
     //cover: String,

@@ -24,6 +24,7 @@ const EditPost = () => {
                 setSummary(postInfo.summary)
                 setContent(postInfo.content)
                 setIngList(postInfo.ingredients)
+                setCookwareList(postInfo.cookware)
                 setPrepTime(postInfo.prepTime)
                 setCookTime(postInfo.cookTime)
             })
