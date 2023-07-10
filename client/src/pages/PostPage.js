@@ -1,14 +1,13 @@
 import { useState, useEffect, useContext } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, Navigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import { UserContext } from '../UserContext'
 
 const PostPage = () => {
-    const [ postInfo, setPostInfo ] = useState(null)
-
-    const { userInfo } = useContext(UserContext)
-
     const {id} = useParams()
+    const [ postInfo, setPostInfo ] = useState(null)
+    const { userInfo } = useContext(UserContext)
+    const [ redirect, setRedirect ] = useState(false)
 
     useEffect(() => {
         fetch(`http://localhost:4000/post/${id}`).then(response => {
@@ -17,6 +16,29 @@ const PostPage = () => {
             })
         })
     }, [id])
+
+    async function deletePost() {
+        const confirm = window.confirm('Are you sure you want to delete this post? This action is permanent!')
+        if (confirm) {
+            const response = await fetch(`http://localhost:4000/deletepost/${id}`, {
+                method: 'DELETE',
+                body: JSON.stringify({ id: id }),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            })
+            if (response.ok) {
+                setRedirect(true)
+            }
+        } else {
+            return
+        }
+    }
+    
+    if (redirect) {
+        return <Navigate to={`/`} />
+    }
 
     if (!postInfo) return '';
     return (
@@ -34,7 +56,7 @@ const PostPage = () => {
                         </svg>
                         Edit
                     </Link>
-                    <button className="btn-post btn-post-delete">Delete</button>
+                    <button className="btn-post btn-post-delete" onClick={deletePost}>Delete</button>
                 </div>
             )}
             {/* <div className="coverImage">

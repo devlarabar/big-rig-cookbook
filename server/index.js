@@ -152,6 +152,17 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
     })
 })
 
+app.delete('/deletepost/:id', async (req, res) => {
+    const postId = req.params.id
+    try {
+        await Post.deleteOne({_id: postId})
+        res.json(`Post ${postId} deleted.`)
+    } catch(err) {
+        res.json({ 'error': err }).status(204)
+    }
+    
+})
+
 // ***************************** View Posts
 
 app.get('/viewposts', async (req, res) => {
