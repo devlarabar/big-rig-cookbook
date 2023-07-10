@@ -44,20 +44,13 @@ const UserProfile = () => {
             setUserRecipes('')
             setUserCookbook('')
             setSection('')
-            
-            const userProfileResponse = await fetch(`http://localhost:4000/getuserdata_un/${user}`)
-            const userProfile = await userProfileResponse.json()
-            setUserProfile(userProfile)
 
-            // Get this user's cookbook
-            const fetchUserCookbook = await fetch(`http://localhost:4000/cookbook/${user}`)
-            const cookbook = await fetchUserCookbook.json()
-            setUserCookbook(cookbook)
-
-            // Get this user's recipes
-            const fetchUserRecipes = await fetch(`http://localhost:4000/viewposts/${user}`)
-            const recipes = await fetchUserRecipes.json()
-            setUserRecipes(recipes)
+            // Get this user's information
+            const fetchUserInfo = await fetch(`http://localhost:4000/getuser/${user}`)
+            const info = await fetchUserInfo.json()
+            setUserProfile(info.userProfile)
+            setUserCookbook(info.cookbook)
+            setUserRecipes(info.posts)
         }())
     }, [user])
 
