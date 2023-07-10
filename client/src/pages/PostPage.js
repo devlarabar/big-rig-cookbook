@@ -45,11 +45,11 @@ const PostPage = () => {
 
     if (!postInfo) return '';
     return (
-        <div className="postPage">
+        <div className="post-page">
             <h2>{postInfo.title}</h2>
             <div className="post-info flex flex-between">
             <p>
-            <a href="/" className="postAuthor">{postInfo.author.username}</a> | <time>{format(new Date(postInfo.createdAt), 'MMM d, yyyy HH:mm')}</time>
+            <Link to={`/user/${postInfo.author.username}`} className="post-author">{postInfo.author.username}</Link> | <time>{format(new Date(postInfo.createdAt), 'MMM d, yyyy HH:mm')}</time>
             </p>
             {userInfo.id === postInfo.author._id && (
                 <div className="editPost flex flex-center">

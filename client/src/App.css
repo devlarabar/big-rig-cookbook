@@ -121,7 +121,7 @@ nav svg {
 /* ********************
 post styles
 ******************** */
-.post {
+.post, .post-page {
     margin: 0 auto 40px auto;
     width: 95%;
     box-shadow: 0 5px 20px var(--color-shadow);

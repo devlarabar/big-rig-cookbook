@@ -27,7 +27,7 @@ const Post = ({ _id, title, summary, cover, content, author, prepTime, cookTime,
 					<h2 className="text-center">{title}</h2>
 				</Link>
 				<p className="post-info flex-center">
-					<a href="/" className="post-author">{author.username}</a>
+					<Link to={`/user/${author.username}`} className="post-author">{author.username}</Link>
 					<time>{format(new Date(createdAt), 'MMM d, yyyy HH:mm')}</time>
 				</p>
 				<div className="width-100 flex flex-between flex-align-end">
