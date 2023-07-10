@@ -28,7 +28,7 @@ const AddIngredients = (ingredients) => {
             {ingList.map((x, i) => {
                 return (
                     <div>
-                        <div className="ingredientsInputList">
+                        <div className="flex small-gap">
                             <input
                                 type="text"
                                 name="ingredientName"

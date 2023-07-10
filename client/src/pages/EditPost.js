@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import Editor from '../Editor'
 import AddIngredients from '../AddIngredients'
+import AddCookware from '../AddCookware'
 
 const EditPost = () => {
     const { id } = useParams()
@@ -13,7 +14,8 @@ const EditPost = () => {
     const [ redirect, setRedirect ] = useState(false)
     //const [files, setFiles] = useState('')
 
-    const [ ingList, setIngList ] = useState([{ ingredientName: '', ingredientQty: '' }]);
+    const [ ingList, setIngList ] = useState([{ ingredientName: '', ingredientQty: '' }])
+    const [ cookwareList, setCookwareList ] = useState([''])
 
     useEffect(() => {
         fetch(`http://localhost:4000/post/${id}`).then(response => {
@@ -85,6 +87,7 @@ const EditPost = () => {
             onChange={e => setSummary(e.target.value)}
         />
         <AddIngredients ingList={ingList} setIngList={setIngList}/>
+        <AddCookware cookwareList={cookwareList} setCookwareList={setCookwareList}/>
         {/* <h3>Image</h3>
         <input type="file"
             onChange={e => setFiles(e.target.files)} 

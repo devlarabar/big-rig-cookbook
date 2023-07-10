@@ -226,6 +226,9 @@ form button:hover {
 .login h2 {
     text-align: center;
 }
+
+/* Ingredient Inputs */
+
 .ingredientsInputList {
     display: flex;
     gap: 5px;
@@ -280,6 +283,9 @@ utility
 
 .flex {
     display: flex;
+}
+.flex-column {
+    flex-direction: column;
 }
 .flex-center {
     display: flex;

@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom'
 import 'react-quill/dist/quill.snow.css'
 import Editor from '../Editor'
 import AddIngredients from '../AddIngredients'
+import AddCookware from '../AddCookware'
 
 const CreatePost = () => {
     const [ title, setTitle ] = useState('')
@@ -13,9 +14,8 @@ const CreatePost = () => {
     const [ redirect, setRedirect ] = useState(false)
     // const [files, setFiles] = useState('')
 
-    const [ ingList, setIngList ] = useState([{ ingredientName: '', ingredientQty: '' }]);
-
-    
+    const [ ingList, setIngList ] = useState([{ ingredientName: '', ingredientQty: '' }])
+    const [ cookwareList, setCookwareList ] = useState([''])
 
     // Form submit: Add post to the DB    
     async function createNewPost(e) {
@@ -57,7 +57,7 @@ const CreatePost = () => {
     }
 
   return (
-    <form onSubmit={createNewPost}>
+    <form onSubmit={createNewPost} className="flex-column small-gap">
         <h2>Create a Recipe</h2>
         <h3>Title & Summary</h3>
         <input 
@@ -65,6 +65,7 @@ const CreatePost = () => {
             placeholder={'Title'} 
             value={title} 
             onChange={e => setTitle(e.target.value)}
+            required
         />
         <input 
             type="summary" 
@@ -73,16 +74,19 @@ const CreatePost = () => {
             onChange={e => setSummary(e.target.value)}
         />
         <AddIngredients ingList={ingList} setIngList={setIngList}/>
+        <AddCookware cookwareList={cookwareList} setCookwareList={setCookwareList}/>
         {/* <h3>Image</h3>
         <input type="file"
             onChange={e => setFiles(e.target.files)} 
         /> */}
+        <h3>Preparation & Cook Time</h3>
         <input
             type="number"
             min="1"
             placeholder={'prepTime'}
             value={prepTime}
             onChange={e => setPrepTime(e.target.value)}
+            required
         />
         <input
             type="number"
@@ -90,6 +94,7 @@ const CreatePost = () => {
             placeholder={'cookTime'}
             value={cookTime}
             onChange={e => setCookTime(e.target.value)}
+            required
         />
         <h3>Directions</h3>
         <Editor onChange={setContent} value={content} />
