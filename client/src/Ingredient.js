@@ -2,11 +2,22 @@ import * as React from 'react'
 import Downshift from 'downshift'
 
 const items = [
-    { value: 'apple' },
-    { value: 'pear' },
-    { value: 'orange' },
-    { value: 'grape' },
-    { value: 'banana' },
+    { value: 'chicken', title: 'deli' },
+    { value: 'sausage' },
+    { value: 'beef' },
+    { value: 'beef - ground' },
+    { value: 'beef - corned' },
+    { value: 'steak' },
+    { value: 'pork' },
+    { value: 'pork - loin' },
+    { value: 'pork - ground' },
+    { value: 'turkey' },
+    { value: 'turkey - ground' },
+    { value: 'deli - turkey' },
+    { value: 'deli - chicken' },
+    { value: '' },
+    { value: '' },
+    { value: '' },
 ]
 
 export const Ingredient = (props) => {
@@ -37,7 +48,7 @@ export const Ingredient = (props) => {
                     style={{ display: 'inline-block' }}
                     {...getRootProps({}, { suppressRefError: true })}
                 >
-                    <input {...getInputProps()} value={props.value} />
+                    <input {...getInputProps({ value: props.value })}/>
                 </div>
                 <ul {...getMenuProps()}>
                     {isOpen
