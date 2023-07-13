@@ -1,4 +1,3 @@
-import { IngredientQty } from "./IngredientQty"
 import AddIngredients from "./AddIngredients"
 import { IngredientsList } from "./IngredientsList"
 
@@ -7,8 +6,14 @@ export const Ingredients = (props) => {
     const { ingList, setIngList } = props
 
     function onAdd(newIngredient) {
-        const list = [...ingList, newIngredient]
-        setIngList(list)
+        if (ingList[0] === '') {
+            ingList[0] = newIngredient
+            const list = [...ingList]
+            setIngList(list)
+        } else {
+            const list = [...ingList, newIngredient]
+            setIngList(list)
+        }
     }
     
   return (

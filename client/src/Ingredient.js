@@ -1,4 +1,3 @@
-import * as React from 'react'
 import Downshift from 'downshift'
 
 const items = [
@@ -22,56 +21,55 @@ const items = [
 
 export const Ingredient = (props) => {
 
-
-  return (
-    <div>
-        <Downshift
-        onChange={selection => props.onChange(selection ? selection.value : null)}
-        itemToString={item => (item ? item.value : '')}
-        name={props.name}
-    >
-        {({
-            getInputProps,
-            getItemProps,
-            getMenuProps,
-            isOpen,
-            inputValue,
-            highlightedIndex,
-            selectedItem,
-            getRootProps,
-        }) => (
-            <div>
-                <div
-                    style={{ display: 'inline-block' }}
-                    {...getRootProps({}, { suppressRefError: true })}
-                >
-                    <input {...getInputProps()}/>
-                </div>
-                <ul {...getMenuProps()}>
-                    {isOpen
-                        ? items
-                            .filter(item => !inputValue || item.value.includes(inputValue))
-                            .map((item, index) => (
-                                <li
-                                    {...getItemProps({
-                                        key: item.value,
-                                        index,
-                                        item,
-                                        style: {
-                                            backgroundColor:
-                                                highlightedIndex === index ? 'lightgray' : 'white',
-                                            fontWeight: selectedItem === item ? 'bold' : 'normal',
-                                        },
-                                    })}
-                                >
-                                    {item.value}
-                                </li>
-                            ))
-                        : null}
-                </ul>
-            </div>
-        )}
-    </Downshift>
-    </div>
-  )
+    return (
+        <div>
+            <Downshift
+                onChange={selection => props.onChange(selection ? selection.value : null)}
+                itemToString={item => (item ? item.value : '')}
+                name={props.name}
+            >
+                {({
+                    getInputProps,
+                    getItemProps,
+                    getMenuProps,
+                    isOpen,
+                    inputValue,
+                    highlightedIndex,
+                    selectedItem,
+                    getRootProps,
+                }) => (
+                    <div>
+                        <div
+                            style={{ display: 'inline-block' }}
+                            {...getRootProps({}, { suppressRefError: true })}
+                        >
+                            <input {...getInputProps()} />
+                        </div>
+                        <ul {...getMenuProps()}>
+                            {isOpen
+                                ? items
+                                    .filter(item => !inputValue || item.value.includes(inputValue))
+                                    .map((item, index) => (
+                                        <li
+                                            {...getItemProps({
+                                                key: item.value,
+                                                index,
+                                                item,
+                                                style: {
+                                                    backgroundColor:
+                                                        highlightedIndex === index ? 'lightgray' : 'white',
+                                                    fontWeight: selectedItem === item ? 'bold' : 'normal',
+                                                },
+                                            })}
+                                        >
+                                            {item.value}
+                                        </li>
+                                    ))
+                                : null}
+                        </ul>
+                    </div>
+                )}
+            </Downshift>
+        </div>
+    )
 }

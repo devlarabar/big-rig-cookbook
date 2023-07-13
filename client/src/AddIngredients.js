@@ -4,22 +4,13 @@ import { IngredientQty } from "./IngredientQty"
 
 const AddIngredients = (props) => {
 
-    //const { ingList, setIngList } = props
     const [ name, setName ] = useState('')
     const [ qty, setQty ] = useState('')
     const [ measure, setMeasure ] = useState('')
     const [ ingredient, setIngredient ] = useState('')
 
-    // Ingredients List: Handle click event of the Remove button
-    // const handleRemoveClick = (index) => {
-    //     const list = [...ingList]
-    //     list.splice(index, 1)
-    //     setIngList(list)
-    // }
-
     // Ingredients List: Handle click event of the Add button
     function handleAddClick() {
-        //setIngList([...ingList, { ingredientName: '', ingredientQty: '' }])
         setIngredient({ name: name, qty: qty, measurement: measure})
     }
 
@@ -42,7 +33,6 @@ const AddIngredients = (props) => {
             setMeasure(selection)
         }
     }
-
 
     return (
         <>

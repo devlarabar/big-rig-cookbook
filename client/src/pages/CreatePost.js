@@ -2,9 +2,7 @@ import { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import 'react-quill/dist/quill.snow.css'
 import Editor from '../Editor'
-import AddIngredients from '../AddIngredients'
 import AddCookware from '../AddCookware'
-import { IngredientsList } from '../IngredientsList'
 import { Ingredients } from '../Ingredients'
 
 const CreatePost = () => {

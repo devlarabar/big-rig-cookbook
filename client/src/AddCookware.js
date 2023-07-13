@@ -27,7 +27,7 @@ const AddCookware = (cookware) => {
             <h3>Cookware</h3>
             {cookwareList.map((x, i) => {
                 return (
-                    <div>
+                    <div key={i}>
                         <div className="flex small-gap">
                             <input
                                 type="text"
