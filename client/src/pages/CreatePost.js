@@ -4,6 +4,8 @@ import 'react-quill/dist/quill.snow.css'
 import Editor from '../Editor'
 import AddIngredients from '../AddIngredients'
 import AddCookware from '../AddCookware'
+import { IngredientsList } from '../IngredientsList'
+import { Ingredients } from '../Ingredients'
 
 const CreatePost = () => {
     const [ title, setTitle ] = useState('')
@@ -14,7 +16,7 @@ const CreatePost = () => {
     const [ redirect, setRedirect ] = useState(false)
     // const [files, setFiles] = useState('')
 
-    const [ ingList, setIngList ] = useState([{ ingredientName: '', ingredientQty: '' }])
+    const [ ingList, setIngList ] = useState([])
     const [ cookwareList, setCookwareList ] = useState([''])
 
     // Form submit: Add post to the DB    
@@ -74,7 +76,7 @@ const CreatePost = () => {
             value={summary} 
             onChange={e => setSummary(e.target.value)}
         />
-        <AddIngredients ingList={ingList} setIngList={setIngList}/>
+        <Ingredients ingList={ingList} setIngList={setIngList}/>
         <AddCookware cookwareList={cookwareList} setCookwareList={setCookwareList}/>
         {/* <h3>Image</h3>
         <input type="file"

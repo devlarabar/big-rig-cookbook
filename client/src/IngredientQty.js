@@ -1,32 +1,26 @@
-import * as React from 'react'
 import Downshift from 'downshift'
 
 const items = [
-    { value: 'chicken', title: 'deli' },
-    { value: 'sausage' },
-    { value: 'beef' },
-    { value: 'beef - ground' },
-    { value: 'beef - corned' },
-    { value: 'steak' },
-    { value: 'pork' },
-    { value: 'pork - loin' },
-    { value: 'pork - ground' },
-    { value: 'turkey' },
-    { value: 'turkey - ground' },
-    { value: 'deli - turkey' },
-    { value: 'deli - chicken' },
-    { value: '' },
-    { value: '' },
-    { value: '' },
+    { value: 'cup' },
+    { value: 'tbsp' },
+    { value: 'tsp' },
+    { value: 'lb' },
+    { value: 'oz' },
+    { value: 'L' },
+    { value: 'mL' },
+    { value: 'pint' },
+    { value: 'qt' },
+    { value: 'gal' },
 ]
 
-export const Ingredient = (props) => {
+export const IngredientQty = (props) => {
 
 
   return (
     <div>
+        <input type="number" onChange={e => props.onChange(e.target.value)} />
         <Downshift
-        onChange={selection => props.onChange(selection ? selection.value : null)}
+        onChange={selection => props.onSelectMeasurement(selection ? selection.value : null)}
         itemToString={item => (item ? item.value : '')}
         name={props.name}
     >
