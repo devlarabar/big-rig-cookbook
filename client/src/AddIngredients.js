@@ -1,3 +1,5 @@
+import { Ingredient } from "./Ingredient"
+
 const AddIngredients = (ingredients) => {
 
     const { ingList, setIngList } = ingredients
@@ -22,6 +24,12 @@ const AddIngredients = (ingredients) => {
         setIngList([...ingList, { ingredientName: '', ingredientQty: '' }])
     }
 
+    const handleIngredientChange = (index, selection) => {
+        const list = [...ingList]
+        list[index]['ingredientName'] = selection
+        setIngList(list)
+    }
+
     return (
         <>
             <h3>Ingredients</h3>
@@ -29,13 +37,14 @@ const AddIngredients = (ingredients) => {
                 return (
                     <div>
                         <div className="flex small-gap">
-                            <input
+                            <Ingredient name={"ingredientName"} value={x.ingredientName} onChange={handleIngredientChange} index={i} />
+                            {/* <input
                                 type="text"
                                 name="ingredientName"
                                 value={x.ingredientName}
                                 onChange={e => handleInputChange(e, i)}
                                 required
-                            />
+                            /> */}
                             <input
                                 type="text"
                                 className="ingredientQty"
