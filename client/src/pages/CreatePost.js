@@ -31,7 +31,7 @@ const CreatePost = () => {
             title,
             summary,
             content,
-            ingredients: ingList[0].ingredientName ? ingList : [],
+            ingredients: ingList[0].name ? ingList : [],
             cookware: cookwareList,
             prepTime,
             cookTime,

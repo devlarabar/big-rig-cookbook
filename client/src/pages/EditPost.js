@@ -3,6 +3,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import Editor from '../Editor'
 import AddIngredients from '../AddIngredients'
 import AddCookware from '../AddCookware'
+import { Ingredients } from '../Ingredients'
 
 const EditPost = () => {
     const { id } = useParams()
@@ -87,7 +88,7 @@ const EditPost = () => {
             value={summary} 
             onChange={e => setSummary(e.target.value)}
         />
-        <AddIngredients ingList={ingList} setIngList={setIngList}/>
+        <Ingredients ingList={ingList} setIngList={setIngList}/>
         <AddCookware cookwareList={cookwareList} setCookwareList={setCookwareList}/>
         {/* <h3>Image</h3>
         <input type="file"

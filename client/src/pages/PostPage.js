@@ -70,8 +70,8 @@ const PostPage = () => {
                 <ul>
                     {postInfo.ingredients && postInfo.ingredients.length > 0 ? postInfo.ingredients.map((x, i) => {
                             return (
-                                <li key={`${i}-${x.ingredientName}`}>
-                                    { x.ingredientName } - { x.ingredientQty }
+                                <li key={`${i}-${x.name}`}>
+                                    { x.name } - { x.qty } {x.measurement}
                                 </li>
                             )
                         }) : 'No ingredients specified.'
