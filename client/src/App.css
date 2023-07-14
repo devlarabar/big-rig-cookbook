@@ -130,7 +130,8 @@ nav a:nth-child(3) {
     background: var(--color-accent1);
 }
 nav a:hover {
-    background: var(--color-accent1);
+    background: var(--color-accent4);
+    color: var(--text-button1);
 }
 nav svg {
     width: 30px;
