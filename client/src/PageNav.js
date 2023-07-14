@@ -10,7 +10,7 @@ const PageNav = () => {
   return (
     <div className="pagenav flex flex-between">
         <button type="button" className="btn-back" onClick={goBack}><Back className="svg-30"/></button>
-        <button type="button" className="btn-back"><Menu className="svg-30"/></button>
+        <input type="search" className="input-search" placeholder="Search Recipes"/>
     </div>
   )
 }

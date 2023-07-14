@@ -142,7 +142,7 @@ pagenav
 ******************** */
 .pagenav {
     padding: 10px 0;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 .btn-back {
     border: 0;
@@ -235,6 +235,19 @@ input {
     border: 0px solid #ccc;
     border-radius: 15px;
     font-size: 1.5rem;
+}
+
+/* Search */
+.input-search {
+    width: 70%;
+    max-width: 300px;
+    background-image: url('./assets/heroicon-search.svg');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: right 10px center;
+}
+.input-search:focus {
+    background-image: none;
 }
 
 /* Recipe */
