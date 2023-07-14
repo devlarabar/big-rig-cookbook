@@ -43,7 +43,7 @@ export const Ingredient = (props) => {
                             {...getRootProps({}, { suppressRefError: true })}
                         >
                             <input {...getInputProps()}
-                            className="width-100"/>
+                            className="width-100" placeholder="beef - ground"/>
                         </div>
                         <ul {...getMenuProps()}>
                             {isOpen

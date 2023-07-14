@@ -58,7 +58,7 @@ const CreatePost = () => {
     }
 
   return (
-    <form onSubmit={createNewPost} className="flex flex-column med-gap form-recipe">
+    <form onSubmit={createNewPost} className="flex flex-column big-gap form-recipe">
         <h2>Create a Recipe</h2>
         <h3><span>Title & Summary</span></h3>
         <input 
@@ -88,7 +88,7 @@ const CreatePost = () => {
         <input
             type="number"
             min="1"
-            placeholder={'prepTime'}
+            placeholder={'Prep Time'}
             value={prepTime}
             onChange={e => setPrepTime(e.target.value)}
             required
@@ -96,7 +96,7 @@ const CreatePost = () => {
         <input
             type="number"
             min="1"
-            placeholder={'cookTime'}
+            placeholder={'Cook Time'}
             value={cookTime}
             onChange={e => setCookTime(e.target.value)}
             required

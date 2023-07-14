@@ -26,14 +26,15 @@ const AddCookware = (cookware) => {
         <>
             {cookwareList.map((x, i) => {
                 return (
-                    <div key={i} className="flex flex-column med-gap">
-                        <div className="flex small-gap">
+                    <div key={i} className="flex flex-column big-gap">
+                        <div className="flex med-gap">
                             <input
                                 type="text"
                                 name="cookwareName"
                                 value={x}
-                                onChange={e => handleInputChange(e, i)}
-                                required className="width-100"
+                                onChange={e => handleInputChange(e, i)}className="width-100"
+                                placeholder="Microwave"
+                                required 
                             />
                             <div className="cookwareListButtons">
                                 {cookwareList.length !== 1 && <button
@@ -44,7 +45,7 @@ const AddCookware = (cookware) => {
                         </div>
                         {cookwareList.length - 1 === i && <button
                             type="button"
-                            className="ingredientAdd"
+                            className="btn-add"
                             onClick={handleAddClick}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Add cookware
                         </button>}

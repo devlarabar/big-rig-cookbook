@@ -1,4 +1,5 @@
 import React from 'react'
+import { ReactComponent as Minus } from './assets/heroicon-minus.svg'
 
 export const IngredientsList = (props) => {
 
@@ -12,12 +13,18 @@ export const IngredientsList = (props) => {
     }
 
     return (
-        <div>
+        <div className="ing-list flex flex-column med-gap">
             {ingList && ingList.map((x, i) => {
                 if (x.name) {
                     return (
-                        <div className="ing-row" key={i}>
-                            {x.name} - {x.qty} {x.measurement} <button type="button" onClick={() => handleRemoveClick(i)}>Delete</button>
+                        <div className="ing-row flex flex-between flex-align-center" key={i}>
+                            {x.name} - {x.qty} {x.measurement} 
+                            <button 
+                            type="button"
+                            className="btn-svg" 
+                            onClick={() => handleRemoveClick(i)}>
+                                <Minus className="svg-20"/>
+                            </button>
                         </div>
                     )
                 }
