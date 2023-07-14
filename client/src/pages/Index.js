@@ -1,11 +1,10 @@
-import Post from '../Post'
 import { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../UserContext'
+import Posts from '../Posts'
 
 const IndexPage = () => {
 	const { userInfo, setUserInfo } = useContext(UserContext)
-	const [ userDetails, setUserDetails ] = useState({})
-	const [posts, setPosts] = useState([])
+	const [userDetails, setUserDetails] = useState({})
 
 	useEffect(() => {
 		(async function () {
@@ -21,23 +20,12 @@ const IndexPage = () => {
 		}())
 	}, [setUserInfo, setUserDetails])
 
-
-	useEffect(() => {
-		fetch('http://localhost:4000/viewposts').then(response => {
-			response.json().then(posts => {
-				setPosts(posts)
-			})
-		})
-	}, [])
-
 	const username = userInfo?.username
 
 	return (
 		<>
 			{!username && <div>Welcome to Big Rig Cookbook! Please log in or create an account to get started.</div>}
-			{username && posts.length > 0 && posts.map(post => (
-				<Post {...post} key={post._id} userId={userInfo.id} userDetails={userDetails} />
-			))}
+			{username && <Posts userDetails={userDetails} setUserDetails={setUserDetails} userInfo={userInfo} />}
 		</>
 	)
 }
