@@ -17,8 +17,10 @@ export const IngredientQty = (props) => {
 
 
   return (
-    <div>
-        <input type="number" onChange={e => props.onChange(e.target.value)} />
+    <div className="flex med-gap form-recipe-qty">
+        <div className="width-100">
+            <input type="number" onChange={e => props.onChange(e.target.value)} />
+        </div>
         <Downshift
         onChange={selection => props.onSelectMeasurement(selection ? selection.value : null)}
         itemToString={item => (item ? item.value : '')}
@@ -34,9 +36,8 @@ export const IngredientQty = (props) => {
             selectedItem,
             getRootProps,
         }) => (
-            <div>
+            <div className="width-100">
                 <div
-                    style={{ display: 'inline-block' }}
                     {...getRootProps({}, { suppressRefError: true })}
                 >
                     <input {...getInputProps()}/>

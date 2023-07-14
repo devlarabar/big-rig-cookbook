@@ -6,13 +6,16 @@ variables
 :root {
     --font-main: "Ubuntu", "Verdana", sans-serif;
     --text-main: #1E1E1E;
-    --text-heading: #6AA702;
-    --text-accent: #59B1BD;
-    --bg-main: #F5F8FF;
+    --text-heading: #005C7F;
+    --text-accent: #7E8BF3;
+    --text-button1: #000;
+    --bg-main: #FFFFFF;
     --bg-post: #FFFFFF;
-    --color-accent1: #8BC801;
-    --color-accent2: #FCFB01;
-    --color-accent3: #4997A3;
+    --color-accent1: #B9F3C0;
+    --color-accent2: #DFC4F9;
+    --color-accent3: #AEF4FA;
+    --color-accent4: #FFD73C;
+    --color-accent5: #368D7F;
     --color-shadow: #D0D8ED;
 }
 
@@ -167,7 +170,6 @@ edit / delete post
 }
 .btn-post-edit svg, .ingredientAdd svg {
     height: 15px;
-    stroke: #fff;
 }
 .btn-post-delete {
     background-color: rgb(193, 1, 1);
@@ -197,31 +199,64 @@ save button
 /* ********************
 form styles
 ******************** */
+input {
+    display: block;
+    padding: 16px 22px;
+    background-color: #F0F0F0;
+    border: 0px solid #ccc;
+    border-radius: 15px;
+    font-size: 1.5rem;
+}
+
+/* Recipe */
+.form-recipe h3 {
+    width: 100%;
+    margin: 15px 0 5px;
+    text-align: left;
+    position: relative;
+}
+.form-recipe h3 span {
+    background: var(--bg-post);
+    padding-right: 10px;
+}
+.form-recipe h3:before {
+    position: absolute;
+    top: 51%;
+    right: 0;
+    overflow: hidden;
+    width: 100%;
+    z-index: -1;
+    height: 2px;
+    content: '\a0';
+    background-color: var(--color-accent3);
+}
+.form-recipe-qty div {
+    padding: 0;
+    margin: 0;
+}
+.form-recipe-qty input {
+    margin: 0;
+    width: 100%;
+}
+
+/* Login */
 .login {
     max-width: 400px;
     margin: 0 auto;
 }
-input {
-    display: block;
-    margin-bottom: 5px;
-    width: 100%;
-    padding: 5px 7px;
-    background-color: #fff;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-}
+
 form button {
     width: 100%;
     display: block;
-    background-color: #4997a3;
+    background-color: var(--color-accent2);
     border: 0;
-    color: #fff;
-    border-radius: 5px;
-    padding: 7px 10px;
+    color: var(--text-button1);
+    border-radius: 20px;
+    padding: 13px 18px;
     font-weight: bold;
 }
 form button:hover {
-    background-color: #59b1bd;
+    background-color: var(--color-accent1);
 }
 .login h2 {
     text-align: center;
@@ -229,21 +264,6 @@ form button:hover {
 
 /* Ingredient Inputs */
 
-.ingredientsInputList {
-    display: flex;
-    gap: 5px;
-}
-.ingredientsInputList input {
-    flex: 1;
-    display: inline-block;
-}
-.ingredientListButtons {
-    display: inline-block;
-}
-.ingredientListButtons button {
-    width: fit-content;
-    display: inline-block;
-}
 .ingredientAdd {
     width: fit-content;
     display: flex;
@@ -303,17 +323,32 @@ utility
     justify-content: flex-end;
     align-items: flex-end;
 }
+.flex-stretch {
+    align-items: stretch;
+    justify-items: stretch;
+}
 .flex-between {
     justify-content: space-between;
 }
 .flex-align-end {
     align-items: flex-end;
 }
+.flex-1 {
+    flex: 1;
+}
 .small-gap {
     gap: 5px;
 }
 .med-gap {
     gap: 10px;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+}
+.grid-2-col {
+    grid-template-columns: 1fr 1fr;
 }
 
 /* Text */

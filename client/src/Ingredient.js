@@ -40,10 +40,10 @@ export const Ingredient = (props) => {
                 }) => (
                     <div>
                         <div
-                            style={{ display: 'inline-block' }}
                             {...getRootProps({}, { suppressRefError: true })}
                         >
-                            <input {...getInputProps()} />
+                            <input {...getInputProps()}
+                            className="width-100"/>
                         </div>
                         <ul {...getMenuProps()}>
                             {isOpen

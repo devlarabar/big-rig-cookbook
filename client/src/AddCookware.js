@@ -24,17 +24,16 @@ const AddCookware = (cookware) => {
 
     return (
         <>
-            <h3>Cookware</h3>
             {cookwareList.map((x, i) => {
                 return (
-                    <div key={i}>
+                    <div key={i} className="flex flex-column med-gap">
                         <div className="flex small-gap">
                             <input
                                 type="text"
                                 name="cookwareName"
                                 value={x}
                                 onChange={e => handleInputChange(e, i)}
-                                required
+                                required className="width-100"
                             />
                             <div className="cookwareListButtons">
                                 {cookwareList.length !== 1 && <button

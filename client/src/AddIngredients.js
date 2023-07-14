@@ -36,9 +36,8 @@ const AddIngredients = (props) => {
 
     return (
         <>
-            <h3>Ingredients</h3>
-            <div>
-                <Ingredient onChange={onSelectIngredient} />
+            <div className="flex flex-column">
+                <Ingredient onChange={onSelectIngredient}/>
                 <IngredientQty onChange={onSelectQty} onSelectMeasurement={onSelectMeasurement} />
                 <button
                     type="button"
