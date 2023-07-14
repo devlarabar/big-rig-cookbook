@@ -274,9 +274,9 @@ input {
     overflow: hidden;
     width: 100%;
     z-index: -1;
-    height: 2px;
+    height: 0px;
+    border-bottom: 2px solid var(--color-accent3);
     content: '\a0';
-    background-color: var(--color-accent3);
 }
 .form-recipe-qty div {
     padding: 0;
