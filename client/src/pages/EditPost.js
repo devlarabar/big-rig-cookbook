@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import Editor from '../Editor'
-import AddIngredients from '../AddIngredients'
 import AddCookware from '../AddCookware'
 import { Ingredients } from '../Ingredients'
 
