@@ -80,10 +80,6 @@ const CreatePost = () => {
         <Ingredients ingList={ingList} setIngList={setIngList}/>
         <h3><span>Cookware</span></h3>
         <AddCookware cookwareList={cookwareList} setCookwareList={setCookwareList}/>
-        {/* <h3>Image</h3>
-        <input type="file"
-            onChange={e => setFiles(e.target.files)} 
-        /> */}
         <h3><span>Preparation & Cook Time</span></h3>
         <input
             type="number"

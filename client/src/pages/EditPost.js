@@ -71,23 +71,28 @@ const EditPost = () => {
     }
 
   return (
-    <form onSubmit={updatePost}>
+    <form onSubmit={updatePost} className="flex flex-column big-gap form-recipe">
         <h2>Edit Recipe: {title}</h2>
-        <h3>Title & Summary</h3>
+        <h3><span>Title & Summary</span></h3>
         <input 
             type="title" 
             placeholder={'Title'} 
             value={title} 
             onChange={e => setTitle(e.target.value)}
+            className="width-100"
         />
         <input 
             type="summary" 
             placeholder={'Summary'} 
             value={summary} 
             onChange={e => setSummary(e.target.value)}
+            className="width-100"
         />
+        <h3><span>Ingredients</span></h3>
         <Ingredients ingList={ingList} setIngList={setIngList}/>
+        <h3><span>Cookware</span></h3>
         <AddCookware cookwareList={cookwareList} setCookwareList={setCookwareList}/>
+        <h3><span>Preparation & Cook Time</span></h3>
         <input
             type="number"
             min="1"
@@ -102,9 +107,9 @@ const EditPost = () => {
             value={cookTime}
             onChange={e => setCookTime(e.target.value)}
         />
-        <h3>Directions</h3>
+        <h3><span>Directions</span></h3>
         <Editor onChange={setContent} value={content} />
-        <button className="btn-createpost">Update Post</button>
+        <button type="submit" className="btn-createpost">Update Post</button>
     </form>
   )
 }
