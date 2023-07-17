@@ -17,7 +17,7 @@ export const Ingredients = (props) => {
     }
     
   return (
-    <div class="flex flex-column big-gap">
+    <div className="flex flex-column big-gap">
         <IngredientsList ingList={ingList} setIngList={setIngList} />
         <AddIngredients onAdd={onAdd} />
     </div>

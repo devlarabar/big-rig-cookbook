@@ -17,13 +17,8 @@ const Post = ({ _id, title, summary, cover, content, author, prepTime, cookTime,
 	}
 	return (
 		<div className="post" key={_id}>
-			{/* <div className="post-image">
-				<Link to={`/post/${_id}`}>
-					<img src={cover ? `http://localhost:4000/${cover}` : `http://localhost:4000/public/placeholder.png`} alt={title} />
-				</Link>
-			</div> */}
 			<div className="post-content">
-				<Link to={`/post/${_id}`}>
+				<Link to={`/post/view/${_id}`}>
 					<h2 className="text-center">{title}</h2>
 				</Link>
 				<p className="post-info flex-center">

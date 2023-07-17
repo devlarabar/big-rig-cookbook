@@ -14,11 +14,11 @@ const EditPost = () => {
     const [ redirect, setRedirect ] = useState(false)
     //const [files, setFiles] = useState('')
 
-    const [ ingList, setIngList ] = useState([{ ingredientName: '', ingredientQty: '' }])
+    const [ ingList, setIngList ] = useState([{ name: '', qty: '', measurement: '' }])
     const [ cookwareList, setCookwareList ] = useState([''])
 
     useEffect(() => {
-        fetch(`http://localhost:4000/post/${id}`).then(response => {
+        fetch(`http://localhost:4000/post/view/${id}`).then(response => {
             response.json().then(postInfo => {
                 setTitle(postInfo.title)
                 setSummary(postInfo.summary)
@@ -48,13 +48,12 @@ const EditPost = () => {
             title,
             summary,
             content,
-            ingredients: ingList[0].ingredientName ? ingList : [],
+            ingredients: ingList[0].name ? ingList : [],
             prepTime,
-            cookTime,
-            //file: files[0]
+            cookTime
         }
 
-        const response = await fetch('http://localhost:4000/post/', {
+        const response = await fetch('http://localhost:4000/post/edit/', {
             method: 'PUT',
             body: JSON.stringify(postData),
             headers: {
@@ -68,7 +67,7 @@ const EditPost = () => {
     }
     
     if (redirect) {
-        return <Navigate to={`/post/${id}`} />
+        return <Navigate to={`/post/view/${id}`} />
     }
 
   return (
@@ -89,10 +88,6 @@ const EditPost = () => {
         />
         <Ingredients ingList={ingList} setIngList={setIngList}/>
         <AddCookware cookwareList={cookwareList} setCookwareList={setCookwareList}/>
-        {/* <h3>Image</h3>
-        <input type="file"
-            onChange={e => setFiles(e.target.files)} 
-        /> */}
         <input
             type="number"
             min="1"
@@ -109,7 +104,7 @@ const EditPost = () => {
         />
         <h3>Directions</h3>
         <Editor onChange={setContent} value={content} />
-        <button style={{marginTop:'5px'}}>Update Post</button>
+        <button className="btn-createpost">Update Post</button>
     </form>
   )
 }

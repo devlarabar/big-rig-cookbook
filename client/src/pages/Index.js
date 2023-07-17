@@ -12,7 +12,7 @@ const IndexPage = () => {
 			const userInfo = await userInfoResponse.json()
 			setUserInfo(userInfo)
 			if (userInfo?.id) {
-				const userDataResponse = await fetch(`http://localhost:4000/getuserdata/${userInfo.id}`)
+				const userDataResponse = await fetch(`http://localhost:4000/user/getuserdata/${userInfo.id}`)
 				const userDataInfo = await userDataResponse.json()
 				console.log(userDataInfo)
 				setUserDetails(userDataInfo)

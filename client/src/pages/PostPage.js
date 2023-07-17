@@ -13,7 +13,7 @@ const PostPage = () => {
     const [ redirect, setRedirect ] = useState(false)
 
     useEffect(() => {
-        fetch(`http://localhost:4000/post/${id}`).then(response => {
+        fetch(`http://localhost:4000/post/view/${id}`).then(response => {
             response.json().then(postInfo => {
                 setPostInfo(postInfo)
             })
@@ -23,7 +23,7 @@ const PostPage = () => {
     async function deletePost() {
         const confirm = window.confirm('Are you sure you want to delete this post? This action is permanent!')
         if (confirm) {
-            const response = await fetch(`http://localhost:4000/deletepost/${id}`, {
+            const response = await fetch(`http://localhost:4000/post/delete/${id}`, {
                 method: 'DELETE',
                 body: JSON.stringify({ id: id }),
                 headers: {

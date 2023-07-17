@@ -38,5 +38,14 @@ module.exports = {
         }
         res.json(response)
     },
+    getUserData: async (req, res) => {
+        const id = req.params.id
+        const userDoc = await User.findById(id)
+        const response = {
+            id: userDoc._id,
+            username: userDoc.username
+        }
+        res.json(response)
+    }
 
 }

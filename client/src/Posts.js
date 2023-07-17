@@ -3,10 +3,10 @@ import Post from "./Post"
 
 const Posts = (props) => {
     const [posts, setPosts] = useState([])
-    const { userDetails, setUserDetails, userInfo } = props
+    const { userDetails, userInfo } = props
 
     useEffect(() => {
-        fetch('http://localhost:4000/viewposts').then(response => {
+        fetch('http://localhost:4000/post/viewposts').then(response => {
             response.json().then(posts => {
                 setPosts(posts)
             })

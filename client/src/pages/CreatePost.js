@@ -40,7 +40,7 @@ const CreatePost = () => {
 
         // IMPORTANT NOTE: File upload not working; either remove entirely or fix
 
-        const response = await fetch('http://localhost:4000/createpost', {
+        const response = await fetch('http://localhost:4000/post/create', {
             method: 'POST',
             body: JSON.stringify(postData),
             headers: {
@@ -103,7 +103,7 @@ const CreatePost = () => {
         />
         <h3><span>Directions</span></h3>
         <Editor onChange={setContent} value={content} />
-        <button type="submit" style={{marginTop:'5px'}}>Create Post</button>
+        <button type="submit" className="btn-createpost">Create Post</button>
     </form>
   )
 }

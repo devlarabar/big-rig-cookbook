@@ -337,11 +337,11 @@ form button:hover {
 }
 
 /* Editor */
-.quill {
-    margin-bottom: 30px;
-}
 .ql-blank{
     min-height: 200px;
+}
+.btn-createpost {
+    margin-bottom: 90px;
 }
 
 /* ********************

@@ -17,7 +17,7 @@ const SaveButton = ({ postId, author, savedBy, userId, username }) => {
     }, [savedBy, userId])
 
     async function saveRecipe(post_id) {
-        await fetch('http://localhost:4000/savepost', {
+        await fetch('http://localhost:4000/post/savepost', {
             method: 'PUT',
             body: JSON.stringify({ post: post_id, user: userId }),
             headers: {
