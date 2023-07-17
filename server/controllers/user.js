@@ -1,5 +1,7 @@
 const User = require('../models/User')
 const Post = require('../models/Post')
+const jwt = require('jsonwebtoken')
+const secret = 'salkdjfhsk2345rfgd324'
 
 module.exports = {
     userInfo: async (req, res) => {
@@ -46,6 +48,18 @@ module.exports = {
             username: userDoc.username
         }
         res.json(response)
+    },
+    profile: (req, res) => {
+        try {
+            // Grab token from cookies (from Header.js)
+            const { token } = req.cookies
+            jwt.verify(token, secret, {}, (err, info) => {
+                if (err) throw err
+                res.json(info)
+            })
+        } catch (err) {
+            res.status(400).json(err)
+        }
+        // res.json(req.cookies)
     }
-
 }

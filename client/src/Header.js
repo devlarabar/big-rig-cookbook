@@ -8,7 +8,7 @@ const Header = () => {
 	const TESTING = false
 
 	useEffect(() => {
-		fetch('http://localhost:4000/profile', {
+		fetch('http://localhost:4000/user/profile', {
 			credentials: 'include'
 		}).then(res => {
 			res.json().then(userInfo => {

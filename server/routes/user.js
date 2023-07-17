@@ -5,6 +5,7 @@ const userController = require('../controllers/user')
 router.get('/userinfo/:username', userController.userInfo)
 router.get('/userprofile/:username', userController.userProfile)
 router.get('/getuserdata/:id', userController.getUserData)
+router.get('/profile', userController.profile)
 
 
 module.exports = router

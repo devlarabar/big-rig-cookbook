@@ -27,7 +27,7 @@ const UserProfile = () => {
     // Get userInfo for the user currently logged in
     useEffect(() => {
         (async function () {
-            const userInfoResponse = await fetch('http://localhost:4000/profile', { credentials: 'include' })
+            const userInfoResponse = await fetch('http://localhost:4000/user/profile', { credentials: 'include' })
             const userInfo = await userInfoResponse.json()
             setUserInfo(userInfo)
             if (userInfo?.id) {
