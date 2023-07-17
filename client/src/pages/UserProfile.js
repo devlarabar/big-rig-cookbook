@@ -46,7 +46,7 @@ const UserProfile = () => {
             setSection('')
 
             // Get this user's information
-            const fetchUserInfo = await fetch(`http://localhost:4000/getuser/${user}`)
+            const fetchUserInfo = await fetch(`http://localhost:4000/user/userprofile/${user}`)
             const info = await fetchUserInfo.json()
             setUserProfile(info.userProfile)
             setUserCookbook(info.cookbook)

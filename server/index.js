@@ -33,57 +33,20 @@ const db = (async function () {
     console.log('Connected to the DB')
 }())
 
+// ***************************** Routers
+
+const homeRoutes = require('./routes/home')
+const userRoutes = require('./routes/user')
+const postRoutes = require('./routes/post')
+
+//app.use('/', homeRoutes)
+app.use('/user', userRoutes)
+//app.use('/post', postRoutes)
+
+
 // ***************************** User Profile
 
-app.get('/user/:username', async (req, res) => {
-    // Grab token from cookies (from Header.js)
-    const username = req.params.username
-    const { token } = req.cookies
-    
-    jwt.verify(token, secret, {}, (err, info) => {
-        if (err) throw err
-        res.json(info)
-    })
 
-    const userDoc = (await User.find({ username: username }))
-    
-    res.json(userDoc)
-})
-
-app.get('/getuserdata_un/:username', async (req, res) => {
-    const username = req.params.username
-    const userDoc = await User.findOne({ username })
-    const response = {
-        id: userDoc._id,
-        username: userDoc.username,
-        savedPosts: userDoc.savedPosts
-    }
-    res.json(response)
-})
-
-// This runs whenever someone views a user profile
-app.get('/getuser/:username', async (req, res) => {
-    const username = req.params.username
-    const userDoc = await User.findOne({ username })
-    const posts = await Post
-        .find({ author: userDoc })
-        .populate('author', ['username'])
-        .sort({ createdAt: -1 })
-        .limit(20)
-    const cookbook = (await Post
-        .find({ savedBy: { "$in" : [userDoc]} })
-        .sort({ createdAt: -1 }))
-    const response = {
-        profile: {
-            id: userDoc._id,
-            username: userDoc.username,
-            savedPosts: userDoc.savedPosts,
-        },
-        posts,
-        cookbook
-    }
-    res.json(response)
-})
 
 // ***************************** Create & Update Posts
 
@@ -182,27 +145,6 @@ app.get('/viewposts', async (req, res) => {
         .limit(20)
     res.json(posts)
 })
-
-// These were used for the user profile fetches; I consolidated them into one endpoint
-// app.get('/viewposts/:author', async (req, res) => {
-//     const authorUsername = req.params.author ? req.params.author : null
-//     const author = (await User.find({ username: authorUsername }))
-//     const posts = await Post
-//         .find({ author: author })
-//         .populate('author', ['username'])
-//         .sort({ createdAt: -1 })
-//         .limit(20)
-//     res.json(posts)
-// })
-
-// app.get('/cookbook/:username', async (req, res) => {
-//     const username = req.params.username
-//     const user = (await User.find({ username: username }))
-//     const cookbook = (await Post
-//         .find({ savedBy: { "$in" : [user]} })
-//         .sort({ createdAt: -1 }))
-//     res.json(cookbook)
-// })
 
 app.get('/post/:id', async (req, res) => {
     const { id } = req.params
