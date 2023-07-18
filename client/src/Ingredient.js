@@ -1,31 +1,42 @@
 import Downshift from 'downshift'
+import { useEffect, useState } from 'react'
 
-const items = [
-    { value: 'chicken', title: 'deli' },
-    { value: 'sausage' },
-    { value: 'beef' },
-    { value: 'beef - ground' },
-    { value: 'beef - corned' },
-    { value: 'steak' },
-    { value: 'pork' },
-    { value: 'pork - loin' },
-    { value: 'pork - ground' },
-    { value: 'turkey' },
-    { value: 'turkey - ground' },
-    { value: 'deli - turkey' },
-    { value: 'deli - chicken' },
-    { value: '' },
-    { value: '' },
-    { value: '' },
-]
+// const items = [
+//     { value: 'chicken', title: 'deli' },
+//     { value: 'sausage' },
+//     { value: 'beef' },
+//     { value: 'beef - ground' },
+//     { value: 'beef - corned' },
+//     { value: 'steak' },
+//     { value: 'pork' },
+//     { value: 'pork - loin' },
+//     { value: 'pork - ground' },
+//     { value: 'turkey' },
+//     { value: 'turkey - ground' },
+//     { value: 'deli - turkey' },
+//     { value: 'deli - chicken' },
+//     { value: '' },
+//     { value: '' },
+//     { value: '' },
+// ]
 
 export const Ingredient = (props) => {
+
+    const [ items, setItems ] = useState('')
+
+    useEffect(() => {
+        (async () => {
+            const itemsData = await fetch('http://localhost:4000/data/ingredients')
+            const itemsDataJSON = await itemsData.json()
+            setItems(itemsDataJSON)
+        })()
+    })
 
     return (
         <div>
             <Downshift
                 onChange={selection => props.onChange(selection ? selection.value : null)}
-                itemToString={item => (item ? item.value : '')}
+                itemToString={item => (item ? item.name : '')}
                 name={props.name}
             >
                 {({
@@ -48,11 +59,11 @@ export const Ingredient = (props) => {
                         <ul {...getMenuProps()}>
                             {isOpen
                                 ? items
-                                    .filter(item => !inputValue || item.value.includes(inputValue))
+                                    .filter(item => !inputValue || item.name.includes(inputValue))
                                     .map((item, index) => (
                                         <li
                                             {...getItemProps({
-                                                key: item.value,
+                                                key: item.name,
                                                 index,
                                                 item,
                                                 style: {
@@ -62,7 +73,7 @@ export const Ingredient = (props) => {
                                                 },
                                             })}
                                         >
-                                            {item.value}
+                                            {item.name}
                                         </li>
                                     ))
                                 : null}

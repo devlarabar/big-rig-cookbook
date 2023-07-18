@@ -25,10 +25,12 @@ app.use('/public', express.static(__dirname + '/public'))
 const homeRoutes = require('./routes/home')
 const userRoutes = require('./routes/user')
 const postRoutes = require('./routes/post')
+const dataRoutes = require('./routes/data')
 
 app.use('/', homeRoutes)
 app.use('/user', userRoutes)
 app.use('/post', postRoutes)
+app.use('/data', dataRoutes)
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server running on port ${PORT}`)
