@@ -51,12 +51,12 @@ main {
 text, general
 ******************** */
 a {
-    color: var(--color-accent3);
+    color: var(--color-accent5);
     text-decoration: none;
     font-weight: bold;
 }
 a:hover {
-    color: var(--color-accent1)
+    color: var(--color-accent2)
 }
 
 /* ********************
@@ -156,12 +156,23 @@ post styles
 ******************** */
 .post, .post-page {
     margin: 0 auto 40px auto;
-    width: 95%;
-    box-shadow: 0 5px 20px var(--color-shadow);
-    border-radius: 15px;
+    width: 100%;
     padding: 15px;
     background-color: var(--bg-post);
     text-align: left;
+    gap: 20px;
+}
+.post-image {
+    flex: 1;
+}
+.post-title {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    text-align: left;
+    margin: 0;
+}
+.post-content {
+    flex: 4;
 }
 .post-info {
     margin: 0;
