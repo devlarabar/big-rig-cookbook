@@ -34,11 +34,19 @@ const AdminAddData = () => {
                     className="width-100"
                     required
                 >
-                    <option value="" selected disabled>- Select -</option>
+                    <option value="" disabled>- Select -</option>
                     <option value="meat">Meat</option>
                     <option value="vegetable">Vegetable</option>
                     <option value="fruit">Fruit</option>
                     <option value="spice">Spice</option>
+                    <option value="cheese">Cheese</option>
+                    <option value="grain">Grain</option>
+                    <option value="bread">Bread</option>
+                    <option value="fish">Fish</option>
+                    <option value="sugar">Sugar</option>
+                    <option value="dairy">Dairy</option>
+                    <option value="egg">Egg</option>
+                    <option value="hot">Hot (Spicy)</option>
                     </select>
                 <button type="submit">Submit</button>
             </form>

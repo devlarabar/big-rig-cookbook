@@ -5,6 +5,7 @@ import SaveButton from './SaveButton'
 // Import SVGs
 import { ReactComponent as Clock } from './assets/fa-clock-solid.svg'
 import { ReactComponent as ArrowRight } from './assets/heroicon-arrow-right.svg'
+import { IngredientIcons } from './IngredientIcons'
 
 
 const Post = ({ _id, title, author, prepTime, cookTime, ingredients, createdAt, savedBy, userId, userDetails }) => {
@@ -16,19 +17,11 @@ const Post = ({ _id, title, author, prepTime, cookTime, ingredients, createdAt, 
 	} else {
 		clockStyle = 'fill-red'
 	}
-	const types = {}
-
-	// ingredients.forEach(x => {
-	// 	if (!types[x.type]) {
-	// 		types[x.type] = true
-	// 	}
-	// })
 
 	return (
 		<div className="post flex flex-between" key={_id}>
 			<div className="post-image flex flex-center">
-				{types.meat && <span>Meat</span>}
-				<img src="http://localhost:4000/public/placeholder.png" alt="Placeholder" width="80" height="80"/>
+				<IngredientIcons ingredients={ingredients} />
 			</div>
 			<div className="post-content">
 				<Link to={`/post/view/${_id}`}>

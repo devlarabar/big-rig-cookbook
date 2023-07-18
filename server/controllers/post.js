@@ -75,6 +75,7 @@ module.exports = {
         const posts = await Post
             .find()
             .populate('author', ['username'])
+            .populate('ingredients.ingredient', ['name', 'type'])
             .sort({ createdAt: -1 })
             .limit(20)
         res.json(posts)
