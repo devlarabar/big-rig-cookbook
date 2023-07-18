@@ -68,9 +68,10 @@ h1 {
     color: var(--text-heading)
 }
 h2 {
-    font-size: 1.9rem;
-    color: var(--text-main);
-    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-accent5);
 }
 h3 {
     font-size: 1.85rem;
@@ -236,6 +237,13 @@ input {
     border-radius: 15px;
     font-size: 1.5rem;
 }
+select {
+    padding: 16px 22px;
+    background-color: #F0F0F0;
+    border: 0px solid #ccc;
+    border-radius: 15px;
+    font-size: 1.5rem;
+}
 
 /* Search */
 .input-search {
@@ -251,12 +259,6 @@ input {
 }
 
 /* Recipe */
-.form-recipe h2 {
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-accent5);
-}
 .form-recipe h3 {
     width: 100%;
     margin: 15px 0 5px;
