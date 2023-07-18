@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const Post = require('../models/Post')
+const Ingredient = require('../models/Ingredient')
 const jwt = require('jsonwebtoken')
 const secret = 'salkdjfhsk2345rfgd324'
 
@@ -9,11 +10,14 @@ module.exports = {
         jwt.verify(token, secret, {}, async (err, info) => {
             if (err) throw err
             const { title, summary, content, ingredients, cookware, prepTime, cookTime } = req.body
+            const ingList = ingredients.map(x => {
+                return { ingredient: x.ingredient._id, qty: x.qty, measurement: x.measurement }
+            })
             const postDoc = await Post.create({
                 title,
                 summary,
                 content,
-                ingredients,
+                ingredients: ingList,
                 cookware,
                 prepTime,
                 cookTime,
@@ -26,7 +30,10 @@ module.exports = {
         const { token } = req.cookies
         jwt.verify(token, secret, {}, async (err, info) => {
             if (err) throw err
-            const { id, title, summary, content, ingredients, prepTime, cookTime } = req.body
+            const { id, title, summary, content, ingredients, cookware, prepTime, cookTime } = req.body
+            const ingList = ingredients.map(x => {
+                return { ingredient: x.ingredient._id, qty: x.qty, measurement: x.measurement }
+            })
             const postDoc = await Post.findById(id)
             const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id)
     
@@ -37,7 +44,8 @@ module.exports = {
                 title,
                 summary,
                 content,
-                ingredients,
+                ingredients: ingList,
+                cookware,
                 prepTime,
                 cookTime,
             });
@@ -73,7 +81,7 @@ module.exports = {
     },
     viewPost: async (req, res) => {
         const { id } = req.params
-        const postDoc = await Post.findById(id).populate('author', ['username'])
+        const postDoc = await Post.findById(id).populate('author', ['username']).populate('ingredients.ingredient', 'name')
         res.json(postDoc)
     },
     savePost: async (req, res) => {

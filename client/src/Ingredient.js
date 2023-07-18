@@ -35,7 +35,7 @@ export const Ingredient = (props) => {
     return (
         <div>
             <Downshift
-                onChange={selection => props.onChange(selection ? selection.value : null)}
+                onChange={selection => props.onChange(selection ? selection : null)}
                 itemToString={item => (item ? item.name : '')}
                 name={props.name}
             >

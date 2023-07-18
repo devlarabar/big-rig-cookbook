@@ -11,7 +11,7 @@ const AddIngredients = (props) => {
 
     // Ingredients List: Handle click event of the Add button
     function handleAddClick() {
-        setIngredient({ name: name, qty: qty, measurement: measure})
+        setIngredient({ ingredient: name, qty: qty, measurement: measure})
     }
 
     useEffect(() => {

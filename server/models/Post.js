@@ -5,7 +5,11 @@ const PostSchema = new Schema({
     title: String,
     summary: String,
     content: String,
-    ingredients: [{type: Schema.Types.ObjectId, ref: 'Ingredient'}],
+    ingredients: [{
+        ingredient: {type: Schema.Types.ObjectId, ref: 'Ingredient'},
+        qty: Number,
+        measurement: String
+    }],
     cookware: Array,
     prepTime: Number,
     cookTime: Number,

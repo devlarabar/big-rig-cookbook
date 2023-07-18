@@ -48,7 +48,7 @@ const EditPost = () => {
             title,
             summary,
             content,
-            ingredients: ingList[0].name ? ingList : [],
+            ingredients: ingList[0]?.ingredient ? ingList : [],
             prepTime,
             cookTime
         }

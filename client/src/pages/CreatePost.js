@@ -12,7 +12,6 @@ const CreatePost = () => {
     const [ prepTime, setPrepTime ] = useState('')
     const [ cookTime, setCookTime ] = useState('')
     const [ redirect, setRedirect ] = useState(false)
-    // const [files, setFiles] = useState('')
 
     const [ ingList, setIngList ] = useState([])
     const [ cookwareList, setCookwareList ] = useState([''])
@@ -21,24 +20,15 @@ const CreatePost = () => {
     async function createNewPost(e) {
         e.preventDefault()
 
-        // const data = new FormData()
-        // data.set('title', title)
-        // data.set('summary', summary)
-        // data.set('content', content)
-        // data.set('file', files[0])
-
         const postData = {
             title,
             summary,
             content,
-            ingredients: ingList[0].name ? ingList : [],
+            ingredients: ingList[0].ingredient ? ingList : [],
             cookware: cookwareList,
             prepTime,
-            cookTime,
-            // file: files[0]
+            cookTime
         }
-
-        // IMPORTANT NOTE: File upload not working; either remove entirely or fix
 
         const response = await fetch('http://localhost:4000/post/create', {
             method: 'POST',

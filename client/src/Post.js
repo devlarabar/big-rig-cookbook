@@ -18,11 +18,11 @@ const Post = ({ _id, title, author, prepTime, cookTime, ingredients, createdAt, 
 	}
 	const types = {}
 
-	ingredients.forEach(x => {
-		if (!types[x.type]) {
-			types[x.type] = true
-		}
-	})
+	// ingredients.forEach(x => {
+	// 	if (!types[x.type]) {
+	// 		types[x.type] = true
+	// 	}
+	// })
 
 	return (
 		<div className="post flex flex-between" key={_id}>

@@ -61,17 +61,14 @@ const PostPage = () => {
                 </div>
             )}
             </div>
-            {/* <div className="coverImage">
-                <img src={postInfo.cover ? `http://localhost:4000/${postInfo.cover}` : `http://localhost:4000/public/placeholder.png`} alt={postInfo.title} />
-            </div> */}
             <h3>Time</h3>
             <p>Preparation time: {postInfo.prepTime} | Cook time: {postInfo.cookTime}</p>
             <h3>Ingredients</h3>
                 <ul>
                     {postInfo.ingredients && postInfo.ingredients.length > 0 ? postInfo.ingredients.map((x, i) => {
                             return (
-                                <li key={`${i}-${x.name}`}>
-                                    { x.name } - { x.qty } {x.measurement}
+                                <li key={`${i}-${x.ingredient.name}`}>
+                                    { x.ingredient.name } - { x.qty } {x.measurement}
                                 </li>
                             )
                         }) : 'No ingredients specified.'

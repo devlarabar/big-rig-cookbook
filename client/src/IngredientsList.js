@@ -15,10 +15,10 @@ export const IngredientsList = (props) => {
     return (
         <div className="ing-list flex flex-column med-gap">
             {ingList && ingList.map((x, i) => {
-                if (x.name) {
+                if (x.ingredient?.name) {
                     return (
                         <div className="ing-row flex flex-between flex-align-center" key={i}>
-                            {x.name} - {x.qty} {x.measurement} 
+                            {x.ingredient.name} - {x.qty} {x.measurement} 
                             <button 
                             type="button"
                             className="btn-svg" 
