@@ -7,7 +7,7 @@ import { ReactComponent as Sugar } from './assets/fa-candy-cane-solid.svg'
 import { ReactComponent as Fish } from './assets/fa-fish-fins-solid.svg'
 
 export const IngredientIcons = ({ ingredients }) => {
-    const svgClass = 'svg-30'
+    const svgClass = 'svg-20'
     const types = []
 
     if (ingredients.length > 0) {
@@ -19,7 +19,7 @@ export const IngredientIcons = ({ ingredients }) => {
     }
 
     return (
-        <div className="ing-icons flex flex-center small-gap">
+        <div className="ing-icons flex med-gap">
             {types.map(x => {
                 switch(x) {
                     case 'fruit':
