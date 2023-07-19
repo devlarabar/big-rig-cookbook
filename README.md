@@ -21,10 +21,16 @@ The project is in its early stages of development. The plan is to make it easily
 
 ## Progress
 
+Milestones accomplished:
+- User athentication
+- Create, edit, delete, and save recipes
+- User profiles including created and saved recipes
+- SVG icons for major ingredients in recipes (to allow users to easily view recipe components)
+- Admin dashboard
+
 Next steps are outlined here, for easy reference. This is not an exhaustive list; only a list of the immediate next steps for the project. This list will be updated as needed.
 
 - Enhance user profiles
 - Improve entering directions for recipes
 - Tools/appliances used inputs for recipes
-- Add SVGs for ingredients used
 - Begin creating stretch database
