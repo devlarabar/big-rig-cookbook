@@ -493,9 +493,6 @@ utility
 .fill-red {
     fill: red;
 }
-.fill-cream {
-    fill: rgb(234, 206, 175);
-}
 
 .bold {
     font-weight: bold;
