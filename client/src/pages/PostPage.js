@@ -2,7 +2,8 @@ import { useState, useEffect, useContext } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import { UserContext } from '../UserContext'
-import NotFound from './NotFound'
+import NotFound from './NotFound.js'
+import Spinner from '../Spinner'
 import { ReactComponent as Edit } from '../assets/heroicon-edit.svg'
 
 const PostPage = () => {
@@ -14,7 +15,7 @@ const PostPage = () => {
     useEffect(() => {
         fetch(`http://localhost:4000/post/view/${id}`).then(response => {
             response.json().then(postInfo => {
-                setPostInfo(postInfo ? postInfo : null)
+                setPostInfo(postInfo ? postInfo : '404')
             })
         })
     }, [id])
@@ -42,7 +43,8 @@ const PostPage = () => {
         return <Navigate to={`/`} />
     }
 
-    if (!postInfo) return (<NotFound />);
+    if (!postInfo) return <Spinner />
+    if (postInfo === '404') return <NotFound />
     return (
         <div className="post-page">
             <h2>{postInfo.title}</h2>
