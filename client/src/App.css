@@ -43,6 +43,7 @@ layout styles
 ******************** */
 main {
     padding: 30px;
+    padding-bottom: 80px;
     max-width: 600px;
     margin: 0 auto;
 }
@@ -359,6 +360,7 @@ form button:hover {
 }
 .btn-createpost {
     margin-bottom: 90px;
+    margin-top: 20px;
     background: var(--color-accent4)
 }
 

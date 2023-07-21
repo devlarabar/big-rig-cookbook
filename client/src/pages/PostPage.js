@@ -85,6 +85,17 @@ const PostPage = () => {
                         }) : 'No cookware specified.'
                     }
                 </ul>
+            <h3>Directions</h3>
+            <ol>
+                {postInfo.directions && postInfo.directions.length > 0 ? postInfo.directions.map((x, i) => {
+                            return (
+                                <li key={`${i}-${x[0]}`}>
+                                    { x }
+                                </li>
+                            )
+                        }) : 'No directions specified.'
+                    }
+            </ol>
             {/* <div dangerouslySetInnerHTML={{__html:postInfo.content}} /> */}
         </div>
     )
