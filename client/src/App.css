@@ -74,6 +74,12 @@ h2 {
     letter-spacing: 1px;
     color: var(--color-accent5);
 }
+h2.main {
+    font-size: 3rem;
+    text-transform: none;
+    margin: 0 0 10px 0;
+    color: var(--text-main)
+}
 h3 {
     font-size: 1.85rem;
     color: inherit;

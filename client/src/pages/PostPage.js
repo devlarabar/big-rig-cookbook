@@ -47,7 +47,8 @@ const PostPage = () => {
     if (postInfo === '404') return <NotFound />
     return (
         <div className="post-page">
-            <h2>{postInfo.title}</h2>
+            <h2>Viewing Recipe</h2>
+            <h2 class="main">{postInfo.title}</h2>
             <div className="post-info flex flex-between">
                 <p>
                     <Link to={`/user/${postInfo.author.username}`} className="post-author">{postInfo.author.username}</Link> | <time>{format(new Date(postInfo.createdAt), 'MMM d, yyyy HH:mm')}</time>
