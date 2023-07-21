@@ -85,7 +85,7 @@ const PostPage = () => {
                         }) : 'No cookware specified.'
                     }
                 </ul>
-            <div dangerouslySetInnerHTML={{__html:postInfo.content}} />
+            {/* <div dangerouslySetInnerHTML={{__html:postInfo.content}} /> */}
         </div>
     )
 }

@@ -11,6 +11,8 @@ const items = [
     { value: 'pint' },
     { value: 'qt' },
     { value: 'gal' },
+    { value: 'slice' },
+    { value: 'piece' }
 ]
 
 export const IngredientQty = (props) => {

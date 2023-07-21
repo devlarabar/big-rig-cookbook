@@ -3,12 +3,12 @@ import { Navigate, useParams } from 'react-router-dom'
 import Editor from '../Editor'
 import AddCookware from '../AddCookware'
 import { Ingredients } from '../Ingredients'
+import Directions from '../Directions'
 
 const EditPost = () => {
     const { id } = useParams()
     const [ title, setTitle ] = useState('')
     const [ summary, setSummary ] = useState('')
-    const [ content, setContent ] = useState('')
     const [ prepTime, setPrepTime ] = useState('')
     const [ cookTime, setCookTime ] = useState('')
     const [ redirect, setRedirect ] = useState(false)
@@ -16,13 +16,14 @@ const EditPost = () => {
 
     const [ ingList, setIngList ] = useState([{ name: '', qty: '', measurement: '' }])
     const [ cookwareList, setCookwareList ] = useState([''])
+    const [ directionsList, setDirectionsList ] = useState([''])
 
     useEffect(() => {
         fetch(`http://localhost:4000/post/view/${id}`).then(response => {
             response.json().then(postInfo => {
                 setTitle(postInfo.title)
                 setSummary(postInfo.summary)
-                setContent(postInfo.content)
+                setDirectionsList(postInfo.directions)
                 setIngList(postInfo.ingredients)
                 setCookwareList(postInfo.cookware)
                 setPrepTime(postInfo.prepTime)
@@ -47,8 +48,9 @@ const EditPost = () => {
             id,
             title,
             summary,
-            content,
+            directions: directionsList,
             ingredients: ingList[0]?.ingredient ? ingList : [],
+            cookware: cookwareList,
             prepTime,
             cookTime
         }
@@ -108,7 +110,8 @@ const EditPost = () => {
             onChange={e => setCookTime(e.target.value)}
         />
         <h3><span>Directions</span></h3>
-        <Editor onChange={setContent} value={content} />
+        {/* <Editor onChange={setContent} value={content} /> */}
+        <Directions directionsList={directionsList} setDirectionsList={setDirectionsList} />
         <button type="submit" className="btn-createpost">Update Post</button>
     </form>
   )

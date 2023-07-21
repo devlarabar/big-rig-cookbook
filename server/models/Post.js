@@ -4,7 +4,7 @@ const { Schema, model } = mongoose
 const PostSchema = new Schema({
     title: String,
     summary: String,
-    content: String,
+    directions: [String],
     ingredients: [{
         ingredient: {type: Schema.Types.ObjectId, ref: 'Ingredient'},
         qty: Number,

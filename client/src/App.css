@@ -359,6 +359,7 @@ form button:hover {
 }
 .btn-createpost {
     margin-bottom: 90px;
+    background: var(--color-accent4)
 }
 
 /* ********************

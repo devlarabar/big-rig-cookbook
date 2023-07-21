@@ -9,14 +9,14 @@ module.exports = {
         const { token } = req.cookies
         jwt.verify(token, secret, {}, async (err, info) => {
             if (err) throw err
-            const { title, summary, content, ingredients, cookware, prepTime, cookTime } = req.body
+            const { title, summary, directions, ingredients, cookware, prepTime, cookTime } = req.body
             const ingList = ingredients.map(x => {
                 return { ingredient: x.ingredient._id, qty: x.qty, measurement: x.measurement }
             })
             const postDoc = await Post.create({
                 title,
                 summary,
-                content,
+                directions,
                 ingredients: ingList,
                 cookware,
                 prepTime,
@@ -30,7 +30,7 @@ module.exports = {
         const { token } = req.cookies
         jwt.verify(token, secret, {}, async (err, info) => {
             if (err) throw err
-            const { id, title, summary, content, ingredients, cookware, prepTime, cookTime } = req.body
+            const { id, title, summary, directions, ingredients, cookware, prepTime, cookTime } = req.body
             const ingList = ingredients.map(x => {
                 return { ingredient: x.ingredient._id, qty: x.qty, measurement: x.measurement }
             })
@@ -43,7 +43,7 @@ module.exports = {
             await postDoc.updateOne({
                 title,
                 summary,
-                content,
+                directions,
                 ingredients: ingList,
                 cookware,
                 prepTime,
