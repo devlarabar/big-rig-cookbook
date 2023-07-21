@@ -19,8 +19,8 @@ module.exports = {
             } else {
                 const { name, type } = req.body
                 const ingredient = await Ingredient.create({
-                    name,
-                    type
+                    name: name.toLowerCase(),
+                    type: type.toLowerCase()
                 })
                 console.log(req.body)
                 res.json({ ingredient })
