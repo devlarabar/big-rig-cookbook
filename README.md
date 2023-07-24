@@ -26,11 +26,12 @@ Milestones accomplished:
 - Create, edit, delete, and save recipes
 - User profiles including created and saved recipes
 - SVG icons for major ingredients in recipes (to allow users to easily view recipe components)
+- Search recipes by ingredients
 - Admin dashboard
 
 Next steps are outlined here, for easy reference. This is not an exhaustive list; only a list of the immediate next steps for the project. This list will be updated as needed.
 
 - Enhance user profiles
-- Improve entering directions for recipes
-- Tools/appliances used inputs for recipes
-- Begin creating stretch database
+- Create stretch database
+- Profile achievement badges
+- Enable users to edit their profile
