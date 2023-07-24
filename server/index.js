@@ -26,12 +26,14 @@ const homeRoutes = require('./routes/home')
 const userRoutes = require('./routes/user')
 const postRoutes = require('./routes/post')
 const dataRoutes = require('./routes/data')
+const searchRoutes = require('./routes/search')
 const adminRoutes = require('./routes/admin')
 
 app.use('/', homeRoutes)
 app.use('/user', userRoutes)
 app.use('/post', postRoutes)
 app.use('/data', dataRoutes)
+app.use('/search', searchRoutes)
 app.use('/admin', adminRoutes)
 
 app.listen(process.env.PORT || PORT, () => {

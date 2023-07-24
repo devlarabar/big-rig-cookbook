@@ -268,9 +268,12 @@ select {
 }
 
 /* Search */
-.input-search {
+.form-search {
     width: 70%;
     max-width: 300px;
+}
+.input-search {
+    width: 100%;
     background-image: url('./assets/heroicon-search.svg');
     background-repeat: no-repeat;
     background-size: 25px;
