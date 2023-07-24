@@ -24,10 +24,13 @@ module.exports = {
         const posts = await Post
             .find({ author: userDoc })
             .populate('author', ['username'])
+            .populate('ingredients.ingredient', ['name', 'type'])
             .sort({ createdAt: -1 })
             .limit(20)
         const cookbook = (await Post
             .find({ savedBy: { "$in" : [userDoc]} })
+            .populate('author', ['username'])
+            .populate('ingredients.ingredient', ['name', 'type'])
             .sort({ createdAt: -1 }))
         const response = {
             profile: {

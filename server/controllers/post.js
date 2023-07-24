@@ -83,7 +83,10 @@ module.exports = {
     viewPost: async (req, res) => {
         const { id } = req.params
         const substituteID = '123456789123456789012345'
-        const postDoc = await Post.findById(id.length === 24 ? id : substituteID).populate('author', ['username']).populate('ingredients.ingredient', 'name')
+        const postDoc = await Post
+            .findById(id.length === 24 ? id : substituteID)
+            .populate('author', ['username'])
+            .populate('ingredients.ingredient', 'name')
         res.json(postDoc ? postDoc : null)
     },
     savePost: async (req, res) => {

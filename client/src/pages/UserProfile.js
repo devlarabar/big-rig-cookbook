@@ -62,7 +62,7 @@ const UserProfile = () => {
     } else {
         return (
             <>
-                <h2 className="main user-header">Profile: <span class="user-username">{user}</span></h2>
+                <h2 className="main user-header">Profile: <span className="user-username">{user}</span></h2>
                 {isViewersProfile && <span className="block-center text-center">This is your profile!</span>}
                 <ul className="user-nav flex-center">
 
