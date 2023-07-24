@@ -377,6 +377,9 @@ user profile
     text-align: center;
     text-transform: capitalize;
 }
+.user-username {
+    color: var(--color-accent5);
+}
 .user-nav {
     padding: 0;
     gap: 15px;
@@ -390,6 +393,20 @@ user profile
     padding: 5px 12px;
     border-radius: 12px;
     text-decoration: none;
+}
+.user-nav button {
+    border: 0;
+    background: var(--color-accent2);
+    padding: 10px 15px;
+    display: block;
+    color: var(--text-button1);
+    border-radius: 50px;
+    padding: 15px 20px;
+    font-weight: bold;
+}
+.user-nav button:hover {
+    background: var(--color-accent1);
+    cursor: pointer;
 }
 
 /* ********************
