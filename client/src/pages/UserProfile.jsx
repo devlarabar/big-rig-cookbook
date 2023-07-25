@@ -5,6 +5,7 @@ import UserCookbook from '../features/userprofile/UserCookbook'
 import UserStretches from '../features/userprofile/UserStretches'
 import { useParams } from 'react-router-dom'
 import Spinner from '../features/ui/Spinner'
+import UserAchievements from '../features/userprofile/UserAchievements'
 
 const UserProfile = () => {
     const { user } = useParams()
@@ -13,6 +14,7 @@ const UserProfile = () => {
     const [ userProfile, setUserProfile ] = useState('')
     const [ userRecipes, setUserRecipes ] = useState([])
     const [ userCookbook, setUserCookbook ] = useState('')
+    const [ userAchievements, setUserAchievements ] = useState('')
     const [ section, setSection ] = useState('')
 
     // Get userInfo for the user currently logged in
@@ -42,6 +44,7 @@ const UserProfile = () => {
             setUserProfile(info.userProfile)
             setUserCookbook(info.cookbook)
             setUserRecipes(info.posts)
+            setUserAchievements(info.profile.achievements)
         }())
     }, [user])
 
@@ -66,11 +69,13 @@ const UserProfile = () => {
                 {isViewersProfile && <span className="block-center text-center">This is your profile!</span>}
                 <ul className="user-nav flex-center">
 
+                    <li><button onClick={() => changeSection('Achievements')}>Achievements</button></li>
                     <li><button onClick={() => changeSection('Recipes')}>Recipes</button></li>
                     <li><button onClick={() => changeSection('Cookbook')}>Cookbook</button></li>
                     <li><button onClick={() => changeSection('Stretches')}>Stretches</button></li>
                 </ul>
                 <h3>{section}</h3>
+                {section === 'Achievements' && <UserAchievements  user={userProfile} userAchievements={userAchievements} userId={userInfo.id} userDetails={userDetails}/>}
                 {section === 'Recipes' && <UserRecipes user={userProfile} userRecipes={userRecipes} userId={userInfo.id} userDetails={userDetails} />}
                 {section === 'Cookbook' && <UserCookbook user={userProfile} userCookbook={userCookbook} userId={userInfo.id} userDetails={userDetails} />}
                 {section === 'Stretches' && <UserStretches user={user} />}

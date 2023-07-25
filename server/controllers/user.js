@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const Post = require('../models/Post')
+const Achievement = require('../models/Achievement')
 const jwt = require('jsonwebtoken')
 const secret = 'salkdjfhsk2345rfgd324'
 
@@ -32,16 +33,21 @@ module.exports = {
             .populate('author', ['username'])
             .populate('ingredients.ingredient', ['name', 'type'])
             .sort({ createdAt: -1 }))
+        const achievements = (await Achievement
+            .find({ users: { "$in" : [userDoc]} })
+            .populate('users', ['username'])
+            .sort({ createdAt: -1 }))
         const response = {
             profile: {
                 id: userDoc._id,
                 username: userDoc.username,
-                savedPosts: userDoc.savedPosts,
+                achievements
             },
             posts,
             cookbook
         }
         res.json(response)
+        console.log(achievements)
     },
     getUserData: async (req, res) => {
         const id = req.params.id
