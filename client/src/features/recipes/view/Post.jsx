@@ -5,7 +5,7 @@ import SaveButton from '../../ui/SaveButton'
 // Import SVGs
 import { ReactComponent as Clock } from '../../../assets/fa-clock-solid.svg'
 import { ReactComponent as ArrowRight } from '../../../assets/heroicon-arrow-right.svg'
-import { IngredientIcons } from '../../../IngredientIcons'
+import { IngredientIcons } from './IngredientIcons'
 
 
 const Post = ({ _id, title, author, prepTime, cookTime, ingredients, createdAt, savedBy, userId, userDetails }) => {
@@ -28,11 +28,10 @@ const Post = ({ _id, title, author, prepTime, cookTime, ingredients, createdAt, 
 					<h3 className="post-title">{title}</h3>
 				</Link>
 				<div className="post-info flex flex-between med-gap">
-					<p className="flex med-gap"><Link to={`/user/${author.username}`} className="post-author">{author.username}</Link>
-					<time>{format(new Date(createdAt), 'MMM d, yyyy HH:mm')}</time></p>
-					
-					<IngredientIcons ingredients={ingredients} />
+					<span className="flex med-gap"><Link to={`/user/${author.username}`} className="post-author">{author.username}</Link>
+					<time>{format(new Date(createdAt), 'MMM d, yyyy HH:mm')}</time></span>
 				</div>
+				<IngredientIcons ingredients={ingredients} />
 				<div className="width-100 flex flex-between flex-align-end">
 					<span className="bold flex med-gap"><Clock className={clockStyle} width="20px" /><span>{prepTime+cookTime} min</span></span>
 					<SaveButton postId={_id} author={author} savedBy={savedBy} userId={userId} username={userDetails.username} />
