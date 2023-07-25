@@ -15,11 +15,17 @@ I believe that health and fitness doesn't have to be a chore, and it can be acce
 
 ## Plans
 
-The project is in its early stages of development. The plan is to make it easily accessible on mobile devices (as most truckers have limited access to computers), with a simple and intuitive interface. The initial wireframes are below.
+The project is in its early stages of development. The plan is to make it easily accessible on mobile devices (as most truckers have limited access to computers), with a simple and intuitive interface. The initial wireframes are below. *Note: Since creating the wireframes, I've decided against allowing user-uploaded images due both to the lack of ability to moderate images, and optimizing performance / reducing load times as much as possible.*
 
 ![Website Wireframing Template](https://github.com/devlarabar/big-rig-cookbook/assets/122644200/6b510685-86bd-4747-b029-d50eb496bd33)
 
 ## Progress
+
+<p align="center">
+<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/79071cc9-6061-4bc7-9735-00fda297fddc" width="300">
+<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/102c9766-bf73-4d45-811e-28463674f1d2" width="300">
+<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/46962552-584f-4469-ba1e-90df2482272a" width="300">
+</p>
 
 Milestones accomplished:
 - User athentication
