@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
-import Editor from '../Editor'
-import AddCookware from '../AddCookware'
-import { Ingredients } from '../Ingredients'
-import Directions from '../Directions'
+import AddCookware from '../features/recipes/create/AddCookware'
+import { Ingredients } from '../features/recipes/create/Ingredients'
+import Directions from '../features/recipes/create/Directions'
 
 const EditPost = () => {
     const { id } = useParams()

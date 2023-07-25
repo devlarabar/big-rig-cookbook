@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as Minus } from './assets/heroicon-minus.svg'
+import { ReactComponent as Minus } from '../../../assets/heroicon-minus.svg'
 
 export const IngredientsList = (props) => {
 

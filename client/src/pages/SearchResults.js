@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Spinner from '../Spinner'
-import Post from '../Post'
-import { UserContext } from '../UserContext'
+import Spinner from '../features/ui/Spinner'
+import Post from '../features/recipes/view/Post'
+import { UserContext } from '../features/users/UserContext'
 
 const SearchResults = () => {
     

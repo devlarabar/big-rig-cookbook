@@ -1,11 +1,11 @@
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
-import SaveButton from './SaveButton'
+import SaveButton from '../../ui/SaveButton'
 
 // Import SVGs
-import { ReactComponent as Clock } from './assets/fa-clock-solid.svg'
-import { ReactComponent as ArrowRight } from './assets/heroicon-arrow-right.svg'
-import { IngredientIcons } from './IngredientIcons'
+import { ReactComponent as Clock } from '../../../assets/fa-clock-solid.svg'
+import { ReactComponent as ArrowRight } from '../../../assets/heroicon-arrow-right.svg'
+import { IngredientIcons } from '../../../IngredientIcons'
 
 
 const Post = ({ _id, title, author, prepTime, cookTime, ingredients, createdAt, savedBy, userId, userDetails }) => {

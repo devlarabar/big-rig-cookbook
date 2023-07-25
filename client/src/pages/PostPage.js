@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { format } from 'date-fns'
-import { UserContext } from '../UserContext'
+import { UserContext } from '../features/users/UserContext'
 import NotFound from './NotFound.js'
-import Spinner from '../Spinner'
+import Spinner from '../features/ui/Spinner'
 import { ReactComponent as Edit } from '../assets/heroicon-edit.svg'
 
 const PostPage = () => {

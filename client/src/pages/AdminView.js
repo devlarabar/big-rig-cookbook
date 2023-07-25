@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import AdminDash from '../AdminDash'
+import AdminDash from '../features/admin/AdminDash'
 import NotFound from './NotFound'
 
 const AdminView = () => {

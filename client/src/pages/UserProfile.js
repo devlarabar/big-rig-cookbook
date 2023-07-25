@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react'
-import { UserContext } from '../UserContext'
-import UserRecipes from '../UserRecipes'
-import UserCookbook from '../UserCookbook'
-import UserStretches from '../UserStretches'
+import { UserContext } from '../features/users/UserContext'
+import UserRecipes from '../features/userprofile/UserRecipes'
+import UserCookbook from '../features/userprofile/UserCookbook'
+import UserStretches from '../features/userprofile/UserStretches'
 import { useParams } from 'react-router-dom'
-import Spinner from '../Spinner'
+import Spinner from '../features/ui/Spinner'
 
 const UserProfile = () => {
     const { user } = useParams()

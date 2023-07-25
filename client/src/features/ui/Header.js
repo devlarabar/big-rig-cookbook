@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useContext } from 'react'
-import { UserContext } from './UserContext'
+import { UserContext } from '../users/UserContext'
 
 const Header = () => {
 	const { userInfo, setUserInfo } = useContext(UserContext)

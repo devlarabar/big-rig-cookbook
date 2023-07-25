@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
-import { UserContext } from '../UserContext'
-import Posts from '../Posts'
+import { UserContext } from '../features/users/UserContext'
+import Posts from '../features/recipes/view/Posts'
 
 const IndexPage = () => {
 	const { userInfo, setUserInfo } = useContext(UserContext)

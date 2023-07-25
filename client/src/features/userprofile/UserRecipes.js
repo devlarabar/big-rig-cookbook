@@ -1,4 +1,4 @@
-import Post from './Post'
+import Post from '../recipes/view/Post'
 
 const UserRecipes = ({ user, userId, userDetails, userRecipes }) => {
     // todo: if userId doesn't match the current profile, display loading icon

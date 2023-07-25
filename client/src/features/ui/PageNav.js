@@ -1,5 +1,5 @@
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
-import { ReactComponent as Back } from './assets/heroicon-back.svg'
+import { ReactComponent as Back } from '../../assets/heroicon-back.svg'
 import { useState, useEffect } from 'react'
 
 const PageNav = () => {

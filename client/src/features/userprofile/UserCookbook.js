@@ -1,4 +1,4 @@
-import Post from './Post'
+import Post from '../recipes/view/Post'
 
 const UserCookbook = ({ user, userCookbook, userId, userDetails }) => {
     // user: the user whose profile you are viewing;    userId/userDetails: the user who is logged in
