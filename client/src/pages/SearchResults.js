@@ -34,8 +34,6 @@ const SearchResults = () => {
 		}())
 	}, [setUserInfo, setUserDetails])
 
-	const username = userInfo?.username
-
     if (results === '' || results === undefined) {
         return (
             <>
