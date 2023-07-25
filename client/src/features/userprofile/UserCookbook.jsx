@@ -12,7 +12,6 @@ const UserCookbook = ({ user, userCookbook, userId, userDetails }) => {
             <span className="block-center text-center">This user has no recipes in their cookbook!</span>
         )
     } else {
-
         return (
             <>
                 <p className="text-center">Total recipes saved: {userCookbook.length}</p>
