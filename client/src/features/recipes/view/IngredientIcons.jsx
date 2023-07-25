@@ -32,7 +32,7 @@ export const IngredientIcons = ({ ingredients }) => {
     }
 
     return (
-        <div className="ing-icons flex flex-center med-gap">
+        <div className="ing-icons flex flex-center flex-between med-gap">
             {types.map((x, i) => {
                 switch(x) {
                     case 'fruit':
