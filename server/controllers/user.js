@@ -22,6 +22,7 @@ module.exports = {
     userProfile: async (req, res) => {
         const username = req.params.username
         const userDoc = await User.findOne({ username })
+            .populate('achievements')
         const posts = await Post
             .find({ author: userDoc })
             .populate('author', ['username'])
@@ -33,10 +34,7 @@ module.exports = {
             .populate('author', ['username'])
             .populate('ingredients.ingredient', ['name', 'type'])
             .sort({ createdAt: -1 }))
-        const achievements = (await Achievement
-            .find({ users: { "$in" : [userDoc]} })
-            .populate('users', ['username'])
-            .sort({ createdAt: -1 }))
+        const achievements = userDoc.achievements
         const response = {
             profile: {
                 id: userDoc._id,
@@ -47,7 +45,6 @@ module.exports = {
             cookbook
         }
         res.json(response)
-        console.log(achievements)
     },
     getUserData: async (req, res) => {
         const id = req.params.id
