@@ -3,11 +3,10 @@ const { Schema, model } = mongoose
 
 const AchievementSchema = new Schema({
     name: String,
-    requirement: {
+    requirements: {
         recipes: Number,
         stretchStreak: Number,
-    },
-    users: [{type: Schema.Types.ObjectId, ref: 'User'}]
+    }
 })
 
 const AchievementModel = model('Achievement', AchievementSchema)

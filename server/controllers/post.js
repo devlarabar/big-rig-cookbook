@@ -4,6 +4,7 @@ const Ingredient = require('../models/Ingredient')
 const Achievement = require('../models/Achievement')
 const jwt = require('jsonwebtoken')
 const secret = 'salkdjfhsk2345rfgd324'
+const helpers = require('./post.helpers')
 
 module.exports = {
     createPost: async (req, res) => {
@@ -28,9 +29,11 @@ module.exports = {
             // Check if user's new post makes them eligible for an achievement (add this to util fn)
             // const authorPosts = await Post.count({ author: info.id })
             // const achievementModels = await Achievement.find()
+            // if ()
             // if (authorPosts >= 1) {
             //     // Logic
             // }
+            await helpers.checkAchievements(info)
 
             res.json({ postDoc })
         })

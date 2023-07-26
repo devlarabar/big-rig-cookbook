@@ -30,7 +30,7 @@ export const Ingredient = (props) => {
             const itemsDataJSON = await itemsData.json()
             setItems(itemsDataJSON)
         })()
-    })
+    }, [])
 
     return (
         <div>

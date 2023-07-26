@@ -5,7 +5,8 @@ const UserSchema = new Schema({
     username: { type: String, required: true, min: 4, unique: true },
     password: { type: String, required: true },
     email: { type: String, required: true },
-    admin: { type: Boolean, required: true, default: false }
+    admin: { type: Boolean, required: true, default: false },
+    achievements: [{type: Schema.Types.ObjectId, ref: 'Achievement'}]
 })
 
 const UserModel = model('User', UserSchema)

@@ -19,8 +19,9 @@ module.exports = {
     },
     login: async (req, res) => {
         const { username, password } = req.body
-        const userDoc = await User.findOne({ username })
+        const userDoc = await User.findOne({ username }).populate('achievements')
         const admin = userDoc.admin
+        const achievements = userDoc.achievements
     
         if (userDoc === null) {
             res.status(400).json('User does not exist!')
@@ -30,11 +31,12 @@ module.exports = {
     
             if (passOk) {
                 // Create session token
-                jwt.sign({ username, id: userDoc._id, admin }, secret, {}, (err, token) => {
+                jwt.sign({ username, id: userDoc._id, achievements, admin }, secret, {}, (err, token) => {
                     if (err) throw err;
                     res.cookie('token', token).json({
                         id: userDoc._id,
                         username,
+                        achievements,
                         admin
                     })
                 })
