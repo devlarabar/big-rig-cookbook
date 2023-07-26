@@ -3,10 +3,20 @@ import { useState } from 'react'
 const AdminAddData = () => {
     const [ingName, setIngName] = useState('')
     const [ingType, setIngType] = useState('')
+    const [achievementName, setAchievementName] = useState('')
+    const [recipeReq, setRecipeReq] = useState('')
+    const [stretchReq, setStretchReq] = useState('')
 
-    const formData = {
+    const formDataIngredient = {
         name: ingName,
         type: ingType
+    }
+    const formDataAchievement = {
+        name: achievementName,
+        requirements: {
+            recipes: recipeReq,
+            stretchStreak: stretchReq
+        }
     }
     function addIngredient() {
         fetch('http://localhost:4000/admin/addingredient', {
@@ -15,7 +25,17 @@ const AdminAddData = () => {
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
-            body: JSON.stringify(formData)
+            body: JSON.stringify(formDataIngredient)
+        })
+    }
+    function addAchievement() {
+        fetch('http://localhost:4000/admin/addachievement', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(formDataAchievement)
         })
     }
     return (
@@ -49,6 +69,32 @@ const AdminAddData = () => {
                     <option value="hot">Hot (Spicy)</option>
                     </select>
                 <button type="submit">Submit</button>
+            </form>
+
+            <form onSubmit={addAchievement} className="flex flex-column big-gap form-recipe">
+                <h3><span>Add Achievements</span></h3>
+                <input
+                    type="text"
+                    placeholder={'Name'}
+                    onChange={e => setAchievementName(e.target.value)}
+                    className="width-100"
+                    required
+                />
+                <input
+                    type="number"
+                    placeholder={'Recipe Requirement'}
+                    onChange={e => setRecipeReq(e.target.value)}
+                    className="width-100"
+                    required
+                />
+                <input
+                    type="number"
+                    placeholder={'Stretch Streak Requirement'}
+                    onChange={e => setStretchReq(e.target.value)}
+                    className="width-100"
+                    required
+                />
+            <button type="submit">Submit</button>
             </form>
         </div>
     )

@@ -1,4 +1,5 @@
 const Ingredient = require('../models/Ingredient')
+const Achievement = require('../models/Achievement')
 const jwt = require('jsonwebtoken')
 const secret = 'salkdjfhsk2345rfgd324'
 
@@ -24,6 +25,23 @@ module.exports = {
                 })
                 console.log(req.body)
                 res.json({ ingredient })
+            }
+        })
+    },
+    addAchievement: async (req, res) => {
+        const { token } = req.cookies
+        jwt.verify(token, secret, {}, async (err, info) => {
+            if (err) throw err
+            if (!info.admin) {
+                throw 'You are not authorized to modify the database.'
+            } else {
+                const { name, requirements } = req.body
+                const achievement = await Achievement.create({
+                    name: name,
+                    requirements: requirements
+                })
+                console.log(req.body)
+                res.json({ achievement })
             }
         })
     }
