@@ -33,11 +33,12 @@ Milestones accomplished:
 - User profiles including created and saved recipes
 - SVG icons for major ingredients in recipes (to allow users to easily view recipe components)
 - Search recipes by ingredients
-- Admin dashboard
+- Profile achievement badges
+- Admin dashboard (to allow admins to easily modify the database)
 
 Next steps are outlined here, for easy reference. This is not an exhaustive list; only a list of the immediate next steps for the project. This list will be updated as needed.
 
 - Enhance user profiles
 - Create stretch database
-- Profile achievement badges
 - Enable users to edit their profile
+- Layout styling
