@@ -42,3 +42,4 @@ Next steps are outlined here, for easy reference. This is not an exhaustive list
 - Create stretch database
 - Enable users to edit their profile
 - Layout styling
+- Achievement badge enhancements
