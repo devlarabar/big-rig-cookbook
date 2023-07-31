@@ -390,6 +390,13 @@ form button:hover {
 }
 
 /* ********************
+admin dashboard
+******************** */
+.admin-dash {
+    margin-bottom: 50px;
+}
+
+/* ********************
 user profile
 ******************** */
 .user-header {

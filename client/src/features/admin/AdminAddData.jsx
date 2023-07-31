@@ -6,6 +6,10 @@ const AdminAddData = () => {
     const [achievementName, setAchievementName] = useState('')
     const [recipeReq, setRecipeReq] = useState('')
     const [stretchReq, setStretchReq] = useState('')
+    const [stretchName, setStretchName] = useState('')
+    const [stretchDesc, setStretchDesc] = useState('')
+    const [stretchPos, setStretchPos] = useState('')
+    const [stretchMusc, setStretchMusc] = useState('')
 
     const formDataIngredient = {
         name: ingName,
@@ -18,6 +22,12 @@ const AdminAddData = () => {
             stretchStreak: stretchReq
         }
     }
+    const formDataStretch = {
+        name: stretchName,
+        description: stretchDesc,
+        position: stretchPos,
+        muscle: stretchMusc
+        }
     function addIngredient() {
         fetch('http://localhost:4000/admin/addingredient', {
             method: 'POST',
@@ -38,8 +48,18 @@ const AdminAddData = () => {
             body: JSON.stringify(formDataAchievement)
         })
     }
+    function addStretch() {
+        fetch('http://localhost:4000/admin/addstretch', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(formDataStretch)
+        })
+    }
     return (
-        <div>
+        <div className="admin-dash">
             <form onSubmit={addIngredient} className="flex flex-column big-gap form-recipe">
                 <h3><span>Add Ingredients</span></h3>
                 <input
@@ -94,6 +114,54 @@ const AdminAddData = () => {
                     className="width-100"
                     required
                 />
+            <button type="submit">Submit</button>
+            </form>
+
+            <form onSubmit={addStretch} className="flex flex-column big-gap form-recipe">
+                <h3><span>Add Stretches</span></h3>
+                <input
+                    type="text"
+                    placeholder={'Name'}
+                    onChange={e => setStretchName(e.target.value)}
+                    className="width-100"
+                    required
+                />
+                <input
+                    type="text"
+                    placeholder={'Description'}
+                    onChange={e => setStretchDesc(e.target.value)}
+                    className="width-100"
+                    required
+                />
+                <select
+                    onChange={e => setStretchPos(e.target.value)}
+                    className="width-100"
+                    required
+                >
+                    <option value="" disabled>- Select -</option>
+                    <option value="standing">Standing</option>
+                    <option value="seated">Seated</option>
+                    <option value="laying face up">Laying - face up</option>
+                    <option value="laying face down">Laying - face down</option>
+                </select>
+                <select
+                    onChange={e => setStretchMusc(e.target.value)}
+                    className="width-100"
+                    required
+                >
+                    <option value="" disabled>- Select -</option>
+                    <option value="upper back">Back - upper</option>
+                    <option value="lower back">Back - lower</option>
+                    <option value="core">Core</option>
+                    <option value="shoulder">Shoulder</option>
+                    <option value="quadrucep">Quadrucep</option>
+                    <option value="hamstring">Hamstring</option>
+                    <option value="calf">Calf</option>
+                    <option value="pectoral">Pectoral</option>
+                    <option value="neck">Neck</option>
+                    <option value="wrist">Wrist</option>
+                    <option value="ankle">Ankle</option>
+                </select>
             <button type="submit">Submit</button>
             </form>
         </div>
