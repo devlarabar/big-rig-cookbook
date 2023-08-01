@@ -23,6 +23,7 @@ import { useEffect, useState } from 'react'
 export const Ingredient = (props) => {
 
     const [ items, setItems ] = useState('')
+    const [ disabled, setDisabled ] = useState(true)
 
     useEffect(() => {
         (async () => {
@@ -31,6 +32,12 @@ export const Ingredient = (props) => {
             setItems(itemsDataJSON)
         })()
     }, [])
+
+    useEffect(() => {
+        if (items) {
+            setDisabled(false)
+        }
+    }, [items])
 
     return (
         <div>
@@ -54,7 +61,7 @@ export const Ingredient = (props) => {
                             {...getRootProps({}, { suppressRefError: true })}
                         >
                             <input {...getInputProps()}
-                            className="width-100" placeholder="beef - ground"/>
+                            className="width-100" placeholder="ingredient (i.e. beef - ground)" disabled={disabled}/>
                         </div>
                         <ul {...getMenuProps()}>
                             {isOpen

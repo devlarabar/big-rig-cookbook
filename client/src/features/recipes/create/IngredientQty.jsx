@@ -1,6 +1,7 @@
 import Downshift from 'downshift'
 
 const items = [
+    { value: '' },
     { value: 'cup' },
     { value: 'tbsp' },
     { value: 'tsp' },
