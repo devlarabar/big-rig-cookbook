@@ -12,11 +12,13 @@ const AddIngredients = (props) => {
     // Ingredients List: Handle click event of the Add button
     function handleAddClick() {
         setIngredient({ ingredient: name, qty: qty, measurement: measure})
-    }
-
-    useEffect(() => {
         props.onAdd(ingredient)
-    }, [ingredient])
+        // if (addIng) {
+        //     setName('')
+        //     setQty('')
+        //     setMeasure('')
+        // }
+    }
 
     function onSelectIngredient(selection) {
         if (selection) {
