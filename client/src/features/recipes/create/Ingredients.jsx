@@ -8,14 +8,18 @@ export const Ingredients = (props) => {
     const { ingList, setIngList } = props
     const [ingError, setIngError] = useState(false)
 
+    const [ ingKey, setIngKey ] = useState('')
+    const [ ingQtyKey, setIngQtyKey ] = useState('')
+    const [ ingMeasureKey, setIngMeasureKey ] = useState('')
+
     function onAdd(newIngredient) {
         setIngError(false)
-        if (!newIngredient.ingredient || !newIngredient.qty) {
+        if (!newIngredient.ingredient || !newIngredient.qty || newIngredient.qty === '0') {
             setIngError('qty')
             console.log('hi')
             return false
         }
-        if (ingList.find(x => x.ingredient === newIngredient.ingredient)) {
+        if (ingList.find(x => x.ingredient.name === newIngredient.ingredient.name)) {
             setIngError('duplicate')
             console.log('hidfg')
             return false
@@ -24,19 +28,29 @@ export const Ingredients = (props) => {
             setIngError(false)
             ingList[0] = newIngredient
             const list = [...ingList]
-            setIngList(list)
+            addToIngList(list)
+            return true
         } else {
             setIngError(false)
             const list = [...ingList, newIngredient]
-            setIngList(list)
+            addToIngList(list)
+            return true
         }
+        
+    }
+
+    function addToIngList(list) {
+        setIngList(list)
+        setIngKey(new Date())
+        setIngQtyKey(`qty-${new Date()}`)
+        setIngMeasureKey(`measure-${new Date()}`)
     }
     
   return (
     <div className="flex flex-column big-gap">
         <IngredientsList ingList={ingList} setIngList={setIngList} />
         {ingError && <IngQtyErr error={ingError} />}
-        <AddIngredients onAdd={onAdd} ingList={ingList} />
+        <AddIngredients onAdd={onAdd} ingList={ingList} ingKey={ingKey} ingQtyKey={ingQtyKey} ingMeasureKey={ingMeasureKey} />
     </div>
   )
 }

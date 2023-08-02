@@ -12,36 +12,18 @@ const AddIngredients = (props) => {
 
     // Ingredients List: Handle click event of the Add button
     function handleAddClick() {
-        
-        props.onAdd(ingredient)
-        setNewIng(true)
-        
-        // if (addIng) {
-        //     setName('')
-        //     setQty('')
-        //     setMeasure('')
-        // }
+        const success = props.onAdd(ingredient)
+        if (success) setNewIng(true)
     }
-
-    // useEffect(() => {
-        
-    //     setNewIng(false)
-    // }, [setNewIng, props])
 
     function onSelectIngredient(selection) {
-        if (selection) {
-            setName(selection)
-        }
+        if (selection) setName(selection)
     }
     function onSelectQty(selection) {
-        if (selection) {
-            setQty(selection)
-        }
+        if (selection) setQty(selection)
     }
     function onSelectMeasurement(selection) {
-        if (selection) {
-            setMeasure(selection)
-        }
+        if (selection) setMeasure(selection)
     }
 
     function onKeyDownQty(e) {
@@ -55,12 +37,25 @@ const AddIngredients = (props) => {
     useEffect(() => {
         setIngredient({ ingredient: name, qty: qty, measurement: measure})
     }, [name, qty, measure])
+    
+    useEffect(() => {
+        setName('')
+        setQty('')
+        setMeasure('')
+        setNewIng(false)
+    }, [newIng])
 
     return (
         <>
             <div className="flex flex-column">
-                <Ingredient onChange={onSelectIngredient}/>
-                <IngredientQty onChange={onSelectQty} onKeyDown={onKeyDownQty} onSelectMeasurement={onSelectMeasurement} />
+                <Ingredient onChange={onSelectIngredient} name={name} key={props.ingKey}/>
+                <IngredientQty 
+                    onChange={onSelectQty} 
+                    onKeyDown={onKeyDownQty} 
+                    onSelectMeasurement={onSelectMeasurement} 
+                    ingQtyKey={props.ingQtyKey} 
+                    ingMeasureKey={props.ingMeasureKey} 
+                />
                 <button
                     type="button"
                     className="btn-add"
