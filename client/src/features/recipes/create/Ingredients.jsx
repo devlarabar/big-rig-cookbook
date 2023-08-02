@@ -9,6 +9,7 @@ export const Ingredients = (props) => {
     const [ingError, setIngError] = useState(false)
 
     function onAdd(newIngredient) {
+        setIngError(false)
         if (!newIngredient.ingredient || !newIngredient.qty) {
             setIngError('qty')
             console.log('hi')
@@ -20,16 +21,14 @@ export const Ingredients = (props) => {
             return false
         }
         if (ingList[0] === '') {
+            setIngError(false)
             ingList[0] = newIngredient
             const list = [...ingList]
             setIngList(list)
-            setIngError(false)
-            return true
         } else {
+            setIngError(false)
             const list = [...ingList, newIngredient]
             setIngList(list)
-            setIngError(false)
-            return true
         }
     }
     

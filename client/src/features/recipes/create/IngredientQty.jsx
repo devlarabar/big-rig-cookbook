@@ -22,7 +22,7 @@ export const IngredientQty = (props) => {
   return (
     <div className="flex big-gap form-recipe-qty">
         <div className="width-100">
-            <input type="number" onChange={e => props.onChange(e.target.value)} placeholder="1"/>
+            <input type="number" onChange={e => {props.onChange(e.target.value); props.onKeyDown(e)}} placeholder="1"/>
         </div>
         <Downshift
         onChange={selection => props.onSelectMeasurement(selection ? selection.value : null)}

@@ -8,17 +8,25 @@ const AddIngredients = (props) => {
     const [ qty, setQty ] = useState('')
     const [ measure, setMeasure ] = useState('')
     const [ ingredient, setIngredient ] = useState('')
+    const [ newIng, setNewIng ] = useState(false)
 
     // Ingredients List: Handle click event of the Add button
     function handleAddClick() {
-        setIngredient({ ingredient: name, qty: qty, measurement: measure})
+        
         props.onAdd(ingredient)
+        setNewIng(true)
+        
         // if (addIng) {
         //     setName('')
         //     setQty('')
         //     setMeasure('')
         // }
     }
+
+    // useEffect(() => {
+        
+    //     setNewIng(false)
+    // }, [setNewIng, props])
 
     function onSelectIngredient(selection) {
         if (selection) {
@@ -36,11 +44,23 @@ const AddIngredients = (props) => {
         }
     }
 
+    function onKeyDownQty(e) {
+        if (qty.length === 1 && e.key === 'Backspace') {
+            setQty('')
+        } else {
+            setQty(e.target.value)
+        }
+    }
+
+    useEffect(() => {
+        setIngredient({ ingredient: name, qty: qty, measurement: measure})
+    }, [name, qty, measure])
+
     return (
         <>
             <div className="flex flex-column">
                 <Ingredient onChange={onSelectIngredient}/>
-                <IngredientQty onChange={onSelectQty} onSelectMeasurement={onSelectMeasurement} />
+                <IngredientQty onChange={onSelectQty} onKeyDown={onKeyDownQty} onSelectMeasurement={onSelectMeasurement} />
                 <button
                     type="button"
                     className="btn-add"
