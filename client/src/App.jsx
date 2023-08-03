@@ -12,6 +12,7 @@ import { UserContextProvider } from './features/users/UserContext'
 import NotFound from './pages/NotFound'
 import AdminView from './pages/AdminView'
 import SearchResults from './pages/SearchResults'
+import StretchIndex from './pages/StretchIndex'
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 					<Route path={'/editpost/:id'} element={<EditPost />} />
 					<Route path={'/user/:user'} element={<UserProfile />} />
 					<Route path={'/search/results/:query'} element={<SearchResults />} />
+					<Route path={'/stretch'} element={<StretchIndex />} />
 					<Route path={'/admin/dashboard'} element={<AdminView />} />
 					<Route path='*' element={<NotFound />} />
 				</Route>
