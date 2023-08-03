@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 router.use(express.json())
 router.use(cookieParser())
 
-router.get('/', authController.isAuth, stretchController.home)
+router.get('/', stretchController.home)
 router.put('/save', stretchController.save)
 
 module.exports = router

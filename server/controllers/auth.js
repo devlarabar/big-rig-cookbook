@@ -4,7 +4,7 @@ module.exports = {
             const { token } = req.cookies
             jwt.verify(token, secret, {}, (err, info) => {
                 if (err) throw err
-                return true
+                return info ? true : false
             })
         } catch (err) {
             return false
