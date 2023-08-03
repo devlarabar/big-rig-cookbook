@@ -6,9 +6,9 @@ const UserAchievements = ({ userAchievements }) => {
     }
     return (
         <div>
-            {userAchievements.map(x => {
+            {userAchievements.map((x, i) => {
                 return (
-                    <>{x.name}</>
+                    <span key={i}>{x.name}</span>
                 )
             })}
         </div>
