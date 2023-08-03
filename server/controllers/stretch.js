@@ -9,7 +9,6 @@ module.exports = {
     home: async (req, res) => {
         const stretches = await Stretch.find().sort({ name: -1})
         res.json(stretches)
-        console.log(stretches)
     },
     save: async (req, res) => {
         const { token } = req.cookies
