@@ -10,14 +10,14 @@ module.exports = {
         // Grab token from cookies (from Header.js)
         const username = req.params.username
         const { token } = req.cookies
-        
+
         jwt.verify(token, secret, {}, (err, info) => {
             if (err) throw err
             res.json(info)
         })
-    
+
         const userDoc = (await User.find({ username: username }))
-        
+
         res.json(userDoc)
     },
     userProfile: async (req, res) => {
@@ -31,12 +31,12 @@ module.exports = {
             .sort({ createdAt: -1 })
             .limit(20)
         const cookbook = (await Post
-            .find({ savedBy: { "$in" : [userDoc]} })
+            .find({ savedBy: { "$in": [userDoc] } })
             .populate('author', ['username'])
             .populate('ingredients.ingredient', ['name', 'type'])
             .sort({ createdAt: -1 }))
         const stretches = (await Stretch
-            .find({ savedBy: { "$in" : [userDoc]} })
+            .find({ savedBy: { "$in": [userDoc] } })
             .sort({ createdAt: -1 }))
         const achievements = userDoc.achievements
         const response = {

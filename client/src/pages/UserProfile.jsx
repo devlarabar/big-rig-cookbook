@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
-import { UserContext } from '../features/users/UserContext'
+import { useState, useEffect } from 'react'
 import UserRecipes from '../features/userprofile/UserRecipes'
 import UserCookbook from '../features/userprofile/UserCookbook'
 import UserStretches from '../features/userprofile/UserStretches'
@@ -15,10 +14,10 @@ const UserProfile = () => {
     const [userStretches, setUserStretches] = useState('')
     const [userAchievements, setUserAchievements] = useState('')
     const [section, setSection] = useState('')
-    
+
     const { authUser } = useOutletContext()
 
-    // Get user information of the profile being viewed (todo: maybe convert these all into one request)
+    // Get user information of the profile being viewed
     useEffect(() => {
         (async function () {
             setUserRecipes('')

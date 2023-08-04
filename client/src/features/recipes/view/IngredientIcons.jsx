@@ -1,4 +1,3 @@
-// Import SVGs
 import { ReactComponent as Fruit } from '../../../assets/ingredients/fa-apple-whole-solid.svg'
 import { ReactComponent as Vegetable } from '../../../assets/ingredients/fa-carrot-solid.svg'
 import { ReactComponent as Meat } from '../../../assets/ingredients/fa-drumstick-bite-solid.svg'
@@ -34,7 +33,7 @@ export const IngredientIcons = ({ ingredients }) => {
     return (
         <div className="ing-icons flex flex-center flex-between med-gap">
             {types.map((x, i) => {
-                switch(x) {
+                switch (x) {
                     case 'fruit':
                         return <Fruit className={svgClass} key={x} />
                     case 'vegetable':
