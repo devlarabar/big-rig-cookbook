@@ -1,7 +1,6 @@
 import Post from '../recipes/view/Post'
 
-const UserCookbook = ({ user, userCookbook, userId, userDetails }) => {
-    // user: the user whose profile you are viewing;    userId/userDetails: the user who is logged in
+const UserCookbook = ({ userCookbook, authUser }) => {
 
     if (!userCookbook) {
         return (
@@ -16,7 +15,7 @@ const UserCookbook = ({ user, userCookbook, userId, userDetails }) => {
             <>
                 <p className="text-center">Total recipes saved: {userCookbook.length}</p>
                 {userCookbook.length > 0 && userCookbook.map(post => (
-                    <Post {...post} key={post._id} userId={userId} userDetails={userDetails} />
+                    <Post {...post} key={post._id} userId={authUser.id} />
                 ))}
             </>
         )

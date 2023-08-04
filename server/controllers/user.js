@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const Post = require('../models/Post')
 const Achievement = require('../models/Achievement')
+const Stretch = require('../models/Stretch')
 const jwt = require('jsonwebtoken')
 const secret = 'salkdjfhsk2345rfgd324'
 
@@ -34,6 +35,9 @@ module.exports = {
             .populate('author', ['username'])
             .populate('ingredients.ingredient', ['name', 'type'])
             .sort({ createdAt: -1 }))
+        const stretches = (await Stretch
+            .find({ savedBy: { "$in" : [userDoc]} })
+            .sort({ createdAt: -1 }))
         const achievements = userDoc.achievements
         const response = {
             profile: {
@@ -42,7 +46,8 @@ module.exports = {
                 achievements
             },
             posts,
-            cookbook
+            cookbook,
+            stretches
         }
         res.json(response)
     },

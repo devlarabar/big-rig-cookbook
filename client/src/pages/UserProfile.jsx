@@ -3,52 +3,41 @@ import { UserContext } from '../features/users/UserContext'
 import UserRecipes from '../features/userprofile/UserRecipes'
 import UserCookbook from '../features/userprofile/UserCookbook'
 import UserStretches from '../features/userprofile/UserStretches'
-import { useParams } from 'react-router-dom'
+import { useOutletContext, useParams } from 'react-router-dom'
 import Spinner from '../features/ui/Spinner'
 import UserAchievements from '../features/userprofile/UserAchievements'
 
 const UserProfile = () => {
     const { user } = useParams()
-    const { userInfo, setUserInfo } = useContext(UserContext)
-    const [ userDetails, setUserDetails] = useState({})
-    const [ userProfile, setUserProfile ] = useState('')
-    const [ userRecipes, setUserRecipes ] = useState([])
-    const [ userCookbook, setUserCookbook ] = useState('')
-    const [ userAchievements, setUserAchievements ] = useState('')
-    const [ section, setSection ] = useState('')
-
-    // Get userInfo for the user currently logged in
-    useEffect(() => {
-        (async function () {
-            const userInfoResponse = await fetch('http://localhost:4000/user/profile', { credentials: 'include' })
-            const userInfo = await userInfoResponse.json()
-            setUserInfo(userInfo)
-            if (userInfo?.id) {
-                const userDataResponse = await fetch(`http://localhost:4000/user/getuserdata/${userInfo.id}`)
-                const userDataInfo = await userDataResponse.json()
-                setUserDetails(userDataInfo)
-            }
-        }())
-    }, [setUserInfo, setUserDetails])
+    const [userProfile, setUserProfile] = useState('')
+    const [userRecipes, setUserRecipes] = useState([])
+    const [userCookbook, setUserCookbook] = useState('')
+    const [userStretches, setUserStretches] = useState('')
+    const [userAchievements, setUserAchievements] = useState('')
+    const [section, setSection] = useState('')
+    
+    const { authUser } = useOutletContext()
 
     // Get user information of the profile being viewed (todo: maybe convert these all into one request)
     useEffect(() => {
-        (async function() {
+        (async function () {
             setUserRecipes('')
             setUserCookbook('')
+            setUserStretches('')
             setSection('')
 
             // Get this user's information
             const fetchUserInfo = await fetch(`http://localhost:4000/user/userprofile/${user}`)
             const info = await fetchUserInfo.json()
             setUserProfile(info.userProfile)
-            setUserCookbook(info.cookbook)
             setUserRecipes(info.posts)
+            setUserCookbook(info.cookbook)
+            setUserStretches(info.stretches)
             setUserAchievements(info.profile.achievements)
         }())
     }, [user])
 
-    const username = userInfo?.username
+    const username = authUser?.username
     const isViewersProfile = username === user
 
     function changeSection(x) {
@@ -75,10 +64,10 @@ const UserProfile = () => {
                     <li><button onClick={() => changeSection('Stretches')}>Stretches</button></li>
                 </ul>
                 <h3>{section}</h3>
-                {section === 'Achievements' && <UserAchievements  user={userProfile} userAchievements={userAchievements} userId={userInfo.id} userDetails={userDetails}/>}
-                {section === 'Recipes' && <UserRecipes user={userProfile} userRecipes={userRecipes} userId={userInfo.id} userDetails={userDetails} />}
-                {section === 'Cookbook' && <UserCookbook user={userProfile} userCookbook={userCookbook} userId={userInfo.id} userDetails={userDetails} />}
-                {section === 'Stretches' && <UserStretches user={user} />}
+                {section === 'Achievements' && <UserAchievements user={userProfile} userAchievements={userAchievements} authUser={authUser} />}
+                {section === 'Recipes' && <UserRecipes user={userProfile} userRecipes={userRecipes} authUser={authUser} />}
+                {section === 'Cookbook' && <UserCookbook user={userProfile} userCookbook={userCookbook} authUser={authUser} />}
+                {section === 'Stretches' && <UserStretches user={userProfile} userStretches={userStretches} authUser={authUser} />}
             </>
         )
     }

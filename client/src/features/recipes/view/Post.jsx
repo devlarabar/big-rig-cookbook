@@ -8,7 +8,7 @@ import { ReactComponent as ArrowRight } from '../../../assets/heroicon-arrow-rig
 import { IngredientIcons } from './IngredientIcons'
 
 
-const Post = ({ _id, title, author, prepTime, cookTime, ingredients, createdAt, savedBy, userId, userDetails }) => {
+const Post = ({ _id, title, author, prepTime, cookTime, ingredients, createdAt, savedBy, userId }) => {
 	let clockStyle
 	if ((prepTime + cookTime) < 30) {
 		clockStyle = 'fill-green'

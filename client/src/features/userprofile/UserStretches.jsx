@@ -1,32 +1,25 @@
-// import Post from './Post'
-import { useState, useEffect } from 'react'
+import Stretch from "../stretch/Stretch"
 
-const UserStretches = ({ user }) => {
-    // const [savedPosts, setSavedPosts] = useState([])
+const UserStretches = ({ userStretches, authUser }) => {
 
-    // useEffect(() => {
-    //     (async function () {
-    //         const fetchUserPosts = await fetch(`http://localhost:4000/viewposts/${user}`)
-    //         const posts = await fetchUserPosts.json()
-    //         setSavedPosts(posts)
-    //     }())
-    // }, [user, savedPosts])
-
-    // if (savedPosts.length < 1) {
-    //     return (
-    //         <span className="block-center text-center">Loading...</span>
-    //     )
-    // } else {
-
+    if (!userStretches) {
+        return (
+            <span className="block-center text-center">Loading...</span>
+        )
+    } else if (userStretches.length < 1) {
+        return (
+            <span className="block-center text-center">This user has not saved any stretches!</span>
+        )
+    } else {
         return (
             <>
-                <p className="text-center">Total stretches saved: (total here)</p>
-                {/* {savedPosts.length > 0 && savedPosts.map(post => (
-                    <Post {...post} key={post._id} />
-                ))} */}
+                <p className="text-center">Total stretches saved: {userStretches.length}</p>
+                {userStretches.length > 0 && userStretches.map(stretch => (
+                    <Stretch stretch={stretch} key={stretch._id} authUser={authUser} />
+                ))}
             </>
         )
     }
-//}
+}
 
 export default UserStretches
