@@ -13,6 +13,7 @@ import NotFound from './pages/NotFound'
 import AdminView from './pages/AdminView'
 import SearchResults from './pages/SearchResults'
 import StretchIndex from './pages/StretchIndex'
+import PrivateRoutes from './utils/PrivateRoutes'
 
 function App() {
 	return (
@@ -22,13 +23,16 @@ function App() {
 					<Route index element={<IndexPage />} />
 					<Route path={'/login'} element={<Login />} />
 					<Route path={'/register'} element={<Register />} />
-					<Route path={'/create'} element={<CreatePost />} />
-					<Route path={'/post/view/:id'} element={<PostPage />} />
-					<Route path={'/editpost/:id'} element={<EditPost />} />
-					<Route path={'/user/:user'} element={<UserProfile />} />
-					<Route path={'/search/results/:query'} element={<SearchResults />} />
-					<Route path={'/stretch'} element={<StretchIndex />} />
-					<Route path={'/admin/dashboard'} element={<AdminView />} />
+					<Route element={<PrivateRoutes />}>
+						<Route path={'/create'} element={<CreatePost />} />
+						<Route path={'/post/view/:id'} element={<PostPage />} />
+						<Route path={'/editpost/:id'} element={<EditPost />} />
+						<Route path={'/user/:user'} element={<UserProfile />} />
+						<Route path={'/search/results/:query'} element={<SearchResults />} />
+						<Route path={'/stretch'} element={<StretchIndex />} />
+						<Route path={'/admin/dashboard'} element={<AdminView />} />
+					</Route>
+					
 					<Route path='*' element={<NotFound />} />
 				</Route>
 			</Routes>
