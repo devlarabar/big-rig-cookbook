@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import Stretch from "../features/stretch/Stretch"
+import { useOutletContext } from "react-router-dom"
 
 const StretchIndex = () => {
     const [stretches, setStretches] = useState([])
+    const { authUser } = useOutletContext()
 
     useEffect(() => {
         (async function() {
@@ -17,7 +19,7 @@ const StretchIndex = () => {
             {stretches.length > 0 && stretches.map((x, i) => {
                 return (
                     <div key={i}>
-                        <Stretch stretch={x} />
+                        <Stretch stretch={x} authUser={authUser} />
                     </div>
                 )
             })}

@@ -3,21 +3,21 @@ import { Outlet, Navigate } from 'react-router-dom'
 import Spinner from '../features/ui/Spinner'
 
 const PrivateRoutes = () => {
-    const [userInfo, setUserInfo] = useState(undefined)
+    const [authUser, setAuthUser] = useState(undefined)
     
     useEffect(() => {
 		(async function () {
-			const userInfoResponse = await fetch('http://localhost:4000/user/profile', { credentials: 'include' })
-			const userInfo = await userInfoResponse.json()
-			setUserInfo(userInfo)
+			const authUserResponse = await fetch('http://localhost:4000/user/profile', { credentials: 'include' })
+			const authUser = await authUserResponse.json()
+			setAuthUser(authUser)
 		}())
-	}, [setUserInfo])
+	}, [setAuthUser])
     
-    if (userInfo === undefined) {
+    if (authUser === undefined) {
         return <Spinner />
     }
     return (
-        userInfo?.id ? <Outlet /> : <Navigate to='/login' />
+        authUser?.id ? <Outlet context={{authUser}} /> : <Navigate to='/login' />
     )
 }
 

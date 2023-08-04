@@ -34,7 +34,7 @@ const Post = ({ _id, title, author, prepTime, cookTime, ingredients, createdAt, 
 				<IngredientIcons ingredients={ingredients} />
 				<div className="width-100 flex flex-between flex-align-end">
 					<span className="bold flex med-gap"><Clock className={clockStyle} width="20px" /><span>{prepTime+cookTime} min</span></span>
-					<SaveButton postId={_id} author={author} savedBy={savedBy} userId={userId} username={userDetails.username} />
+					<SaveButton postId={_id} author={author} savedBy={savedBy} userId={userId} />
 				</div>
 			</div>
 			<div className="post-link flex flex-center">

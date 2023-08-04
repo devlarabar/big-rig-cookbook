@@ -11,26 +11,22 @@ module.exports = {
         res.json(stretches)
     },
     save: async (req, res) => {
-        const { token } = req.cookies
-        jwt.verify(token, secret, {}, async (err, info) => {
-            if (err) throw err
-            const { title, summary, directions, ingredients, cookware, prepTime, cookTime } = req.body
-            const ingList = ingredients.map(x => {
-                return { ingredient: x.ingredient._id, qty: x.qty, measurement: x.measurement }
-            })
-            const postDoc = await Post.create({
-                title,
-                summary,
-                directions,
-                ingredients: ingList,
-                cookware,
-                prepTime,
-                cookTime,
-                author: info.id,
-            })
-            await helpers.checkAchievements(info)
-
-            res.json({ postDoc })
-        })
+        const stretchId = req.body.stretch
+        const userId = req.body.user
+        const stretchDoc = await Stretch.findById(stretchId)
+        const userDoc = await User.findById(userId)
+    
+        if (stretchDoc.savedBy?.includes(userDoc._id)) {
+            newSavedStretches = stretchDoc.savedBy.filter(x => x != String(userDoc._id))
+            await stretchDoc.updateOne({
+                savedBy: [ ... newSavedStretches ]
+            });
+            res.json(`User id ${userId} removed from stretch ${stretchId}.`)
+        } else {
+            await stretchDoc.updateOne({
+                savedBy: [...stretchDoc.savedBy, userDoc]
+            }, { upsert: false });
+            res.json(`User id ${userId} saved to stretch ${stretchId}.`)
+        }
     },
 }

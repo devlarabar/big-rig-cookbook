@@ -10,6 +10,6 @@ router.put('/edit', postController.editPost)
 router.delete('/delete/:id', postController.deletePost)
 router.get('/viewposts', postController.viewPosts)
 router.get('/view/:id', postController.viewPost)
-router.put('/savepost', postController.savePost)
+router.put('/save', postController.savePost)
 
 module.exports = router
