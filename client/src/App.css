@@ -335,6 +335,9 @@ select {
     max-width: 400px;
     margin: 0 auto;
 }
+.login input {
+    width: 100%;
+}
 
 form button {
     width: 100%;

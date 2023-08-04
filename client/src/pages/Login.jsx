@@ -16,7 +16,6 @@ const Login = () => {
 			headers: { 'Content-Type': 'application/json' },
 			credentials: 'include',
 		})
-		// If the response is 200 (correct credentials)
 		if (response.ok) {
 			response.json().then(userInfo => {
 				setUserInfo(userInfo)
@@ -27,14 +26,13 @@ const Login = () => {
 		}
 	}
 
-	// If redirect state is true (^^^), redirect to home page
 	if (redirect) {
 		return <Navigate to={'/'} />
 	}
 
 	return (
 		<div>
-			<form onSubmit={login} className="login">
+			<form onSubmit={login} className="login flex flex-column med-gap">
 				<h2>Login</h2>
 				<input
 					type="text"
