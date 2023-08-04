@@ -7,7 +7,7 @@ const helpers = require('./post.helpers')
 
 module.exports = {
     home: async (req, res) => {
-        const stretches = await Stretch.find().sort({ name: -1})
+        const stretches = await Stretch.find().sort({ name: -1 })
         res.json(stretches)
     },
     save: async (req, res) => {
@@ -15,11 +15,11 @@ module.exports = {
         const userId = req.body.user
         const stretchDoc = await Stretch.findById(stretchId)
         const userDoc = await User.findById(userId)
-    
+
         if (stretchDoc.savedBy?.includes(userDoc._id)) {
             newSavedStretches = stretchDoc.savedBy.filter(x => x != String(userDoc._id))
             await stretchDoc.updateOne({
-                savedBy: [ ... newSavedStretches ]
+                savedBy: [...newSavedStretches]
             });
             res.json(`User id ${userId} removed from stretch ${stretchId}.`)
         } else {

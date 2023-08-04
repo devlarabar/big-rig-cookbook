@@ -54,7 +54,6 @@ const SaveButton = (props) => {
             </div>
         )
     }
-    
 }
 
 export default SaveButton

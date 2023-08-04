@@ -7,7 +7,7 @@ const StretchIndex = () => {
     const { authUser } = useOutletContext()
 
     useEffect(() => {
-        (async function() {
+        (async function () {
             const stretchData = await fetch('http://localhost:4000/stretch')
             const stretchDataJSON = await stretchData.json()
             setStretches(stretchDataJSON)
