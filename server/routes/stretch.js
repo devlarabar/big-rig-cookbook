@@ -7,6 +7,7 @@ router.use(express.json())
 router.use(cookieParser())
 
 router.get('/', stretchController.home)
+router.get('/getroutine/:user', stretchController.getRoutine)
 router.put('/save', stretchController.save)
 
 module.exports = router

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Stretch from "../features/stretch/Stretch"
-import { useOutletContext } from "react-router-dom"
+import { Link, useOutletContext } from "react-router-dom"
 
 const StretchIndex = () => {
     const [stretches, setStretches] = useState([])
@@ -16,6 +16,7 @@ const StretchIndex = () => {
 
     return (
         <div>
+            <Link to={'/stretch/tracker'}><button>Stretch Tracker</button></Link>
             {stretches.length > 0 && stretches.map((x, i) => {
                 return (
                     <div key={i}>

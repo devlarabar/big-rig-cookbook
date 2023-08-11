@@ -14,6 +14,7 @@ import AdminView from './pages/AdminView'
 import SearchResults from './pages/SearchResults'
 import StretchIndex from './pages/StretchIndex'
 import PrivateRoutes from './utils/PrivateRoutes'
+import StretchTracker from './pages/StretchTracker'
 
 function App() {
 	return (
@@ -30,6 +31,7 @@ function App() {
 						<Route path={'/user/:user'} element={<UserProfile />} />
 						<Route path={'/search/results/:query'} element={<SearchResults />} />
 						<Route path={'/stretch'} element={<StretchIndex />} />
+						<Route path={'/stretch/tracker'} element={<StretchTracker />} />
 						<Route path={'/admin/dashboard'} element={<AdminView />} />
 					</Route>
 					
