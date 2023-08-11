@@ -12,11 +12,18 @@ const StretchTracker = () => {
             const routineData = await getRoutine.json()
             setRoutine(routineData)
         }())
-    }, [])
+    }, [authUser.id])
 
     return (
         <div>
             <RoutineCompleteBtn />
+            {routine && routine.map((x, i) => {
+                return (
+                    <div key={i}>
+                        {x.name}
+                    </div>
+                )
+            })}
         </div>
     )
 }
