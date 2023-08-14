@@ -14,7 +14,7 @@ const Posts = (props) => {
     }, [])
 
     return (
-        <div>
+        <div className="posts-recent">
             {posts.length > 0 && posts.map(post => (
                 <Post {...post} key={post._id} userId={userInfo.id} userDetails={userDetails} />
             ))}

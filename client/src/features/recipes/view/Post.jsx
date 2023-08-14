@@ -37,9 +37,6 @@ const Post = ({ _id, title, author, prepTime, cookTime, ingredients, createdAt, 
 					<SaveButton postId={_id} author={author} savedBy={savedBy} userId={userId} />
 				</div>
 			</div>
-			<div className="post-link flex flex-center">
-				<Link to={`/post/view/${_id}`}><ArrowRight className="svg-30" /></Link>
-			</div>
 		</div>
 	)
 }

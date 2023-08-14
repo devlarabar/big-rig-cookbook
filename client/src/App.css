@@ -22,11 +22,11 @@ variables
     --text-heading: #005C7F;
     --text-accent: #7E8BF3;
     --text-accent2: #888888;
-    --text-button1: #000;
+    --text-button1: #4F46E5;
     --bg-main: #F3F4F6;
     --bg-post: #FFFFFF;
-    --color-accent1: #B9F3C0;
-    --color-accent2: #DFC4F9;
+    --color-accent1: #E2E9FF;
+    --color-accent2: #EEF2FF;
     --color-accent3: #AEF4FA;
     --color-accent4: #FFD73C;
     --color-accent5: #368D7F;
@@ -242,13 +242,15 @@ pagenav
 post styles
 ******************** */
 .post,
-.post-page {
-    margin: 0 auto 40px auto;
+.post-page, .form-recipe {
+    margin: 0 auto;
     width: 100%;
     padding: 15px;
     background-color: var(--bg-post);
     text-align: left;
     gap: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px var(--color-shadow);
 }
 
 .post-image {
@@ -274,12 +276,18 @@ post styles
     gap: 10px;
 }
 
+.posts-recent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .ing-icons {
     flex-flow: row wrap;
     width: 100%;
     background-color: #EBF1FF;
     border: 2px solid var(--color-shadow);
-    border-radius: 15px;
+    border-radius: 6px;
     padding: 8px 20px;
 }
 
@@ -363,11 +371,15 @@ input {
     font-size: 1.5rem;
 }
 
+input:focus {
+    outline: 3px solid var(--color-button-border);
+}
+
 select {
     padding: 16px 22px;
     background-color: #F0F0F0;
     border: 0px solid #ccc;
-    border-radius: 15px;
+    border-radius: 6px;
     font-size: 1.5rem;
 }
 
@@ -450,8 +462,8 @@ form button {
     background-color: var(--color-accent2);
     border: 0;
     color: var(--text-button1);
-    border-radius: 50px;
-    padding: 15px 20px;
+    border-radius: 6px;
+    padding: 10px 12px;
     font-weight: bold;
 }
 
@@ -469,7 +481,7 @@ form button:hover {
     width: 100%;
     padding: 8px 20px;
     background-color: var(--color-accent6);
-    border-radius: 20px;
+    border-radius: 6px;
     text-transform: capitalize;
 }
 
@@ -498,17 +510,13 @@ form button:hover {
 }
 
 .btn-createpost {
-    margin-bottom: 90px;
     margin-top: 20px;
-    background: var(--color-accent4)
 }
 
 /* ********************
 admin dashboard
 ******************** */
-.admin-dash {
-    margin-bottom: 50px;
-}
+
 
 /* ********************
 user profile
@@ -742,6 +750,16 @@ media queries
 @media screen and (min-width: 600px) {
     .post {
         grid-template-columns: 0.9fr 1.1fr;
+    }
+}
+@media screen and (min-width: 900px) {
+    main {
+        max-width: 900px;
+    }
+    .posts-recent {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
     }
 }
 
