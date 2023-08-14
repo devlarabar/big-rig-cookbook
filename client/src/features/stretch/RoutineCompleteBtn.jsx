@@ -16,17 +16,18 @@ const RoutineCompleteBtn = ({ stretch, authUser }) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({'authUser': authUser})
+            body: JSON.stringify({ 'authUser': authUser })
         })
         const markComplete = await markCompleteReq.json()
-        if (markComplete.success) {
-            let today = new Date()
-            today = String(today.getFullYear()) + String(today.getMonth()) + String(today.getDate()) + String(today.getMinutes())
-            localStorage.setItem('markedCompleteAt', today)
-            setComplete(true)
-        } else {
-            console.error('There was an error processing your request.')
-        }
+        if (markComplete.success) setCompleted()
+        else console.error('There was an error processing your request.')
+    }
+
+    function setCompleted() {
+        let today = new Date()
+        today = String(today.getFullYear()) + String(today.getMonth()) + String(today.getDate()) + String(today.getMinutes())
+        localStorage.setItem('markedCompleteAt', today)
+        setComplete(true)
     }
 
     return (

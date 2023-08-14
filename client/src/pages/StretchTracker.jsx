@@ -8,7 +8,7 @@ const StretchTracker = () => {
     const { authUser } = useOutletContext()
 
     useEffect(() => {
-        (async function() {
+        (async function () {
             const getRoutine = await fetch(`http://localhost:4000/stretch/getroutine/${authUser.id}`)
             const routineData = await getRoutine.json()
             setRoutine(routineData)
@@ -16,7 +16,7 @@ const StretchTracker = () => {
     }, [authUser.id])
 
     useEffect(() => {
-        (async function() {
+        (async function () {
             const getStretches = await fetch(`http://localhost:4000/stretch/getstretches/${authUser.id}`)
             const stretchData = await getStretches.json()
             setStretches(stretchData)
@@ -25,7 +25,6 @@ const StretchTracker = () => {
 
     return (
         <div>
-            
             {stretches && stretches.map((stretch, i) => {
                 return (
                     <div key={i}>
