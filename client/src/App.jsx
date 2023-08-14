@@ -1,4 +1,6 @@
 import './App.css'
+import './fonts/Roboto-Regular.ttf'
+import './fonts/Quicksand_Book.otf'
 import Layout from './features/ui/Layout'
 import IndexPage from './pages/Index'
 import Login from './pages/Login'

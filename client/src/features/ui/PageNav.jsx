@@ -1,6 +1,7 @@
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { ReactComponent as Back } from '../../assets/heroicon-back.svg'
 import { useState, useEffect } from 'react'
+import Navigation from './Navigation'
 
 const PageNav = () => {
 
@@ -45,6 +46,7 @@ const PageNav = () => {
                     placeholder="Search Recipes" />
             </form>
             {redirect && <Navigate to={`/search/results/${searchInput}`}/>}
+            <Navigation />
         </div>
     )
 }

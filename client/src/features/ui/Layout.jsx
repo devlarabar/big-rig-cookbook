@@ -4,11 +4,13 @@ import PageNav from './PageNav'
 
 const Layout = () => {
 	return (
+		<>
+		<PageNav />
 		<main>
-			<Header />
-			<PageNav />
+			
 			<Outlet />
 		</main>
+		</>
 	)
 }
 

@@ -54,7 +54,6 @@ const UserProfile = () => {
         return (
             <>
                 <h2 className="main user-header flex flex-center med-gap">
-                    Profile: 
                     <span className="user-username">{user}</span>
                     {isViewersProfile && <button className="btn-profile-edit"><Edit className="btn-profile-edit svg-20" /></button>}
                 </h2>
