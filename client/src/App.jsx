@@ -36,7 +36,7 @@ function App() {
 						<Route path={'/stretch/tracker'} element={<StretchTracker />} />
 						<Route path={'/admin/dashboard'} element={<AdminView />} />
 					</Route>
-					
+
 					<Route path='*' element={<NotFound />} />
 				</Route>
 			</Routes>

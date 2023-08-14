@@ -18,7 +18,7 @@ const PageNav = () => {
     // Clear search input
     useEffect(() => {
         if (url !== '')
-        setSearchInput('')
+            setSearchInput('')
     }, [url])
 
     // Back button functionality
@@ -45,7 +45,7 @@ const PageNav = () => {
                     onChange={e => setSearchInput(e.target.value)}
                     placeholder="Search Recipes" />
             </form>
-            {redirect && <Navigate to={`/search/results/${searchInput}`}/>}
+            {redirect && <Navigate to={`/search/results/${searchInput}`} />}
             <Navigation />
         </div>
     )

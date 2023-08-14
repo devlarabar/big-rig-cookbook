@@ -242,7 +242,8 @@ pagenav
 post styles
 ******************** */
 .post,
-.post-page, .form-recipe {
+.post-page,
+.form-recipe {
     margin: 0 auto;
     width: 100%;
     padding: 15px;
@@ -752,10 +753,12 @@ media queries
         grid-template-columns: 0.9fr 1.1fr;
     }
 }
+
 @media screen and (min-width: 900px) {
     main {
         max-width: 900px;
     }
+
     .posts-recent {
         display: grid;
         grid-template-columns: 1fr 1fr;

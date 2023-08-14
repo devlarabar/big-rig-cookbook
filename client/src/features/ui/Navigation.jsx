@@ -10,69 +10,69 @@ import { ReactComponent as StretchSvg } from '../../assets/navigation/heroicon-h
 import { ReactComponent as Burger } from '../../assets/navigation/heroicon-burger.svg'
 
 const Header = () => {
-	const { userInfo, setUserInfo } = useContext(UserContext)
+    const { userInfo, setUserInfo } = useContext(UserContext)
     const [navExpanded, setNavExpanded] = useState(false)
 
-	const TESTING = false
+    const TESTING = false
 
-	useEffect(() => {
-		fetch('http://localhost:4000/user/profile', {
-			credentials: 'include'
-		}).then(res => {
-			res.json().then(userInfo => {
-				setUserInfo(userInfo)
-			})
-		})
-	}, [setUserInfo])
+    useEffect(() => {
+        fetch('http://localhost:4000/user/profile', {
+            credentials: 'include'
+        }).then(res => {
+            res.json().then(userInfo => {
+                setUserInfo(userInfo)
+            })
+        })
+    }, [setUserInfo])
 
-	function logout(e) {
-		//e.preventDefault()
-		fetch('http://localhost:4000/logout', {
-			method: 'post',
-			credentials: 'include'
-		})
-		setUserInfo(null)
-	}
+    function logout(e) {
+        //e.preventDefault()
+        fetch('http://localhost:4000/logout', {
+            method: 'post',
+            credentials: 'include'
+        })
+        setUserInfo(null)
+    }
 
     function expandNav() {
         if (navExpanded) setNavExpanded(false)
         else setNavExpanded(true)
     }
 
-	const username = userInfo?.username
+    const username = userInfo?.username
 
-	return (
-			<nav className={navExpanded ? 'nav-expanded' : 'nav-collapsed' }>
-                <Burger className='nav-burger' onClick={expandNav} />
-				{username && (
-					<>
-						<Link to={`/user/${username}`} alt="Profile">
-							<Profile />
-						</Link>
-						{TESTING && <Link to={`/user/test`} alt="Profile">Test</Link>}
-						<Link to='/create'>
-							<Create />
-						</Link>
-						<Link to='/stretch' alt="Stretch">
-							<StretchSvg />
-						</Link>
-						<a href="/" alt="Logout" onClick={logout}>
-							<Logout />
-						</a>
-					</>
-				)}
-				{!username && (
-					<>
-						<Link to="/login" alt="Login">
-							<Login />
-						</Link>
-						<Link to="/register" alt="Register">
-							<Register />
-						</Link>
-					</>
-				)}
-			</nav>
-	)
+    return (
+        <nav className={navExpanded ? 'nav-expanded' : 'nav-collapsed'}>
+            <Burger className='nav-burger' onClick={expandNav} />
+            {username && (
+                <>
+                    <Link to={`/user/${username}`} alt="Profile">
+                        <Profile />
+                    </Link>
+                    {TESTING && <Link to={`/user/test`} alt="Profile">Test</Link>}
+                    <Link to='/create'>
+                        <Create />
+                    </Link>
+                    <Link to='/stretch' alt="Stretch">
+                        <StretchSvg />
+                    </Link>
+                    <a href="/" alt="Logout" onClick={logout}>
+                        <Logout />
+                    </a>
+                </>
+            )}
+            {!username && (
+                <>
+                    <Link to="/login" alt="Login">
+                        <Login />
+                    </Link>
+                    <Link to="/register" alt="Register">
+                        <Register />
+                    </Link>
+                </>
+            )}
+        </nav>
+    )
 }
 
 export default Header

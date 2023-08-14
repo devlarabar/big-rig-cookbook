@@ -4,7 +4,6 @@ import SaveButton from '../../ui/SaveButton'
 
 // Import SVGs
 import { ReactComponent as Clock } from '../../../assets/fa-clock-solid.svg'
-import { ReactComponent as ArrowRight } from '../../../assets/heroicon-arrow-right.svg'
 import { IngredientIcons } from './IngredientIcons'
 
 
@@ -29,11 +28,11 @@ const Post = ({ _id, title, author, prepTime, cookTime, ingredients, createdAt, 
 				</Link>
 				<div className="post-info flex flex-between med-gap">
 					<span className="flex med-gap"><Link to={`/user/${author.username}`} className="post-author">{author.username}</Link>
-					<time>{format(new Date(createdAt), 'MMM d, yyyy HH:mm')}</time></span>
+						<time>{format(new Date(createdAt), 'MMM d, yyyy HH:mm')}</time></span>
 				</div>
 				<IngredientIcons ingredients={ingredients} />
 				<div className="width-100 flex flex-between flex-align-end">
-					<span className="bold flex med-gap"><Clock className={clockStyle} width="20px" /><span>{prepTime+cookTime} min</span></span>
+					<span className="bold flex med-gap"><Clock className={clockStyle} width="20px" /><span>{prepTime + cookTime} min</span></span>
 					<SaveButton postId={_id} author={author} savedBy={savedBy} userId={userId} />
 				</div>
 			</div>
