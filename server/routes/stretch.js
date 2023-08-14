@@ -8,6 +8,8 @@ router.use(cookieParser())
 
 router.get('/', stretchController.home)
 router.get('/getroutine/:user', stretchController.getRoutine)
+router.get('/getstretches/:user', stretchController.getStretches)
 router.put('/save', stretchController.save)
+router.put('/complete/:stretch', stretchController.markComplete)
 
 module.exports = router
