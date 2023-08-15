@@ -239,11 +239,27 @@ pagenav
 }
 
 /* ********************
+subnav
+******************** */
+.nav-subnav {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    color: #6B7280;
+}
+.nav-subnav a {
+    font-weight: normal;
+}
+
+/* ********************
 post styles
 ******************** */
 .post,
 .post-page,
-.form-recipe {
+.form-recipe, .stretch {
     margin: 0 auto;
     width: 100%;
     padding: 15px;
@@ -343,6 +359,13 @@ edit / delete post
 }
 
 /* ********************
+stretch
+******************** */
+.stretch {
+
+}
+
+/* ********************
 save button
 ******************** */
 .saveButton {
@@ -415,7 +438,8 @@ label {
 /* Recipe */
 .form-recipe h3 {
     width: 100%;
-    margin: 15px 0 5px;
+    margin: 5px 0 5px;
+    padding: 0;
     text-align: left;
     position: relative;
 }

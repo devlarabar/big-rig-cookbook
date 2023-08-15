@@ -19,7 +19,7 @@ const StretchIndex = () => {
             <Link to={'/stretch/tracker'}><button>Stretch Tracker</button></Link>
             {stretches.length > 0 && stretches.map((x, i) => {
                 return (
-                    <div key={i}>
+                    <div className="stretch" key={i}>
                         <Stretch stretch={x} authUser={authUser} />
                     </div>
                 )

@@ -39,6 +39,10 @@ const Header = () => {
         else setNavExpanded(true)
     }
 
+    useEffect(() => {
+        document.querySelector('main').addEventListener('click', () => setNavExpanded(false))
+    }, [])
+
     const username = userInfo?.username
 
     return (
