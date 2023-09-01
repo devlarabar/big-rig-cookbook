@@ -22,7 +22,7 @@ The project is in its early stages of development. The plan is to make it easily
 
 <p align="center">
 <img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/970836bf-4aca-484e-86aa-10adc5f69b01" width="31%">
-<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/cc3fa8fa-f002-4237-96c5-cc4d1f6a6e57" width="31%">
+<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/a549ecbb-b9c8-43ce-8ec2-2a115367130d" width="31%">
 <img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/8e21a1b5-6938-4d5b-bafc-edbb1ee216be" width="31%">
 </p>
 
