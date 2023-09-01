@@ -13,33 +13,31 @@ I lived in a semi-truck with my husband for several years, with extremely limite
 
 I believe that health and fitness doesn't have to be a chore, and it can be accessible to truck drivers if they have access to the support and resources they need. I hope to help them retake power over their health and their lives, and to show them that the world cares about them.
 
-## Plans
-
-The project is in its early stages of development. The plan is to make it easily accessible on mobile devices (as most truckers have limited access to computers), with a simple and intuitive interface. The initial wireframes are below. *Note: Since creating the wireframes, I've decided against allowing user-uploaded images due both to the lack of ability to moderate images, and optimizing performance / reducing load times as much as possible.*
-
-![Website Wireframing Template](https://github.com/devlarabar/big-rig-cookbook/assets/122644200/6b510685-86bd-4747-b029-d50eb496bd33)
-
 ## Progress
 
+The project is in its early stages of development. The plan is to make it easily accessible on mobile devices (as most truckers have limited access to computers), with a simple and intuitive interface. The styling is a work in progress. Many components are styled using TailwindCSS and DaisyUI.
+
 <p align="center">
-<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/79071cc9-6061-4bc7-9735-00fda297fddc" width="300">
-<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/102c9766-bf73-4d45-811e-28463674f1d2" width="300">
-<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/46962552-584f-4469-ba1e-90df2482272a" width="300">
+<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/970836bf-4aca-484e-86aa-10adc5f69b01" width="300">
+<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/cc3fa8fa-f002-4237-96c5-cc4d1f6a6e57" width="300">
+<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/8e21a1b5-6938-4d5b-bafc-edbb1ee216be" width="300">
 </p>
 
 Milestones accomplished:
-- User athentication
+- User athentication using Passport local strategy
 - Create, edit, delete, and save recipes
-- User profiles including created and saved recipes
+- User profiles including created and saved recipes, and saved stretches
 - SVG icons for major ingredients in recipes (to allow users to easily view recipe components)
-- Search recipes by ingredients
 - Profile achievement badges
 - Admin dashboard (to allow admins to easily modify the database)
+- Stretch database, and the ability to save stretches
+- Daily stretch tracker
+- Users can edit their profile descriptions
 
 Next steps are outlined here, for easy reference. This is not an exhaustive list; only a list of the immediate next steps for the project. This list will be updated as needed.
 
 - Enhance user profiles
-- Create stretch database
-- Enable users to edit their profile
-- Layout styling
+- Allow users to create "stretch routines"
+- Enable users to change their username, e-mail, and password
+- Layout styling improvements
 - Achievement badge enhancements
