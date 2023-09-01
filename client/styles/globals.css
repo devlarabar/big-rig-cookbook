@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+body {
+    height: 100%;
+    min-height: 100vh;
+    background-color: #f4f4fa;
+    opacity: 0.8;
+    background-image: radial-gradient(#b3b4ca 0.5px, transparent 0.5px), radial-gradient(#b3b4ca 0.5px, #e5e5f7 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+}
+
+@media screen and (max-width: 640px) {
+    .main {
+        padding: 0;
+    }
+}
+
+/* Tailwind Styles */
+
+.app {
+    @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+}
+
+/* Headers and Fancy Text */
+
+.head_text {
+    @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+}
+
+.orange_gradient {
+    @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+}
+
+.green_gradient {
+    @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
+}
+
+.blue_gradient {
+    @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}
+
+/* Forms */
+
+.search_input {
+    @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+}
+
+.form_textarea {
+    @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+
+.form_input {
+    @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+
+/* Nav Component */
+.logo_text {
+    @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
+}
+
+.dropdown {
+    @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+}
+
+.dropdown_link {
+    @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-medium;
+}
+
+.flex-center {
+    @apply flex justify-center items-center;
+}
+
+.flex-start {
+    @apply flex justify-start items-start;
+}
+
+.flex-end {
+    @apply flex justify-end items-center;
+}
+
+.flex-between {
+    @apply flex justify-between items-center;
+}
+
+/* Recipes */
+
+.recipe-feed {
+    @apply flex sm:flex-wrap sm:flex-row gap-5 w-full flex-col;
+}
+
+.recipe-card {
+    @apply rounded-xl bg-slate-100 w-full lg:w-80 h-48 ;
+}
+
+.recipe-details {
+    @apply rounded-xl bg-slate-100 w-full md:w-[668px] p-5 flex flex-col gap-5;
+}
+
+.ing-icons {
+    @apply py-1
+}
+
+.ing-svg {
+    filter: invert(0.5) sepia(1) saturate(1) hue-rotate(175deg);
+}
+
+.svg-empty {
+    filter: invert(0.7) sepia(1) saturate(0.5) hue-rotate(175deg);
+}
+
+/* Stretches */
+
+.stretch-card, .profile-cards .recipe-card {
+    @apply rounded-xl bg-slate-100 w-full lg:w-96;
+}
+
+/* Profile */
+
+.profile {
+    @apply flex flex-col gap-5 md:grid md:grid-cols-2 md:gap-6;
+}
+
+.profile-cards {
+    @apply flex flex-col gap-5 mt-3;
+}
+
+/* Typography */
+
+a {
+    @apply font-bold;
+}
+
+.big-heading {
+    @apply mt-5 text-2xl font-extrabold leading-[1.15] text-black sm:text-3xl;
+}

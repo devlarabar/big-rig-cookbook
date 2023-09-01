@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 router.use(express.json())
 router.use(cookieParser())
 
+router.get('/edit/:id', postController.createPostData)
 router.post('/create', postController.createPost)
 router.put('/edit', postController.editPost)
 router.delete('/delete/:id', postController.deletePost)

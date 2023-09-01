@@ -1,5 +1,5 @@
 const User = require('../models/User')
-const Post = require('../models/Post')
+const Post = require('../models/Recipe')
 const Ingredient = require('../models/Ingredient')
 const Achievement = require('../models/Achievement')
 const jwt = require('jsonwebtoken')
@@ -7,36 +7,39 @@ const secret = 'salkdjfhsk2345rfgd324'
 const helpers = require('./post.helpers')
 
 module.exports = {
+    createPostData: async (req, res) => {
+        const { id } = req.params
+        if (id) {
+            const substituteID = '123456789123456789012345'
+            const postDoc = await Post
+                .findById(id.length === 24 ? id : substituteID)
+                .populate('author', ['username'])
+                .populate('ingredients.ingredient', 'name')
+            res.json(postDoc ? postDoc : null)
+            console.log('Recipe is being edited...', postDoc)
+        } else {
+            res.json('Not found').status(404)
+        }
+    },
     createPost: async (req, res) => {
-        const { token } = req.cookies
-        jwt.verify(token, secret, {}, async (err, info) => {
-            if (err) throw err
-            const { title, summary, directions, ingredients, cookware, prepTime, cookTime } = req.body
-            const ingList = ingredients.map(x => {
-                return { ingredient: x.ingredient._id, qty: x.qty, measurement: x.measurement }
-            })
+        const userId = req.body.user.id
+        const { title, directions, ingredients, cookware, prepTime, cookTime } = req.body
+        try {
             const postDoc = await Post.create({
                 title,
-                summary,
                 directions,
-                ingredients: ingList,
+                ingredients,
                 cookware,
                 prepTime,
                 cookTime,
-                author: info.id,
+                author: userId,
             })
-
-            // Check if user's new post makes them eligible for an achievement (add this to util fn)
-            // const authorPosts = await Post.count({ author: info.id })
-            // const achievementModels = await Achievement.find()
-            // if ()
-            // if (authorPosts >= 1) {
-            //     // Logic
-            // }
-            await helpers.checkAchievements(info)
-
-            res.json({ postDoc })
-        })
+            await helpers.checkAchievements(userId)
+            res.json({ postDoc }).status(201)
+        } catch (error) {
+            console.log(error)
+            res.json('Failed to create recipe').status(500)
+        }
     },
     editPost: async (req, res) => {
         const { token } = req.cookies
@@ -90,6 +93,7 @@ module.exports = {
             .populate('ingredients.ingredient', ['name', 'type'])
             .sort({ createdAt: -1 })
             .limit(20)
+            .lean()
         res.json(posts)
     },
     viewPost: async (req, res) => {

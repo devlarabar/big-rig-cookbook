@@ -3,42 +3,67 @@ const app = express()
 const cors = require('cors')
 const bcrypt = require('bcryptjs')
 const cookieParser = require('cookie-parser')
+const mongoose = require('mongoose')
+const passport = require('passport')
 const connectDB = require('./config/database')
-require('dotenv').config({path: './config/.env'})
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const bodyParser = require('body-parser')
+require('dotenv').config({ path: './config/.env' })
 
 const PORT = 4000
 const salt = bcrypt.genSaltSync(10)
 
-app.use(cors({
-    credentials: true,
-    origin: 'http://localhost:3000'
-}))
-
 connectDB()
 
+// ***************************** Middleware
 app.use(express.json())
-app.use(cookieParser())
 app.use('/public', express.static(__dirname + '/public'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(
+    cors({
+        origin: 'http://localhost:3000', // Front-end location
+        credentials: true,
+    })
+)
+
+// ***************************** Setup Sessions - stored in MongoDB
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET || 'supercalafragalisticexpialadocious',
+        resave: false,
+        saveUninitialized: false,
+        store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    })
+)
+app.use(cookieParser("secretcode"))
+app.use(passport.initialize())
+app.use(passport.session())
+require("./config/passport")(passport)
 
 // ***************************** Routers
 
 const homeRoutes = require('./routes/home')
+const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
 const postRoutes = require('./routes/post')
 const stretchRoutes = require('./routes/stretch')
 const dataRoutes = require('./routes/data')
 const searchRoutes = require('./routes/search')
+const settingsRoutes = require('./routes/settings')
 const adminRoutes = require('./routes/admin')
 
 app.use('/', homeRoutes)
+app.use('/auth', authRoutes)
 app.use('/user', userRoutes)
 app.use('/post', postRoutes)
 app.use('/stretch', stretchRoutes)
 app.use('/data', dataRoutes)
 app.use('/search', searchRoutes)
+app.use('/settings', settingsRoutes)
 app.use('/admin', adminRoutes)
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
-

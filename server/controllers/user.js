@@ -1,9 +1,10 @@
 const User = require('../models/User')
-const Post = require('../models/Post')
+const Recipe = require('../models/Recipe')
 const Achievement = require('../models/Achievement')
 const Stretch = require('../models/Stretch')
 const jwt = require('jsonwebtoken')
 const secret = 'salkdjfhsk2345rfgd324'
+const helpers = require('./user.helpers')
 
 module.exports = {
     userInfo: async (req, res) => {
@@ -21,35 +22,42 @@ module.exports = {
         res.json(userDoc)
     },
     userProfile: async (req, res) => {
-        const username = req.params.username
+        const username = req.params.username.toLowerCase()
         const userDoc = await User.findOne({ username })
-            .populate('achievements')
-        const posts = await Post
-            .find({ author: userDoc })
-            .populate('author', ['username'])
-            .populate('ingredients.ingredient', ['name', 'type'])
-            .sort({ createdAt: -1 })
-            .limit(20)
-        const cookbook = (await Post
-            .find({ savedBy: { "$in": [userDoc] } })
-            .populate('author', ['username'])
-            .populate('ingredients.ingredient', ['name', 'type'])
-            .sort({ createdAt: -1 }))
-        const stretches = (await Stretch
-            .find({ savedBy: { "$in": [userDoc] } })
-            .sort({ createdAt: -1 }))
-        const achievements = userDoc.achievements
-        const response = {
-            profile: {
-                id: userDoc._id,
-                username: userDoc.username,
-                achievements
-            },
-            posts,
-            cookbook,
-            stretches
+        if (userDoc) {
+            const posts = await Recipe
+                .find({ author: userDoc })
+                .populate('author', ['username'])
+                .populate('ingredients.ingredient', ['name', 'type'])
+                .sort({ createdAt: -1 })
+                .limit(20)
+            const cookbook = (await Recipe
+                .find({ savedBy: { "$in": [userDoc] } })
+                .populate('author', ['username'])
+                .populate('ingredients.ingredient', ['name', 'type'])
+                .sort({ createdAt: -1 }))
+            const stretches = (await Stretch
+                .find({ savedBy: { "$in": [userDoc] } })
+                .sort({ createdAt: -1 }))
+            const achievements = []
+            console.log(userDoc)
+            const response = {
+                profile: {
+                    id: userDoc._id,
+                    username: userDoc.username,
+                    achievements,
+                    description: userDoc.description || ''
+                },
+                posts,
+                cookbook,
+                stretches
+            }
+            res.json(response)
+        } else {
+            const response = { profile: '404' }
+            res.status(404).json(response)
         }
-        res.json(response)
+
     },
     getUserData: async (req, res) => {
         const id = req.params.id
@@ -60,17 +68,15 @@ module.exports = {
         }
         res.json(response)
     },
-    profile: (req, res) => {
+    remacc: async (req, res) => {
+        const user = await User.findById(req.user.id)
+        const username = user.username
         try {
-            // Grab token from cookies (from Header.js)
-            const { token } = req.cookies
-            jwt.verify(token, secret, {}, (err, info) => {
-                if (err) throw err
-                res.json(info)
-            })
+            await helpers.removeUserReferences(user)
+            await User.deleteOne({ _id: req.user.id })
+            res.json(`User "${username}" has been deleted.`)
         } catch (err) {
-            res.status(400).json(err)
+            res.status(500).json(err)
         }
-        // res.json(req.cookies)
     }
 }

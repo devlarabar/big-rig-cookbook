@@ -50,7 +50,7 @@ module.exports = {
     markComplete: async (req, res) => {
         const stretchId = req.params.stretch
         const stretchStreakDoc = await StretchStreak.updateOne(
-            { stretch: stretchId, user: req.body.authUser.id },
+            { stretch: stretchId, user: req.body.authUser },
             { $inc: { streak: 1 } },
             { upsert: true }
         )
