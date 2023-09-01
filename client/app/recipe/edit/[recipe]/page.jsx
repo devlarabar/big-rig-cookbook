@@ -23,12 +23,14 @@ const CreateRecipe = () => {
         getRecipeData()
     }, [recipe])
 
+    useEffect(() => console.log(recipeData), [recipeData])
+
     useEffect(() => {
         if (doRedirect) redirect('/home')
     }, [doRedirect])
     
     if (recipeData === null) return <p>Recipe not found.</p>
-    if (!auth?.user) return <Spinner />
+    if (!auth?.user || recipeData === '') return <Spinner />
     if (auth?.user === "unauthenticated") return redirect('/')
 
     return (
