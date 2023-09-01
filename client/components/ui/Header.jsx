@@ -69,7 +69,7 @@ const Header = () => {
             <div className="sm:hidden flex relative">
                 {auth?.user ? (
                     <div className="flex">
-                        <Image src={auth?.user.image || "assets/images/logo.svg"}
+                        <Image src={auth?.user.image || "/assets/images/grey.png"}
                             width={37}
                             height={37}
                             className="rounded-full"
@@ -78,7 +78,7 @@ const Header = () => {
                         />
 
                         {toggleDropdown && (
-                            <div className="dropdown">
+                            <div className="dropdown z-10">
                                 <Link
                                     href={`/profile/${auth.user.username}`}
                                     className="dropdown_link"

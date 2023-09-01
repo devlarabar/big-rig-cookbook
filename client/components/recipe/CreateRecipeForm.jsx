@@ -62,16 +62,17 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect }) => {
     return (
         <form onSubmit={createRecipe} className="w-full flex flex-col gap-5 p-5 mb-5">
             <h2 className="big-heading">Create Recipe</h2>
-            <label htmlFor="title">Title</label>
-            <input
-                type="text"
-                id="title"
-                placeholder="Title"
-                required
-                value={recipe.title}
-                onChange={(e) => setRecipe({ ...recipe, title: e.target.value })}
-                className="w-full rounded-md border border-gray-400 p-2"
-            />
+            <label htmlFor="title">Title
+                <input
+                    type="text"
+                    id="title"
+                    placeholder="Title"
+                    required
+                    value={recipe.title}
+                    onChange={(e) => setRecipe({ ...recipe, title: e.target.value })}
+                    className="input input-bordered w-full"
+                />
+            </label>
             <div className="flex flex-between gap-5">
                 <div><label htmlFor="preptime">Prep Time</label>
                     <input
@@ -82,7 +83,7 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect }) => {
                         required
                         value={recipe.preptime}
                         onChange={(e) => setRecipe({ ...recipe, prepTime: e.target.value })}
-                        className="w-full rounded-md border border-gray-400 p-2"
+                        className="input input-bordered w-full"
                     />
                 </div>
                 <div><label htmlFor="cooktime">Cook Time</label>
@@ -94,7 +95,7 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect }) => {
                         required
                         value={recipe.cooktime}
                         onChange={(e) => setRecipe({ ...recipe, cookTime: e.target.value })}
-                        className="w-full rounded-md border border-gray-400 p-2"
+                        className="input input-bordered w-full"
                     />
                 </div>
             </div>
@@ -104,7 +105,7 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect }) => {
             <Directions recipe={recipe} setRecipe={setRecipe} />
 
             {submitDisabled && <p className="text-xs mt-0">Please ensure all the required fields are filled.</p>}
-            <button type="submit" className="black_btn disabled:opacity-50 disabled:hover:bg-black disabled:hover:text-white" disabled={submitDisabled}>Create Recipe</button>
+            <button type="submit" className="btn btn-primary disabled:opacity-50 disabled:hover:bg-black disabled:hover:text-white" disabled={submitDisabled}>Create Recipe</button>
         </form>
     )
 }

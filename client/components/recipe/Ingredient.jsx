@@ -63,7 +63,7 @@ const Ingredient = (props) => {
                             {...getRootProps({}, { suppressRefError: true })}
                         >
                             <input {...getInputProps()}
-                                className="w-full rounded-md border border-gray-400 p-2"
+                                className="input input-bordered w-full"
                                 placeholder="ingredient (i.e. beef - ground)" 
                                 disabled={disabled}
                                 key={props.keyIng}

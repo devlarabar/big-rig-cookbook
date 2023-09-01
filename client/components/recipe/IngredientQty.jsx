@@ -25,7 +25,7 @@ const IngredientQty = (props) => {
                 onChange={e => {props.onChange(e.target.value); props.onKeyDown(e)}} 
                 placeholder="1" 
                 key={props.keys[0]}
-                className="w-full rounded-md border border-gray-400 p-2"
+                className="input input-bordered w-full"
             />
         </div>
         <Downshift
@@ -50,7 +50,7 @@ const IngredientQty = (props) => {
                 >
                     <input {...getInputProps()} 
                         placeholder="cup" 
-                        className="w-full rounded-md border border-gray-400 p-2"
+                        className="input input-bordered w-full"
                     />
                 </div>
                 <ul {...getMenuProps()}>

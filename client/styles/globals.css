@@ -8,7 +8,7 @@
 body {
     height: 100%;
     min-height: 100vh;
-    background-color: #f4f4fa;
+    background-color: #b3b4ca;
     opacity: 0.8;
     background-image: radial-gradient(#b3b4ca 0.5px, transparent 0.5px), radial-gradient(#b3b4ca 0.5px, #e5e5f7 0.5px);
     background-size: 20px 20px;
@@ -59,6 +59,10 @@ body {
     @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
 }
 
+label {
+    @apply font-semibold;
+}
+
 /* Nav Component */
 .logo_text {
     @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
@@ -91,11 +95,12 @@ body {
 /* Recipes */
 
 .recipe-feed {
-    @apply flex sm:flex-wrap sm:flex-row gap-5 w-full flex-col;
+    @apply flex sm:flex-wrap sm:flex-row gap-5 w-full flex-col mb-5;
 }
 
 .recipe-card {
-    @apply rounded-xl bg-slate-100 w-full lg:w-80 h-48 ;
+    overflow: hidden;
+    @apply rounded-xl bg-slate-100 w-full lg:w-80 h-48;
 }
 
 .recipe-details {
