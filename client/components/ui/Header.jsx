@@ -44,7 +44,7 @@ const Header = () => {
                         <button type="button" onClick={logOut} className="btn btn-outline">Sign out</button>
 
                         <Link href={`/profile/${auth.user.username}`}>
-                            <Image src={auth?.user.image || "assets/images/logo.svg"}
+                            <Image src={auth?.user.image || "/assets/images/grey.png"}
                                 width={37}
                                 height={37}
                                 className="rounded-full"
