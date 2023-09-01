@@ -70,7 +70,7 @@ const Ingredient = (props) => {
                                 required={props.ingInputRequired}
                             />
                         </div>
-                        <ul {...getMenuProps()}>
+                        <ul {...getMenuProps()} className="overflow-hidden rounded-xl mt-2">
                             {isOpen
                                 ? items
                                     .filter(item => !inputValue || item.name.includes(inputValue))
@@ -80,12 +80,8 @@ const Ingredient = (props) => {
                                                 key: item.name,
                                                 index,
                                                 item,
-                                                style: {
-                                                    backgroundColor:
-                                                        highlightedIndex === index ? 'lightgray' : 'white',
-                                                    fontWeight: selectedItem === item ? 'bold' : 'normal',
-                                                },
                                             })}
+                                            className="py-1 px-3 bg-base-100 hover:bg-primary"
                                         >
                                             {item.name}
                                         </li>

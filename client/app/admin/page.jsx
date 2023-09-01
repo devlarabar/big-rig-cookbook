@@ -76,7 +76,7 @@ const Admin = () => {
     return (
         <div className="w-2/3 max-w-[500px] mb-5">
             <form onSubmit={addIngredient} className="flex flex-col gap-5 w-full">
-                <h3><span>Add Ingredients</span></h3>
+                <h2>Add Ingredients</h2>
                 <input
                     type="text"
                     placeholder={'Name'}
@@ -107,7 +107,7 @@ const Admin = () => {
             </form>
 
             <form onSubmit={addAchievement} className="flex flex-col gap-5 w-full">
-                <h3><span>Add Achievements</span></h3>
+                <h2>Add Achievements</h2>
                 <input
                     type="text"
                     placeholder={'Name'}
@@ -133,7 +133,7 @@ const Admin = () => {
             </form>
 
             <form onSubmit={addStretch} className="flex flex-col gap-5 w-full">
-                <h3><span>Add Stretches</span></h3>
+                <h2>Add Stretches</h2>
                 <input
                     type="text"
                     placeholder={'Name'}
