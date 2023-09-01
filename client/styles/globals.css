@@ -8,11 +8,11 @@
 body {
     height: 100%;
     min-height: 100vh;
-    background-color: #b3b4ca;
     opacity: 0.8;
     background-image: radial-gradient(#b3b4ca 0.5px, transparent 0.5px), radial-gradient(#b3b4ca 0.5px, #e5e5f7 0.5px);
     background-size: 20px 20px;
     background-position: 0 0, 10px 10px;
+    @apply bg-[#b3b4ca];
 }
 
 @media screen and (max-width: 640px) {
@@ -29,44 +29,25 @@ body {
 
 /* Headers and Fancy Text */
 
-.head_text {
+.header_text {
     @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
 }
 
-.orange_gradient {
-    @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
-}
-
-.green_gradient {
-    @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
-}
-
-.blue_gradient {
-    @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+.header_gradient {
+    @apply bg-gradient-to-r from-teal-500 via-blue-500 to-emerald-400 bg-clip-text text-transparent;
 }
 
 /* Forms */
-
-.search_input {
-    @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
-}
-
-.form_textarea {
-    @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
-}
-
-.form_input {
-    @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
-}
 
 label {
     @apply font-semibold;
 }
 
-/* Nav Component */
-.logo_text {
-    @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
+input {
+    @apply input input-bordered w-full;
 }
+
+/* Nav Component */
 
 .dropdown {
     @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
@@ -143,4 +124,8 @@ a {
 
 .big-heading {
     @apply mt-5 text-2xl font-extrabold leading-[1.15] text-black sm:text-3xl;
+}
+
+h2 {
+    @apply font-extrabold font-satoshi;
 }

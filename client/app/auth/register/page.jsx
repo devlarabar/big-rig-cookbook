@@ -2,8 +2,11 @@
 
 import { useState } from 'react'
 import Axios from 'axios'
+import Link from 'next/link'
+import { useAuthContext } from 'contexts/AuthContext'
 
 function Register() {
+    const auth = useAuthContext()
     const [registerUsername, setRegisterUsername] = useState('')
     const [registerEmail, setRegisterEmail] = useState('')
     const [registerPassword, setRegisterPassword] = useState('')
@@ -31,29 +34,36 @@ function Register() {
         window.location = 'auth/login'
     }
 
+    if (auth?.user && auth.user !== "unauthenticated") return (
+        <section className="text-center">
+            Hello, {auth.user.username}! Looks like you're already signed in. <Link href="/home">Click here</Link> to go to the home page.
+        </section>
+    )
     return (
-        <div className='App flex flex-col gap-5'>
-            <h1>Register</h1>
-            <div className='flex gap-5 w-full'>
+        <form className='flex flex-col gap-5 w-2/3 max-w-[300px]'>
+            <h2>Register</h2>
+            <label>Username
                 <input
                     placeholder='username'
                     onChange={(e) => setRegisterUsername(e.target.value)}
-                    className='w-full rounded-md border border-gray-400 p-2'
                 />
+            </label>
+            <label>E-Mail
                 <input
-                    placeholder='email'
+                    placeholder='e-mail'
                     onChange={(e) => setRegisterEmail(e.target.value)}
-                    className='w-full rounded-md border border-gray-400 p-2'
                 />
+            </label>
+            <label>Password
                 <input
                     placeholder='password'
                     onChange={(e) => setRegisterPassword(e.target.value)}
-                    className='w-full rounded-md border border-gray-400 p-2'
                 />
-                <button className='btn btn-secondary' onClick={register}>Submit</button>
-            </div>
-        </div>
-    );
+            </label>
+            <button className='btn btn-secondary' onClick={register}>Submit</button>
+            <p className="flex justify-center gap-1">Already have an account? <Link href="/auth/register">Sign in</Link>!</p>
+        </form>
+    )
 }
 
 export default Register;

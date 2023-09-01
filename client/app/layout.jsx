@@ -1,6 +1,6 @@
 import '@styles/globals.css'
 import Header from '@components/ui/Header'
-import AuthProvider from "@contexts/AuthContext";
+import AuthProvider from "@contexts/AuthContext"
 
 export const metadata = {
     title: 'Big Rig Cookbook',
@@ -8,8 +8,9 @@ export const metadata = {
 }
 
 const RootLayout = ({ children, recipeModal }) => {
+    const theme = "cupcake"
     return (
-        <html data-theme="cupcake" lang="en">
+        <html data-theme={theme} lang="en">
             <body>
                 <div className="main">
                     <div className="gradient" />

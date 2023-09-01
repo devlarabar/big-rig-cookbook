@@ -86,7 +86,7 @@ const Admin = () => {
                 />
                 <select
                     onChange={e => setIngType(e.target.value)}
-                    className="width-100"
+                    className="select select-bordered w-full"
                     required
                 >
                     <option value="" disabled>- Select -</option>
@@ -150,7 +150,7 @@ const Admin = () => {
                 />
                 <select
                     onChange={e => setStretchPos(e.target.value)}
-                    className="width-100"
+                    className="select select-bordered w-full"
                     required
                 >
                     <option value="" disabled>- Select -</option>
@@ -161,7 +161,7 @@ const Admin = () => {
                 </select>
                 <select
                     onChange={e => setStretchMusc(e.target.value)}
-                    className="width-100"
+                    className="select select-bordered w-full"
                     required
                 >
                     <option value="" disabled>- Select -</option>
