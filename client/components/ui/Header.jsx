@@ -96,13 +96,6 @@ const Header = () => {
                                     My Profile
                                 </Link>
                                 <Link
-                                    href="/stretch"
-                                    className="dropdown_link"
-                                    onClick={() => setToggleDropdown(false)}
-                                >
-                                    Stretches
-                                </Link>
-                                <Link
                                     href="/stretch/search"
                                     className="dropdown_link"
                                     onClick={() => setToggleDropdown(false)}
@@ -115,6 +108,20 @@ const Header = () => {
                                     onClick={() => setToggleDropdown(false)}
                                 >
                                     New Recipe
+                                </Link>
+                                <Link
+                                    href="/stretch"
+                                    className="dropdown_link"
+                                    onClick={() => setToggleDropdown(false)}
+                                >
+                                    Stretches
+                                </Link>
+                                <Link
+                                    href="/stretch/tracker"
+                                    className="dropdown_link"
+                                    onClick={() => setToggleDropdown(false)}
+                                >
+                                    Stretch Tracker
                                 </Link>
                                 {auth.user.admin && <Link
                                     href="/admin"

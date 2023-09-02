@@ -5,13 +5,13 @@ const RoutineCard = ({ user, routine }) => {
         <div className="stretch-card">
             <div className="card-body">
                 <h3 className="card-title">{routine.name}</h3>
-                <ul className="list-disc pl-3">
+                <ul className="list-disc pl-5">
                     {routine.stretches.map((stretch, index) => {
                         return <li key={index}>{stretch.name}</li>
                     })}
                 </ul>
-                <p><span className="font-bold">Current Streak:</span> {routine.streak}</p>
-                <p><span className="font-bold">Longest Streak:</span> {routine.longestStreak}</p>
+                <hr className="divider" />
+                <p className="flex justify-between gap-2"><span className="font-bold">Streak:</span> {routine.streak} <span className="font-bold">Longest:</span> {routine.longestStreak}</p>
                 <RoutineCompleteBtn routine={routine} user={user} />
             </div>
         </div>

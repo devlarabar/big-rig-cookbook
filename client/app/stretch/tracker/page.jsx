@@ -36,10 +36,10 @@ const StretchTracker = () => {
     return (
         <section>
             <section>
-                <h2 className="big-heading">Stretch Routine Tracker</h2>
+                <h2 className="big-heading mb-5">Stretch Routine Tracker</h2>
                 {routines && routines.map((routine, i) => {
                     return (
-                        <RoutineCard routine={routine} user={auth.user} />
+                        <RoutineCard routine={routine} user={auth.user} key={i} />
                     )
                 })}
             </section>

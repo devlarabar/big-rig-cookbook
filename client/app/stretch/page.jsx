@@ -5,6 +5,7 @@ import StretchCard from "@components/stretch/StretchCard"
 import Spinner from '@components/ui/Spinner'
 import { useAuthContext } from '@contexts/AuthContext'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 
 const StretchIndex = () => {
     const auth = useAuthContext()
@@ -23,7 +24,11 @@ const StretchIndex = () => {
     if (auth?.user === "unauthenticated") return redirect('/')
 
     return (
-        <div>
+        <section>
+            <h2 className="big-heading mb-4">Stretches</h2>
+            <section className="mb-4">
+                <Link href="/stretch/routine">Click here</Link> to create your own stretch routines!
+            </section>
             {stretches.length > 0 && stretches.map((stretch, index) => {
                 return (
                     <div className="stretch" key={index}>
@@ -31,7 +36,7 @@ const StretchIndex = () => {
                     </div>
                 )
             })}
-        </div>
+        </section>
     )
 }
 
