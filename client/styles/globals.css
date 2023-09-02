@@ -103,7 +103,7 @@ input[type="text"], input[type="search"] {
 /* Stretches */
 
 .stretch-card, .profile-cards .recipe-card {
-    @apply rounded-xl bg-slate-100 w-full lg:w-96;
+    @apply rounded-xl bg-slate-100 dark:bg-base-100 w-full lg:w-96;
 }
 
 /* Profile */

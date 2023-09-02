@@ -64,7 +64,7 @@ const UserProfile = () => {
                 </h2>
                 <p className="mt-3">{userProfileDetails.description}</p>
                 <UserBadges userAchievements={userAchievements} />
-                <ul className="menu menu-horizontal bg-slate-300 rounded-box mt-4">
+                <ul className="menu menu-horizontal bg-slate-300 dark:bg-base-100 rounded-box mt-4">
                     <li><button onClick={() => changeSection('Recipes')}>Recipes</button></li>
                     <li><button onClick={() => changeSection('Cookbook')}>Cookbook</button></li>
                     <li><button onClick={() => changeSection('Stretches')}>Stretches</button></li>
