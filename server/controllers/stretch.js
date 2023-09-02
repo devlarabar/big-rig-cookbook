@@ -1,7 +1,6 @@
 const User = require('../models/User')
 const Achievement = require('../models/Achievement')
 const Stretch = require('../models/Stretch')
-const StretchStreak = require('../models/StretchStreak')
 const StretchRoutine = require('../models/StretchRoutine')
 const jwt = require('jsonwebtoken')
 const secret = 'salkdjfhsk2345rfgd324'
@@ -13,12 +12,12 @@ module.exports = {
         res.json(stretches)
     },
     getRoutine: async (req, res) => {
-        userId = req.params.user
+        const userId = req.params.user
         const userDoc = await User.findById(userId)
-        const routine = await StretchRoutine.find({ user: userDoc })
+        const routines = await StretchRoutine.find({ user: userDoc })
             .populate('stretches')
             .sort({ name: -1 })
-        res.json(routine)
+        res.json(routines)
     },
     getStretches: async (req, res) => {
         userId = req.params.user
@@ -47,13 +46,30 @@ module.exports = {
             res.json(`User id ${userId} saved to stretch ${stretchId}.`)
         }
     },
+    createRoutine: async (req, res) => {
+        const user = req.user
+        const { name, stretches } = req.body
+        try {
+            const routineDoc = await StretchRoutine.create({
+                user: user.id,
+                name: name,
+                stretches: stretches,
+                streak: 0,
+                longestStreak: 0
+            })
+            console.log(`New stretch routine created: ${name} (${routineDoc._id})`)
+            res.json(routineDoc)
+        } catch (err) {
+            res.status(400).json(err)
+        }
+    },
     markComplete: async (req, res) => {
-        const stretchId = req.params.stretch
-        const stretchStreakDoc = await StretchStreak.updateOne(
-            { stretch: stretchId, user: req.body.authUser },
-            { $inc: { streak: 1 } },
-            { upsert: true }
+        const routineId = req.params.routine
+        const routineDoc = await StretchRoutine.findById(routineId)
+        const longest = routineDoc.streak + 1 > routineDoc.longestStreak ? routineDoc.streak + 1 : routineDoc.longestStreak
+        await StretchRoutine.updateOne(
+            { $inc: { streak: 1 }, longestStreak: longest }
         )
-        res.json({ stretchStreak: stretchStreakDoc, success: true })
+        res.json({ routine: routineDoc, success: true })
     }
 }

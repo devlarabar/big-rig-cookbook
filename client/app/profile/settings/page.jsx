@@ -3,6 +3,7 @@
 import { useAuthContext } from 'contexts/AuthContext'
 import Spinner from '@components/ui/Spinner'
 import ProfileDescription from '@components/settings/ProfileDescription'
+import Link from 'next/link'
 
 const ProfileSettings = () => {
     const auth = useAuthContext()
@@ -11,10 +12,12 @@ const ProfileSettings = () => {
     if (auth?.user === "unauthenticated") return redirect('/')
 
     return (
-        <div>
+        <section className="w-full sm:w-3/4 max-w-[500px]">
             <h2 className="big-heading">Profile Settings</h2>
             <ProfileDescription user={auth.user}/>
-        </div>
+            <hr className="divider"/>
+            <Link href="/profile/settings/remacc"><button className="btn btn-error">Remove Account</button></Link>
+        </section>
     )
 }
 

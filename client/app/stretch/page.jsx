@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import StretchCard from "@components/stretch/StretchCard"
-import Link from 'next/link'
 import Spinner from '@components/ui/Spinner'
 import { useAuthContext } from '@contexts/AuthContext'
 import { redirect } from 'next/navigation'
@@ -25,7 +24,6 @@ const StretchIndex = () => {
 
     return (
         <div>
-            <Link href={'/stretch/tracker'}><button>Stretch Tracker</button></Link>
             {stretches.length > 0 && stretches.map((stretch, index) => {
                 return (
                     <div className="stretch" key={index}>

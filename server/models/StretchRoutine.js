@@ -3,7 +3,10 @@ const { Schema, model } = mongoose
 
 const StretchRoutineSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User' },
-    name: String,
+    name: {
+        type: String,
+        unique: true
+    },
     stretches: [{ type: Schema.Types.ObjectId, ref: 'Stretch' }],
     streak: Number,
     longestStreak: Number

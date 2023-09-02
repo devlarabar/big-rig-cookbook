@@ -29,7 +29,7 @@ const ProfileDescription = ({ user }) => {
     return (
         <form 
             onSubmit={(e) => submitDescription(e)}
-            className="mt-5"
+            className="flex flex-col gap-5 mt-5 w-full"
         >
             <label htmlFor="description">Change your profile description:</label>
             <textarea
@@ -37,7 +37,7 @@ const ProfileDescription = ({ user }) => {
                 placeholder="Tell other truckers about yourself!"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-full rounded-md border border-gray-400 p-2"
+                className="input input-bordered w-full rounded-md border border-gray-400 p-2"
             />
             <button
                 type="submit"

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-const RoutineCompleteBtn = ({ user, stretch }) => {
+const RoutineCompleteBtn = ({ user, routine }) => {
     const [complete, setComplete] = useState(true)
 
     useEffect(() => {
@@ -12,8 +12,8 @@ const RoutineCompleteBtn = ({ user, stretch }) => {
         if (lastMarkedComplete !== today) setComplete(false)
     }, [])
 
-    async function markStretchComplete() {
-        const markCompleteReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/stretch/complete/${stretch._id}`, {
+    const markRoutineComplete = async () => {
+        const markCompleteReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/stretch/complete/${routine._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ const RoutineCompleteBtn = ({ user, stretch }) => {
         else console.error('There was an error processing your request.')
     }
 
-    function setCompleted() {
+    const setCompleted = () => {
         let today = new Date()
         today = String(today.getFullYear()) + String(today.getMonth()) + String(today.getDate()) + String(today.getMinutes())
         localStorage.setItem('markedCompleteAt', today)
@@ -34,7 +34,7 @@ const RoutineCompleteBtn = ({ user, stretch }) => {
 
     return (
         <div>
-            <button onClick={markStretchComplete} disabled={complete}>Done Stretch</button>
+            <button onClick={markRoutineComplete} disabled={complete}>{complete ? 'Completed!' : 'Mark Complete'}</button>
         </div>
     )
 }
