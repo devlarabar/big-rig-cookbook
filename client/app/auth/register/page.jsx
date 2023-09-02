@@ -44,24 +44,27 @@ function Register() {
             <h2>Register</h2>
             <label>Username
                 <input
+                    type="text"
                     placeholder='username'
                     onChange={(e) => setRegisterUsername(e.target.value)}
                 />
             </label>
             <label>E-Mail
                 <input
+                    type="email"
                     placeholder='e-mail'
                     onChange={(e) => setRegisterEmail(e.target.value)}
                 />
             </label>
             <label>Password
                 <input
+                    type="text"
                     placeholder='password'
                     onChange={(e) => setRegisterPassword(e.target.value)}
                 />
             </label>
             <button className='btn btn-secondary' onClick={register}>Submit</button>
-            <p className="flex justify-center gap-1">Already have an account? <Link href="/auth/register">Sign in</Link>!</p>
+            <p className="flex justify-center gap-1"><span>Already have an account? <Link href="/auth/login">Sign in</Link>!</span></p>
         </form>
     )
 }

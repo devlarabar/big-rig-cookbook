@@ -48,7 +48,7 @@ const RootLayout = ({ children, recipeModal }) => {
                 </div> */}
 
                 <main className="app">
-                    <label className="swap swap-rotate dark-toggle">
+                    <label className="swap swap-rotate dark-toggle btn btn-square rounded-full">
                         {/* this hidden checkbox controls the state */}
                         <input type="checkbox" onChange={(e) => changeTheme(e)} checked={mode === 'dark'}/>
                         {/* sun icon */}

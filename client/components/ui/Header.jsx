@@ -27,15 +27,21 @@ const Header = () => {
 
     return (
         <nav className="flex-between w-full mb-16 pt-3">
-
-            
-
-            <Link href={logoLink} className="flex gap-2 flex-center">
+            <Link href={logoLink} className="max-[450px]:hidden">
                 <Image
                     src="/assets/images/brc-logo.svg"
                     alt="Logo"
                     className="object-contain"
                     width={300}
+                    height={50}
+                />
+            </Link>
+            <Link href={logoLink} className="hidden max-[450px]:block">
+                <Image
+                    src="/assets/images/brc-logo-small.svg"
+                    alt="Logo"
+                    className="object-contain"
+                    width={50}
                     height={50}
                 />
             </Link>
@@ -110,13 +116,20 @@ const Header = () => {
                                 >
                                     New Recipe
                                 </Link>
+                                {auth.user.admin && <Link
+                                    href="/admin"
+                                    className="dropdown_link"
+                                    onClick={() => setToggleDropdown(false)}
+                                >
+                                    Admin Tools
+                                </Link>}
                                 <button
                                     type="button"
                                     onClick={(event) => {
                                         setToggleDropdown(false)
                                         logOut(event)
                                     }}
-                                    className="mt-5 w-full btn"
+                                    className="mt-2 w-full btn btn-sm"
                                 >
                                     Sign Out
                                 </button>

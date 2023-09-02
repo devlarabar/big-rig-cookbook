@@ -40,18 +40,20 @@ function Authentication() {
             <h2>Login</h2>
             <label>Username
                 <input
+                    type="text"
                     placeholder='username'
                     onChange={(e) => setLoginUsername(e.target.value)}
                 />
             </label>
             <label>Password
                 <input
+                    type="text"
                     placeholder='password'
                     onChange={(e) => setLoginPassword(e.target.value)}
                 />
             </label>
             <button className='btn btn-secondary' onClick={login}>Submit</button>
-            <p className="flex justify-center gap-1">Don't have an account? <Link href="/auth/register">Register</Link> today!</p>
+            <p className="flex justify-center"><span>Don't have an account? <Link href="/auth/register">Register</Link>!</span></p>
         </form>
     )
 }

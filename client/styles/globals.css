@@ -15,7 +15,7 @@ body {
     background-position: 0 0, 10px 10px;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 450px) {
     .main {
         padding: 0;
     }
@@ -43,14 +43,14 @@ label {
     @apply font-semibold;
 }
 
-input[type="text"], input[type="search"] {
+input[type="text"], input[type="search"], input[type="email"] {
     @apply input input-bordered w-full;
 }
 
 /* Nav Component */
 
 .dropdown {
-    @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+    @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white dark:bg-primary min-w-[210px] flex flex-col gap-2 justify-end items-end;
 }
 
 .dropdown_link {
