@@ -19,7 +19,7 @@ const CreateRecipe = () => {
     
     return (
         <div className="w-full max-w-screen-sm flex flex-center">
-            <CreateRecipeForm setDoRedirect={setDoRedirect}/>
+            <CreateRecipeForm setDoRedirect={setDoRedirect} editRecipeId={null}/>
         </div>
     )
 }

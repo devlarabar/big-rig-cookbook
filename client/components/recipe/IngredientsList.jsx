@@ -1,6 +1,16 @@
 "use client"
 
-const IngredientsList = ({ recipe }) => {
+const IngredientsList = ({ recipe, setRecipe }) => {
+
+    const removeIngredient = (index) => {
+        const ingredients = [...recipe.ingredients]
+        ingredients.splice(index, 1)
+        setRecipe({...recipe, ingredients: ingredients})
+        // let updatedIngredients = recipe.ingredients.filter((x, i) => i !== index)
+        // if (updatedIngredients.length === 0) updatedIngredients = []
+        // setRecipe({...recipe, ingredients: {updatedIngredients}})
+    }
+
     return (
         <ul>
             {recipe.ingredients.length > 0 && recipe.ingredients.map((ingredient, index) => {
@@ -11,7 +21,12 @@ const IngredientsList = ({ recipe }) => {
                             <span>{ingredient.ingredient.name} - {ingredient.qty} {ingredient.measure}</span>
                         </p>
                         <div>
-                            <button type="button" className="btn btn-sm btn-outline">Remove</button>
+                            <button
+                                type="button"
+                                onClick={() => removeIngredient(index)}
+                                className="btn btn-sm btn-outline">
+                                Remove
+                            </button>
                         </div>
                     </li>
                 )

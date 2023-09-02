@@ -8,18 +8,18 @@ const Ingredients = ({ recipe, setRecipe }) => {
     const [ingError, setIngError] = useState(false)
 
     function onAdd(newIngredient) {
-        setIngError(false)
+        console.log(recipe.ingredients)
         if (!newIngredient.ingredient || !newIngredient.qty || newIngredient.qty === '0') {
             setIngError('Please ensure all ingredient fields are properly filled!')
             console.log('Please ensure all ingredient fields are properly filled!')
             return false
         }
-        if (recipe.ingredients.find(x => x.ingredient.name === newIngredient.ingredient.name)) {
+        if (recipe.ingredients.length > 0 && recipe.ingredients.find(x => x.ingredient.name === newIngredient.ingredient.name)) {
             setIngError('You have already added this ingredient!')
             console.log('You have already added this ingredient!')
             return false
         }
-        if (recipe.ingredients[0] === '') {
+        if (recipe.ingredients[0] === '' || recipe.ingredients.length === 0) {
             setIngError(false)
             setRecipe({ ...recipe, ingredients: [newIngredient] })
             return true

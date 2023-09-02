@@ -41,7 +41,7 @@ const CreateRecipe = () => {
                     <p>You are not the author of this recipe!</p>
                     <Link href={'/home'}><button className="btn">Home</button></Link>
                 </section> 
-                : <CreateRecipeForm recipeData={recipeData} setDoRedirect={setDoRedirect}/>
+                : <CreateRecipeForm recipeData={recipeData} setDoRedirect={setDoRedirect} editRecipeId={recipe}/>
             }
         </main>
     )

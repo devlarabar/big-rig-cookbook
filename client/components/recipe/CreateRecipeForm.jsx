@@ -6,7 +6,7 @@ import Cookware from './Cookware'
 import Directions from './Directions'
 import { useAuthContext } from '@contexts/AuthContext'
 
-const CreateRecipeForm = ({ recipeData, setDoRedirect }) => {
+const CreateRecipeForm = ({ recipeData, setDoRedirect, editRecipeId }) => {
     const auth = useAuthContext()
     const [recipe, setRecipe] = useState({
         title: '',
@@ -32,7 +32,7 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect }) => {
         && recipe.cookTime >= 1
         && auth?.user.id)
 
-    async function createRecipe(e) {
+    const createRecipe = async (e) => {
         e.preventDefault()
         if (recipe.ingredients.length === 0) {
             alert('Please enter at least one ingredient!')
@@ -40,18 +40,34 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect }) => {
             if (auth?.user) {
                 console.log(auth?.user)
                 const recipeInfo = {
+                    editRecipeId: editRecipeId,
                     user: auth?.user,
                     ...recipe
                 }
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/create`, {
-                    method: 'POST',
-                    body: JSON.stringify(recipeInfo),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                })
-                if (response.ok) {
-                    setDoRedirect(true)
+                if (!editRecipeId) {
+                    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/create`, {
+                        method: 'POST',
+                        body: JSON.stringify(recipeInfo),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'include'
+                    })
+                    if (response.ok) {
+                        setDoRedirect(true)
+                    }
+                } else {
+                    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/edit`, {
+                        method: 'PUT',
+                        body: JSON.stringify(recipeInfo),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'include'
+                    })
+                    if (response.ok) {
+                        setDoRedirect(true)
+                    }
                 }
             } else {
                 console.log('You are not signed in!')
@@ -81,7 +97,7 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect }) => {
                         placeholder="20"
                         min={1}
                         required
-                        value={recipe.preptime}
+                        value={recipe.prepTime}
                         onChange={(e) => setRecipe({ ...recipe, prepTime: e.target.value })}
                         className="input input-bordered w-full"
                     />
@@ -93,7 +109,7 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect }) => {
                         placeholder="20"
                         min={1}
                         required
-                        value={recipe.cooktime}
+                        value={recipe.cookTime}
                         onChange={(e) => setRecipe({ ...recipe, cookTime: e.target.value })}
                         className="input input-bordered w-full"
                     />

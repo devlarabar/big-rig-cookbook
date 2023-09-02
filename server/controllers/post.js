@@ -42,49 +42,43 @@ module.exports = {
         }
     },
     editPost: async (req, res) => {
-        const { token } = req.cookies
-        jwt.verify(token, secret, {}, async (err, info) => {
-            if (err) throw err
-            const { id, title, summary, directions, ingredients, cookware, prepTime, cookTime } = req.body
-            const ingList = ingredients.map(x => {
-                return { ingredient: x.ingredient._id, qty: x.qty, measurement: x.measurement }
-            })
-            const postDoc = await Post.findById(id)
-            const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id)
-    
-            if (!isAuthor) {
-                return res.status(400).json('You are not the author of this post!')
+        const userId = req.body.user.id
+        const { title, directions, ingredients, cookware, prepTime, cookTime, editRecipeId } = req.body
+        try {
+            const postDoc = await Post.findById(editRecipeId)
+            const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(userId)
+            if (!isAuthor) return res.status(400).json('You are not the author of this post!')
+            else {
+                await postDoc.updateOne({
+                    title,
+                    directions,
+                    ingredients,
+                    cookware,
+                    prepTime,
+                    cookTime
+                })
+                await helpers.checkAchievements(userId)
+                res.json({ postDoc }).status(201)
             }
-            await postDoc.updateOne({
-                title,
-                summary,
-                directions,
-                ingredients: ingList,
-                cookware,
-                prepTime,
-                cookTime,
-            });
-    
-            res.json(postDoc)
-        })
+        } catch (error) {
+            console.log(error)
+            res.json('Failed to create recipe').status(500)
+        }
     },
     deletePost: async (req, res) => {
+        const userId = req.user.id
         const postId = req.params.id
         const postDoc = await Post.findById(postId)
-        const { token } = req.cookies
-        jwt.verify(token, secret, {}, async (err, info) => {
-            if (err) throw err
-            const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id)
-            if (!isAuthor) {
-                return res.status(400).json('You are not the author of this post!')
-            }
+        const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(userId)
+        if (!isAuthor) return res.status(400).json('You are not the author of this post!')
+        else {
             try {
-                await Post.deleteOne({_id: postId})
+                await Post.findByIdAndDelete(postId)
                 res.json(`Post ${postId} deleted.`)
-            } catch(err) {
+            } catch (err) {
                 res.json({ 'error': err }).status(204)
             }
-        })
+        }
     },
     viewPosts: async (req, res) => {
         const posts = await Post
@@ -110,11 +104,11 @@ module.exports = {
         const userId = req.body.user
         const postDoc = await Post.findById(postId)
         const userDoc = await User.findById(userId)
-    
+
         if (postDoc.savedBy?.includes(userDoc._id)) {
             newSavedPosts = postDoc.savedBy.filter(x => x != String(userDoc._id))
             await postDoc.updateOne({
-                savedBy: [ ... newSavedPosts ]
+                savedBy: [...newSavedPosts]
             });
             res.json(`User id ${userId} removed from post ${postId}.`)
         } else {
