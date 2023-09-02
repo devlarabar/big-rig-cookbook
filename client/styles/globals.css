@@ -15,6 +15,13 @@ body {
     background-position: 0 0, 10px 10px;
 }
 
+.dark-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
 @media screen and (max-width: 450px) {
     .main {
         padding: 0;
@@ -24,7 +31,24 @@ body {
 /* Tailwind Styles */
 
 .app {
+    padding-bottom: 2em;
     @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+}
+
+.flex-center {
+    @apply flex justify-center items-center;
+}
+
+.flex-start {
+    @apply flex justify-start items-start;
+}
+
+.flex-end {
+    @apply flex justify-end items-center;
+}
+
+.flex-between {
+    @apply flex justify-between items-center;
 }
 
 /* Headers and Fancy Text */
@@ -57,22 +81,6 @@ input[type="text"], input[type="search"], input[type="email"] {
     @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-medium;
 }
 
-.flex-center {
-    @apply flex justify-center items-center;
-}
-
-.flex-start {
-    @apply flex justify-start items-start;
-}
-
-.flex-end {
-    @apply flex justify-end items-center;
-}
-
-.flex-between {
-    @apply flex justify-between items-center;
-}
-
 /* Recipes */
 
 .recipe-feed {
@@ -82,14 +90,6 @@ input[type="text"], input[type="search"], input[type="email"] {
 .recipe-card {
     overflow: hidden;
     @apply rounded-xl bg-slate-100 dark:bg-base-100 w-full lg:w-80 h-52;
-}
-
-.recipe-details {
-    @apply rounded-xl bg-slate-100 dark:bg-base-100 w-full md:w-[668px] p-5 flex flex-col gap-5;
-}
-
-.ing-icons {
-    @apply py-1
 }
 
 .ing-svg {
@@ -108,10 +108,6 @@ input[type="text"], input[type="search"], input[type="email"] {
 
 /* Profile */
 
-.profile {
-    @apply flex flex-col gap-5 md:grid md:grid-cols-2 md:gap-6;
-}
-
 .profile-cards {
     @apply flex flex-col gap-5 mt-3;
 }
@@ -119,7 +115,7 @@ input[type="text"], input[type="search"], input[type="email"] {
 /* Typography */
 
 a {
-    @apply font-bold;
+    @apply font-bold text-primary;
 }
 
 .big-heading {
@@ -130,15 +126,10 @@ h2 {
     @apply font-extrabold font-satoshi;
 }
 
-form h3 {
+h3 {
     @apply font-inter font-bold text-lg;
 }
 
-/* Misc UI */
-
-.dark-toggle {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 10;
+hr {
+    height: 2px !important;
 }

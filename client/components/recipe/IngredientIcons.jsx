@@ -21,7 +21,7 @@ const IngredientIcons = ({ ingredients }) => {
     }
 
     return (
-        <div className="ing-icons flex flex-center flex-between gap-5">
+        <div className="py-1 flex flex-center flex-between gap-5">
             {types.map((x, i) => {
                 switch (x) {
                     case 'fruit':

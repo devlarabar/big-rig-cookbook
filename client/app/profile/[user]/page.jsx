@@ -53,7 +53,7 @@ const UserProfile = () => {
     if (userProfileDetails === '404') return (<>This user does not exist!</>)
 
     return (
-        <section className="profile">
+        <section className="flex flex-col gap-5 md:grid md:grid-cols-2 md:gap-6">
             <aside className="flex flex-col items-center">
                 <h2 className="big-heading flex flex-center gap-2">
                     <span className="user-username">{user}</span>

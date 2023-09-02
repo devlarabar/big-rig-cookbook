@@ -6,13 +6,10 @@ const IngredientsList = ({ recipe, setRecipe }) => {
         const ingredients = [...recipe.ingredients]
         ingredients.splice(index, 1)
         setRecipe({...recipe, ingredients: ingredients})
-        // let updatedIngredients = recipe.ingredients.filter((x, i) => i !== index)
-        // if (updatedIngredients.length === 0) updatedIngredients = []
-        // setRecipe({...recipe, ingredients: {updatedIngredients}})
     }
 
     return (
-        <ul>
+        <ul className="flex flex-col gap-2">
             {recipe.ingredients.length > 0 && recipe.ingredients.map((ingredient, index) => {
                 return (
                     <li className="alert bg-base-100 flex flex-row justify-between" key={index}>

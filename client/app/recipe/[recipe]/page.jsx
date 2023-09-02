@@ -51,9 +51,9 @@ const RecipeDetails = () => {
     if (recipe === '404') return <p>Recipe not found.</p>
 
     return (
-        <div className="recipe-details">
-            <h2 className="big-heading flex flex-col sm:flex-row gap-1 flex-between">
-                <span>{recipe.title}</span>
+        <section className="rounded-xl bg-slate-100 dark:bg-base-100 w-full md:w-[668px] p-5 flex flex-col gap-5">
+            <div className="flex flex-col sm:flex-row gap-2 flex-between">
+                <h2 className="big-heading">{recipe.title}</h2>
                 {auth.user.id === recipe.author._id && (
                     <div className="flex flex-center gap-5">
                         <Link href={`/recipe/edit/${recipe._id}`} className="btn btn-primary">
@@ -61,17 +61,24 @@ const RecipeDetails = () => {
                         </Link>
                         <button className="btn btn-outline" onClick={deleteRecipe}>Delete</button>
                     </div>
-                )}</h2>
-            <div className="post-info flex flex-between">
+                )}
+            </div>
+            <section className="post-info flex flex-between">
                 <p>
                     <Link href={`/user/${recipe.author.username}`} className="post-author">{recipe.author.username}</Link> | <time>{format(new Date(recipe.createdAt), 'MMM d, yyyy HH:mm')}</time>
                 </p>
+            </section>
 
-            </div>
+            <hr className="divider" />
+
             <h3>Time</h3>
-            <p>Preparation time: {recipe.prepTime} | Cook time: {recipe.cookTime}</p>
+            <p className="flex gap-5">
+                <span>Preparation time: {recipe.prepTime} min ({(recipe.prepTime / 60).toFixed(1)} hr)</span> |
+                <span>Cook time: {recipe.cookTime} min ({(recipe.prepTime / 60).toFixed(1)} hr)</span>
+            </p>
+
             <h3>Ingredients</h3>
-            <ul>
+            <ul className="list-disc pl-5">
                 {recipe.ingredients && recipe.ingredients.length > 0 ? recipe.ingredients.map((x, i) => {
                     return (
                         <li key={`${i}-${x.ingredient.name}`}>
@@ -82,7 +89,7 @@ const RecipeDetails = () => {
                 }
             </ul>
             <h3>Cookware</h3>
-            <ul>
+            <ul className="list-disc pl-5">
                 {recipe.cookware && recipe.cookware.length > 0 ? recipe.cookware.map((x, i) => {
                     return (
                         <li key={`${i}-${x}`}>
@@ -93,7 +100,7 @@ const RecipeDetails = () => {
                 }
             </ul>
             <h3>Directions</h3>
-            <ol>
+            <ol className="list-decimal pl-5">
                 {recipe.directions && recipe.directions.length > 0 ? recipe.directions.map((x, i) => {
                     return (
                         <li key={`${i}-${x[0]}`}>
@@ -103,7 +110,7 @@ const RecipeDetails = () => {
                 }) : 'No directions specified.'
                 }
             </ol>
-        </div>
+        </section>
     )
 }
 
