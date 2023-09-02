@@ -14,6 +14,7 @@ const Home = () => {
                     width={200}
                     height={200}
                     className="mt-5"
+                    alt="Truck"
                 />
                 <p className="desc text-center mt-5 max-w-[640px]">
                     Join your fellow truckers in improving your health and wellness on the road! Share your unique and creative <em>big rig recipes</em> with other drivers, save stretch routines, and earn achievements by maintaining healthy habits.

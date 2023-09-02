@@ -54,7 +54,7 @@ body {
 /* Headers and Fancy Text */
 
 .header_text {
-    @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black dark:text-inherit sm:text-6xl;
+    @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black dark:text-white sm:text-6xl;
 }
 
 .header_gradient {

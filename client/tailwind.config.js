@@ -1,5 +1,5 @@
 const config = {
-	darkMode: 'class',
+	darkMode: ['class', '[data-theme="dark"]'],
 	content: [
 		'./pages/**/*.{js,ts,jsx,tsx,mdx}',
 		'./components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -19,12 +19,16 @@ const config = {
 	plugins: [require("@tailwindcss/typography"), require("daisyui")],
 	daisyui: {
 		themes: [{
-			cupcake: {
+			light: {
 				...require("daisyui/src/theming/themes")["[data-theme=cupcake]"],
 				"base-100": "#F1F1FF",
 				"neutral": "#BFC0D4",
-			},
-		}, "night"],
+			}
+		}, {
+			dark: {
+				...require("daisyui/src/theming/themes")["[data-theme=night]"],
+			}
+		}],
 	},
 }
 export default config
