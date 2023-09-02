@@ -1,4 +1,5 @@
 const config = {
+	darkMode: 'class',
 	content: [
 		'./pages/**/*.{js,ts,jsx,tsx,mdx}',
 		'./components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -23,7 +24,7 @@ const config = {
 				"base-100": "#F1F1FF",
 				"neutral": "#BFC0D4",
 			},
-		}, "dark"],
+		}, "night"],
 	},
 }
 export default config

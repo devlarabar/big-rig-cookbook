@@ -18,7 +18,7 @@ const items = [
 
 const IngredientQty = (props) => {
   return (
-    <div className="flex gap-5 flex-between form-recipe-qty">
+    <div className="flex gap-5 justify-between items-start">
         <div className="w-full">
             <input 
                 type="number" 
@@ -53,7 +53,7 @@ const IngredientQty = (props) => {
                         className="input input-bordered w-full"
                     />
                 </div>
-                <ul {...getMenuProps()}>
+                <ul {...getMenuProps()} className="overflow-hidden rounded-xl mt-2">
                     {isOpen
                         ? items
                             .filter(item => !inputValue || item.value.includes(inputValue))
@@ -69,6 +69,7 @@ const IngredientQty = (props) => {
                                             fontWeight: selectedItem === item ? 'bold' : 'normal',
                                         },
                                     })}
+                                    className="py-1 px-3 bg-base-100 hover:bg-primary"
                                 >
                                     {item.value}
                                 </li>

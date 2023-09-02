@@ -9,8 +9,8 @@ body {
     height: 100%;
     min-height: 100vh;
     opacity: 0.8;
-    @apply bg-[#b3b4ca];
-    background-image: radial-gradient(#b3b4ca 0.5px, transparent 0.5px), radial-gradient(#b3b4ca 0.5px, #e5e5f7 0.5px);
+    @apply bg-[#E9E9F7] dark:bg-black;
+    /* background-image: radial-gradient(#b3b4ca 0.5px, transparent 0.5px), radial-gradient(#b3b4ca 0.5px, #e5e5f7 0.5px); */
     background-size: 20px 20px;
     background-position: 0 0, 10px 10px;
 }
@@ -30,7 +30,7 @@ body {
 /* Headers and Fancy Text */
 
 .header_text {
-    @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+    @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black dark:text-inherit sm:text-6xl;
 }
 
 .header_gradient {
@@ -43,7 +43,7 @@ label {
     @apply font-semibold;
 }
 
-input {
+input[type="text"], input[type="search"] {
     @apply input input-bordered w-full;
 }
 
@@ -81,11 +81,11 @@ input {
 
 .recipe-card {
     overflow: hidden;
-    @apply rounded-xl bg-slate-100 w-full lg:w-80 h-48;
+    @apply rounded-xl bg-slate-100 dark:bg-base-100 w-full lg:w-80 h-52;
 }
 
 .recipe-details {
-    @apply rounded-xl bg-slate-100 w-full md:w-[668px] p-5 flex flex-col gap-5;
+    @apply rounded-xl bg-slate-100 dark:bg-base-100 w-full md:w-[668px] p-5 flex flex-col gap-5;
 }
 
 .ing-icons {
@@ -123,9 +123,22 @@ a {
 }
 
 .big-heading {
-    @apply mt-5 text-2xl font-extrabold leading-[1.15] text-black sm:text-3xl;
+    @apply mt-5 text-2xl font-extrabold leading-[1.15] text-black dark:text-accent sm:text-3xl;
 }
 
 h2 {
     @apply font-extrabold font-satoshi;
+}
+
+form h3 {
+    @apply font-inter font-bold text-lg;
+}
+
+/* Misc UI */
+
+.dark-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10;
 }

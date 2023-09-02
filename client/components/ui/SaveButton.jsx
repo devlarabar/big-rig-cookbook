@@ -56,7 +56,7 @@ const SaveButton = ({ user, recipe, stretch }) => {
         return (
             <div className="flex flex-end">
                 {!isAuthor &&
-                    <button className="btn btn-square" onClick={() => saveRecipe(recipe._id)}>
+                    <button className="btn btn-square rounded-full dark:bg-primary" onClick={() => saveRecipe(recipe._id)}>
                         {saved
                             ? <Image
                                 src="/assets/icons/heroicon-unsave.svg"
@@ -76,7 +76,7 @@ const SaveButton = ({ user, recipe, stretch }) => {
     } else if (stretch) {
         return (
             <div className="flex flex-end">
-                <button className="btn btn-square" onClick={() => saveStretch(stretch._id)}>
+                <button className="btn btn-square rounded-full dark:bg-primary" onClick={() => saveStretch(stretch._id)}>
                     {saved
                         ? <Image
                             src="/assets/icons/heroicon-unsave.svg"

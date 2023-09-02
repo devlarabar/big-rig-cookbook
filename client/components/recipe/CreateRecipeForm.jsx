@@ -99,9 +99,11 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect }) => {
                     />
                 </div>
             </div>
-
+            <div className="divider"></div>
             <Ingredients recipe={recipe} setRecipe={setRecipe} />
+            <div className="divider"></div>
             <Cookware recipe={recipe} setRecipe={setRecipe} />
+            <div className="divider"></div>
             <Directions recipe={recipe} setRecipe={setRecipe} />
 
             {submitDisabled && <p className="text-xs mt-0">Please ensure all the required fields are filled.</p>}
