@@ -25,7 +25,7 @@ module.exports = {
         const username = req.params.username.toLowerCase()
         const userDoc = await User.findOne({ username })
         if (userDoc) {
-            const posts = await Recipe
+            const recipes = await Recipe
                 .find({ author: userDoc })
                 .populate('author', ['username'])
                 .populate('ingredients.ingredient', ['name', 'type'])
@@ -49,7 +49,7 @@ module.exports = {
                     achievements,
                     description: userDoc.description || ''
                 },
-                posts,
+                recipes,
                 cookbook,
                 stretches
             }

@@ -21,7 +21,8 @@ const RecipeCard = ({ user, recipe }) => {
 					<h3 className="card-title">{recipe.title}</h3>
 				</Link>
 				<div className="w-full">
-					<span className="flex flex-between gap-5 w-full"><Link href={`/profile/${recipe.author.username}`} className="post-author">{recipe.author.username}</Link>
+					<span className="flex flex-between gap-5 w-full">
+						<Link href={`/profile/${recipe.author.username}`}>{recipe.author.username}</Link>
 						<time>{format(new Date(recipe.createdAt), 'MMM d, yyyy HH:mm')}</time></span>
 				</div>
 				<IngredientIcons ingredients={recipe.ingredients} />

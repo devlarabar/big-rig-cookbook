@@ -35,7 +35,7 @@ const UserProfile = () => {
             const fetchUserInfo = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/userprofile/${user}`)
             const info = await fetchUserInfo.json()
             setUserProfileDetails(info.profile)
-            setUserRecipes(info.posts)
+            setUserRecipes(info.recipes)
             setUserCookbook(info.cookbook)
             setUserStretches(info.stretches)
             setUserAchievements(info.profile.achievements)

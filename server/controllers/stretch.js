@@ -4,7 +4,7 @@ const Stretch = require('../models/Stretch')
 const StretchRoutine = require('../models/StretchRoutine')
 const jwt = require('jsonwebtoken')
 const secret = 'salkdjfhsk2345rfgd324'
-const helpers = require('./post.helpers')
+const helpers = require('./recipe.helpers')
 
 module.exports = {
     home: async (req, res) => {

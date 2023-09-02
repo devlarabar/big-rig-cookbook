@@ -15,7 +15,7 @@ const RecipeDetails = () => {
 
     useEffect(() => {
         const fetchRecipe = async () => {
-            const recipeData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/edit/${id}`)
+            const recipeData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe/edit/${id}`)
             const recipeJSON = await recipeData.json()
             setRecipe(recipeJSON ? recipeJSON : 404)
         }
@@ -25,7 +25,7 @@ const RecipeDetails = () => {
     async function deleteRecipe() {
         const confirm = window.confirm('Are you sure you want to delete this recipe? This action is permanent!')
         if (confirm) {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/delete/${id}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe/delete/${id}`, {
                 method: 'DELETE',
                 body: JSON.stringify({ id: id }),
                 headers: {
@@ -63,9 +63,9 @@ const RecipeDetails = () => {
                     </div>
                 )}
             </div>
-            <section className="post-info flex flex-between">
+            <section className="flex flex-between">
                 <p>
-                    <Link href={`/user/${recipe.author.username}`} className="post-author">{recipe.author.username}</Link> | <time>{format(new Date(recipe.createdAt), 'MMM d, yyyy HH:mm')}</time>
+                    <Link href={`/user/${recipe.author.username}`}>{recipe.author.username}</Link> | <time>{format(new Date(recipe.createdAt), 'MMM d, yyyy HH:mm')}</time>
                 </p>
             </section>
 

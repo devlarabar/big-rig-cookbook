@@ -28,11 +28,11 @@ const SaveButton = ({ user, recipe, stretch }) => {
         }
     }, [stretch, user.id])
 
-    async function saveRecipe(post_id) {
+    async function saveRecipe(recipe_id) {
         console.log(user.id)
-        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/save`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe/save`, {
             method: 'PUT',
-            body: JSON.stringify({ post: post_id, user: user.id }),
+            body: JSON.stringify({ recipe: recipe_id, user: user.id }),
             headers: {
                 'Content-Type': 'application/json'
             },

@@ -16,7 +16,7 @@ const CreateRecipe = () => {
 
     useEffect (() => {
         const getRecipeData = async () => {
-            const recipeFetch = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/edit/${recipe}`)
+            const recipeFetch = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe/edit/${recipe}`)
             const recipeJSON = await recipeFetch.json()
             setRecipeData(recipeJSON)
         }

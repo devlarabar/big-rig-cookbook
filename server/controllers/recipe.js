@@ -1,31 +1,31 @@
 const User = require('../models/User')
-const Post = require('../models/Recipe')
+const Recipe = require('../models/Recipe')
 const Ingredient = require('../models/Ingredient')
 const Achievement = require('../models/Achievement')
 const jwt = require('jsonwebtoken')
 const secret = 'salkdjfhsk2345rfgd324'
-const helpers = require('./post.helpers')
+const helpers = require('./recipe.helpers')
 
 module.exports = {
-    createPostData: async (req, res) => {
+    createRecipeData: async (req, res) => {
         const { id } = req.params
         if (id) {
             const substituteID = '123456789123456789012345'
-            const postDoc = await Post
+            const recipeDoc = await Recipe
                 .findById(id.length === 24 ? id : substituteID)
                 .populate('author', ['username'])
                 .populate('ingredients.ingredient', 'name')
-            res.json(postDoc ? postDoc : null)
-            console.log('Recipe is being edited...', postDoc)
+            res.json(recipeDoc ? recipeDoc : null)
+            console.log('Recipe is being edited...', recipeDoc)
         } else {
             res.json('Not found').status(404)
         }
     },
-    createPost: async (req, res) => {
+    createRecipe: async (req, res) => {
         const userId = req.body.user.id
         const { title, directions, ingredients, cookware, prepTime, cookTime } = req.body
         try {
-            const postDoc = await Post.create({
+            const recipeDoc = await Recipe.create({
                 title,
                 directions,
                 ingredients,
@@ -35,21 +35,21 @@ module.exports = {
                 author: userId,
             })
             await helpers.checkAchievements(userId)
-            res.json({ postDoc }).status(201)
+            res.json({ recipeDoc }).status(201)
         } catch (error) {
             console.log(error)
             res.json('Failed to create recipe').status(500)
         }
     },
-    editPost: async (req, res) => {
+    editRecipe: async (req, res) => {
         const userId = req.body.user.id
         const { title, directions, ingredients, cookware, prepTime, cookTime, editRecipeId } = req.body
         try {
-            const postDoc = await Post.findById(editRecipeId)
-            const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(userId)
-            if (!isAuthor) return res.status(400).json('You are not the author of this post!')
+            const recipeDoc = await Recipe.findById(editRecipeId)
+            const isAuthor = JSON.stringify(recipeDoc.author) === JSON.stringify(userId)
+            if (!isAuthor) return res.status(400).json('You are not the author of this recipe!')
             else {
-                await postDoc.updateOne({
+                await recipeDoc.updateOne({
                     title,
                     directions,
                     ingredients,
@@ -58,64 +58,64 @@ module.exports = {
                     cookTime
                 })
                 await helpers.checkAchievements(userId)
-                res.json({ postDoc }).status(201)
+                res.json({ recipeDoc }).status(201)
             }
         } catch (error) {
             console.log(error)
             res.json('Failed to create recipe').status(500)
         }
     },
-    deletePost: async (req, res) => {
+    deleteRecipe: async (req, res) => {
         const userId = req.user.id
-        const postId = req.params.id
-        const postDoc = await Post.findById(postId)
-        const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(userId)
-        if (!isAuthor) return res.status(400).json('You are not the author of this post!')
+        const recipeId = req.params.id
+        const recipeDoc = await Recipe.findById(recipeId)
+        const isAuthor = JSON.stringify(recipeDoc.author) === JSON.stringify(userId)
+        if (!isAuthor) return res.status(400).json('You are not the author of this recipe!')
         else {
             try {
-                await Post.findByIdAndDelete(postId)
-                res.json(`Post ${postId} deleted.`)
+                await Recipe.findByIdAndDelete(recipeId)
+                res.json(`Recipe ${recipeId} deleted.`)
             } catch (err) {
                 res.json({ 'error': err }).status(204)
             }
         }
     },
-    viewPosts: async (req, res) => {
-        const posts = await Post
+    viewRecipes: async (req, res) => {
+        const recipes = await Recipe
             .find()
             .populate('author', ['username'])
             .populate('ingredients.ingredient', ['name', 'type'])
             .sort({ createdAt: -1 })
             .limit(20)
             .lean()
-        res.json(posts)
+        res.json(recipes)
     },
-    viewPost: async (req, res) => {
+    viewRecipe: async (req, res) => {
         const { id } = req.params
         const substituteID = '123456789123456789012345'
-        const postDoc = await Post
+        const recipeDoc = await Recipe
             .findById(id.length === 24 ? id : substituteID)
             .populate('author', ['username'])
             .populate('ingredients.ingredient', 'name')
-        res.json(postDoc ? postDoc : null)
+        res.json(recipeDoc ? recipeDoc : null)
     },
-    savePost: async (req, res) => {
-        const postId = req.body.post
+    saveRecipe: async (req, res) => {
+        const recipeId = req.body.recipe
         const userId = req.body.user
-        const postDoc = await Post.findById(postId)
+        const recipeDoc = await Recipe.findById(recipeId)
         const userDoc = await User.findById(userId)
 
-        if (postDoc.savedBy?.includes(userDoc._id)) {
-            newSavedPosts = postDoc.savedBy.filter(x => x != String(userDoc._id))
-            await postDoc.updateOne({
-                savedBy: [...newSavedPosts]
+        if (recipeDoc.savedBy?.includes(userDoc._id)) {
+            newSavedRecipes = recipeDoc.savedBy.filter(x => x != String(userDoc._id))
+            await recipeDoc.updateOne({
+                savedBy: [...newSavedRecipes]
             });
-            res.json(`User id ${userId} removed from post ${postId}.`)
+            res.json(`User id ${userId} removed from recipe ${recipeId}.`)
         } else {
-            await postDoc.updateOne({
-                savedBy: [...postDoc.savedBy, userDoc]
+            await recipeDoc.updateOne({
+                savedBy: [...recipeDoc.savedBy, userDoc]
             }, { upsert: true });
-            res.json(`User id ${userId} saved to post ${postId}.`)
+            res.json(`User id ${userId} saved to recipe ${recipeId}.`)
         }
     }
 }
