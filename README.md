@@ -36,6 +36,7 @@ Milestones accomplished:
 - Stretch database, and the ability to save stretches
 - Daily stretch tracker
 - Users can edit their profile descriptions
+- Users can create stretch routines
 
 Next steps are outlined here, for easy reference. This is not an exhaustive list; only a list of the immediate next steps for the project. This list will be updated as needed.
 
