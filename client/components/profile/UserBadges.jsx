@@ -1,17 +1,16 @@
-import React from 'react'
-
 const UserBadges = ({ userAchievements }) => {
-    if (userAchievements.length === 0) {
-        return (
-            <></>
-        )
-    }
+    if (userAchievements.length === 0) return <></>
     return (
-        <div className="user-badges flex flex-center">
+        <div className="mt-4">
             {userAchievements.map((x, i) => {
-                return (
-                    <div className="user-badge" key={i}>{x.name}</div>
-                )
+                return x?.achievement?.name ? (
+                    <div 
+                        className="badge badge-md"
+                        key={i}
+                    >
+                        {x.achievement.name}
+                    </div>
+                ) : <span key={i}></span>
             })}
         </div>
     )
