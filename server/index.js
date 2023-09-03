@@ -23,7 +23,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(
     cors({
-        origin: (process.env.FRONTEND_URL).slice(0, (process.env.FRONTEND_URL.length-1)),
+        origin: process.env.FRONTEND_URL,
         credentials: true,
     })
 )

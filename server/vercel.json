@@ -12,5 +12,5 @@
             "dest": "/"
         }
     ],
-    "trailingSlash": true
+    "trailingSlash": false
 }
