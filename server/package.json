@@ -27,6 +27,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.14.9"
+    "nodemon": "^1.14.9",
+    "vercel": "^32.1.0"
   }
 }
