@@ -1,25 +1,34 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import DataService from '@services/dataService'
 
 const useProvideAuth = () => {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState(null)
 
 	useEffect(() => {
-		// Check if there's a current user; if so, save them to the auth context
-		DataService.getCurrentUser().then(response => {
-			console.log('Current user:', response.data)
-			setUser(response.data)
-			if (response.data instanceof Object) {
+		const fetchCurrentUser = async () => {
+			const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/getuser`, {
+				method: 'GET',
+				credentials: 'include'
+			})
+			try {
+				const userData = await response.json()
+				console.log('Current user:', userData)
+				setUser(userData)
+			} catch (err) {
+				// No user
+				setUser(null)
+			}
+			if (response instanceof Object) {
 				// To-do: put redirect logic here
 			}
-		})
+		}
+		fetchCurrentUser()
 	}, [])
 
 	const logout = () => {
-		DataService.logout()
-		setUser(null)
+		console.log('Logging out...')
+		return URL.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`)
 	}
 
 	const isAuthenticated = () => user ? true : 'unauthenticated'
