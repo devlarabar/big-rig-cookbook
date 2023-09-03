@@ -11,9 +11,6 @@ const MongoStore = require('connect-mongo')(session)
 const bodyParser = require('body-parser')
 require('dotenv').config({ path: './config/.env' })
 
-const PORT = 4000
-const salt = bcrypt.genSaltSync(10)
-
 connectDB()
 
 // ***************************** Middleware
@@ -64,6 +61,6 @@ app.use('/search', searchRoutes)
 app.use('/settings', settingsRoutes)
 app.use('/admin', adminRoutes)
 
-app.listen(process.env.PORT || PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT}`)
 })
