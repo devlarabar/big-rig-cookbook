@@ -11,7 +11,8 @@ function Authentication() {
     const [loginPassword, setLoginPassword] = useState('')
     const [doRedirect, setDoRedirect] = useState(false)
 
-    const login = () => {
+    const login = (e) => {
+        e.preventDefault()
         Axios({
             method: 'POST',
             data: {
@@ -36,7 +37,7 @@ function Authentication() {
         </section>
     )
     return (
-        <form className='flex flex-col gap-5 w-2/3 max-w-[300px]'>
+        <form onSubmit={(e) => login(e)} className="flex flex-col gap-5 w-2/3 max-w-[300px]">
             <h2>Login</h2>
             <label>Username
                 <input
@@ -52,7 +53,7 @@ function Authentication() {
                     onChange={(e) => setLoginPassword(e.target.value)}
                 />
             </label>
-            <button className='btn btn-secondary' onClick={login}>Submit</button>
+            <button className='btn btn-secondary' type="submit">Submit</button>
             <p className="flex justify-center"><span>Don't have an account? <Link href="/auth/register">Register</Link>!</span></p>
         </form>
     )
