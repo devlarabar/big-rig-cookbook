@@ -11,6 +11,5 @@
             "src": "/(.*)",
             "dest": "/"
         }
-    ],
-    "trailingSlash": false
+    ]
 }
