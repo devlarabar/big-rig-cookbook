@@ -23,7 +23,6 @@ function Authentication() {
             url: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
         }).then((res) => {
             console.log(res)
-            setDoRedirect(true)
         })
     }
 
