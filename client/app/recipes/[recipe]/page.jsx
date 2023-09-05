@@ -56,7 +56,7 @@ const RecipeDetails = () => {
                 <h2 className="big-heading">{recipe.title}</h2>
                 {auth.user.id === recipe.author._id && (
                     <div className="flex flex-center gap-5">
-                        <Link href={`/recipe/edit/${recipe._id}`} className="btn btn-primary">
+                        <Link href={`/recipes/edit/${recipe._id}`} className="btn btn-primary">
                             Edit
                         </Link>
                         <button className="btn btn-outline" onClick={deleteRecipe}>Delete</button>

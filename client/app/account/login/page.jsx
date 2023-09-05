@@ -20,7 +20,7 @@ function Authentication() {
                 password: loginPassword,
             },
             withCredentials: true,
-            url: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+            url: `${process.env.NEXT_PUBLIC_API_URL}/account/login`,
         }).then((res) => {
             console.log(res)
         })
@@ -53,7 +53,7 @@ function Authentication() {
                 />
             </label>
             <button className='btn btn-secondary' type="submit">Submit</button>
-            <p className="flex justify-center"><span>Don't have an account? <Link href="/auth/register">Register</Link>!</span></p>
+            <p className="flex justify-center"><span>Don't have an account? <Link href="/account/register">Register</Link>!</span></p>
         </form>
     )
 }

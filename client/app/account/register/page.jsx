@@ -64,7 +64,7 @@ function Register() {
                 />
             </label>
             <button className='btn btn-secondary' onClick={register}>Submit</button>
-            <p className="flex justify-center gap-1"><span>Already have an account? <Link href="/auth/login">Sign in</Link>!</span></p>
+            <p className="flex justify-center gap-1"><span>Already have an account? <Link href="/account/login">Sign in</Link>!</span></p>
         </form>
     )
 }

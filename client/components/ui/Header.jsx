@@ -49,7 +49,7 @@ const Header = () => {
             <div className="sm:flex hidden">
                 {auth?.user ? (
                     <div className="flex gap-3 md:gap-5 flex-center">
-                        <Link href="/recipe/create" className="btn btn-primary">New Recipe</Link>
+                        <Link href="/recipes/create" className="btn btn-primary">New Recipe</Link>
                         <button type="button" onClick={logOut} className="btn btn-outline">Sign out</button>
 
                         <Link href={`/profile/${auth.user.username}`}>
@@ -63,7 +63,7 @@ const Header = () => {
                     </div>
                 )
                     : <>
-                        <Link href="/auth/login">
+                        <Link href="/account/login">
                             <button
                                 type="button"
                                 className="btn btn-primary"
@@ -96,35 +96,35 @@ const Header = () => {
                                     My Profile
                                 </Link>
                                 <Link
-                                    href="/stretch/search"
+                                    href="/stretches/search"
                                     className="dropdown_link"
                                     onClick={() => setToggleDropdown(false)}
                                 >
                                     Search Recipes
                                 </Link>
                                 <Link
-                                    href="/recipe/create"
+                                    href="/recipes/create"
                                     className="dropdown_link"
                                     onClick={() => setToggleDropdown(false)}
                                 >
                                     New Recipe
                                 </Link>
                                 <Link
-                                    href="/stretch"
+                                    href="/stretches"
                                     className="dropdown_link"
                                     onClick={() => setToggleDropdown(false)}
                                 >
                                     Stretches
                                 </Link>
                                 <Link
-                                    href="/stretch/tracker"
+                                    href="/stretches/tracker"
                                     className="dropdown_link"
                                     onClick={() => setToggleDropdown(false)}
                                 >
                                     Stretch Tracker
                                 </Link>
                                 {auth.user.admin && <Link
-                                    href="/admin"
+                                    href="/adminuser"
                                     className="dropdown_link"
                                     onClick={() => setToggleDropdown(false)}
                                 >
@@ -144,7 +144,7 @@ const Header = () => {
                         )}
                     </div>
                 ) : <>
-                    <Link href="/auth/login">
+                    <Link href="/account/login">
                         <button
                             type="button"
                             className="btn btn-primary"

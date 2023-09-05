@@ -17,7 +17,7 @@ const RecipeCard = ({ user, recipe }) => {
 	return (
 		<div className="recipe-card">
 			<div className="card-body">
-				<Link href={`/recipe/${recipe._id}`}>
+				<Link href={`/recipes/${recipe._id}`}>
 					<h3 className="card-title">{recipe.title}</h3>
 				</Link>
 				<div className="w-full">

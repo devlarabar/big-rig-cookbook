@@ -26,9 +26,15 @@ const useProvideAuth = () => {
 		fetchCurrentUser()
 	}, [])
 
-	const logout = () => {
+	const logout = async () => {
 		console.log('Logging out...')
-		return URL.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`)
+		const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
+			method: 'POST',
+			credentials: 'include'
+		})
+		if (response.ok) {
+			setUser(null)
+		}
 	}
 
 	const isAuthenticated = () => user ? true : 'unauthenticated'
