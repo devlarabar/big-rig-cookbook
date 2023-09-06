@@ -45,6 +45,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 require("./config/passport")(passport)
 
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1)
+}
+
 // ***************************** Routers
 
 const homeRoutes = require('./routes/home')
