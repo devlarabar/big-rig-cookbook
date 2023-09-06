@@ -13,7 +13,7 @@ const useProvideAuth = () => {
 			})
 			try {
 				const userData = await response.json()
-				console.log('Current user:', userData)
+				if (process.env.NEXT_PUBLIC_ENV === 'local') console.log('Current user:', userData)
 				setUser(userData)
 			} catch (err) {
 				// No user

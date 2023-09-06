@@ -67,7 +67,7 @@ label {
     @apply font-semibold;
 }
 
-input[type="text"], input[type="search"], input[type="email"] {
+input[type="text"], input[type="search"], input[type="email"], input[type="password"] {
     @apply input input-bordered w-full;
 }
 

@@ -10,6 +10,7 @@ function Register() {
     const [registerUsername, setRegisterUsername] = useState('')
     const [registerEmail, setRegisterEmail] = useState('')
     const [registerPassword, setRegisterPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
     const [doRedirect, setDoRedirect] = useState(false)
 
     const register = () => {
@@ -29,6 +30,8 @@ function Register() {
             })
             .catch(err => console.log(err))
     }
+
+    const togglePwVisibility = (e) => setShowPassword(e.target.checked)
 
     if (doRedirect) {
         window.location = 'auth/login'
@@ -58,10 +61,13 @@ function Register() {
             </label>
             <label>Password
                 <input
-                    type="text"
+                    type={showPassword ? 'text' : 'password'}
                     placeholder='password'
                     onChange={(e) => setRegisterPassword(e.target.value)}
                 />
+            </label>
+            <label className="flex items-center gap-5">Show Password
+                <input type="checkbox" className="checkbox checkbox-primary" onChange={(e) => togglePwVisibility(e)} />
             </label>
             <button className='btn btn-secondary' onClick={register}>Submit</button>
             <p className="flex justify-center gap-1"><span>Already have an account? <Link href="/account/login">Sign in</Link>!</span></p>

@@ -17,7 +17,6 @@ const Home = () => {
             setRecipes(recipesJSON)
         }
         fetchRecipes()
-        console.log(auth)
     }, [])
 
     if (!auth?.user) return <Spinner />

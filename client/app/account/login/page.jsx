@@ -9,6 +9,7 @@ function Authentication() {
     const auth = useAuthContext()
     const [loginUsername, setLoginUsername] = useState('')
     const [loginPassword, setLoginPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
     const [doRedirect, setDoRedirect] = useState(false)
 
     const login = (e) => {
@@ -22,9 +23,11 @@ function Authentication() {
             withCredentials: true,
             url: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
         }).then((res) => {
-            console.log(res)
+            setDoRedirect(true)
         })
     }
+
+    const togglePwVisibility = (e) => setShowPassword(e.target.checked)
 
     if (doRedirect) {
         window.location = '/home'
@@ -47,10 +50,13 @@ function Authentication() {
             </label>
             <label>Password
                 <input
-                    type="text"
+                    type={showPassword ? 'text' : 'password'}
                     placeholder='password'
                     onChange={(e) => setLoginPassword(e.target.value)}
                 />
+            </label>
+            <label className="flex items-center gap-5">Show Password
+                <input type="checkbox" className="checkbox checkbox-primary" onChange={(e) => togglePwVisibility(e)} />
             </label>
             <button className='btn btn-secondary' type="submit">Submit</button>
             <p className="flex justify-center"><span>Don't have an account? <Link href="/account/register">Register</Link>!</span></p>

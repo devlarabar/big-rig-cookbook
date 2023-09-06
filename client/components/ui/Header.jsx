@@ -14,8 +14,6 @@ const Header = () => {
 
     const logoLink = auth?.user ? '/home' : '/'
 
-    useEffect(() => console.log(auth), [])
-
     const logOut = async (event) => {
         auth.logout()
         setDoRedirect(true)
