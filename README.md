@@ -41,7 +41,10 @@ Milestones accomplished:
 Next steps are outlined here, for easy reference. This is not an exhaustive list; only a list of the immediate next steps for the project. This list will be updated as needed.
 
 - Enhance user profiles
-- Allow users to create "stretch routines"
 - Enable users to change their username, e-mail, and password
 - Layout styling improvements
 - Achievement badge enhancements
+
+# Visit the app!
+
+Want to check out the app for yourself? Check it out <a href="https://bigrigcookbook.vercel.app/">here</a>!
