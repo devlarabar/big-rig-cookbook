@@ -20,7 +20,7 @@ function Authentication() {
                 password: loginPassword,
             },
             withCredentials: true,
-            url: `${process.env.NEXT_PUBLIC_API_URL}/account/login`,
+            url: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
         }).then((res) => {
             console.log(res)
         })
