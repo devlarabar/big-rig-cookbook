@@ -27,6 +27,7 @@ app.use(
 
 // ***************************** Setup Sessions - stored in MongoDB
 app.use(cookieParser('keyboard cat'))
+app.set('trust proxy', 1)
 
 if (process.env.NODE_ENV === 'local') {
     app.use(
@@ -58,7 +59,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 require("./config/passport")(passport)
 
-app.set('trust proxy', 1)
 
 // ***************************** Routers
 
