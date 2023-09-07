@@ -30,6 +30,7 @@ module.exports = function (passport) {
             id: user._id,
             admin: user.admin
         }
+        console.log('PassportJS Deserialization:', userInformation)
         cb(null, userInformation)
     })
 }
