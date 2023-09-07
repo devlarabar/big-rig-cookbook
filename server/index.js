@@ -26,6 +26,8 @@ app.use(
 )
 
 // ***************************** Setup Sessions - stored in MongoDB
+app.use(cookieParser('keyboard cat'))
+
 if (process.env.NODE_ENV === 'local') {
     app.use(
         session({
@@ -43,7 +45,7 @@ if (process.env.NODE_ENV === 'local') {
             saveUninitialized: false,
             store: new MongoStore({ mongooseConnection: mongoose.connection }),
             cookie: {
-                secure: true, // Set to true if you're using HTTPS
+                // secure: true, // Set to true if you're using HTTPS
                 httpOnly: true,
                 maxAge: 1000 * 60 * 60 * 24, // 1 day
                 sameSite: "none",
@@ -52,7 +54,6 @@ if (process.env.NODE_ENV === 'local') {
     )
 }
 
-app.use(cookieParser("secretcode"))
 app.use(passport.initialize())
 app.use(passport.session())
 require("./config/passport")(passport)
