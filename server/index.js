@@ -56,9 +56,9 @@ if (process.env.NODE_ENV === 'local') {
     )
 }
 
+require("./config/passport")(passport)
 app.use(passport.initialize())
 app.use(passport.session())
-require("./config/passport")(passport)
 
 
 // ***************************** Routers
