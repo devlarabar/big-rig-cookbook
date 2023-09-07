@@ -25,6 +25,7 @@ module.exports = {
             if (err) throw err
             if (!user) res.send('No User Exists')
             else {
+                res.setHeader('Access-Control-Allow-Credentials', 'true')
                 req.logIn(user, (err) => {
                     if (err) throw err
                     res.send('Successfully Authenticated')

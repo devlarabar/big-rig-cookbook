@@ -15,7 +15,9 @@ const Remacc = () => {
             method: 'DELETE',
             body: JSON.stringify({ user: auth.user }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL
             },
         })
         if (response.ok) {

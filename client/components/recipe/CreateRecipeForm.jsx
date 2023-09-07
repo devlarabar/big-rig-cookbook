@@ -46,7 +46,9 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect, editRecipeId }) => {
                         method: 'POST',
                         body: JSON.stringify(recipeInfo),
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL
                         },
                         credentials: 'include'
                     })
@@ -56,7 +58,9 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect, editRecipeId }) => {
                         method: 'PUT',
                         body: JSON.stringify(recipeInfo),
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL
                         },
                         credentials: 'include'
                     })

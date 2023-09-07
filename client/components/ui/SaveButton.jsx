@@ -34,7 +34,9 @@ const SaveButton = ({ user, recipe, stretch }) => {
             method: 'PUT',
             body: JSON.stringify({ recipe: recipe_id, user: user.id }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL
             },
             credentials: 'include'
         })
@@ -46,8 +48,11 @@ const SaveButton = ({ user, recipe, stretch }) => {
             method: 'PUT',
             body: JSON.stringify({ stretch: stretch_id, user: user.id }),
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL
+            },
+            credentials: 'include'
         })
         setSaved(!saved)
     }

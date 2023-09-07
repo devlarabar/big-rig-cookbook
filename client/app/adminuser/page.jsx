@@ -43,7 +43,9 @@ const Admin = () => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/addingredient`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL
             },
             body: JSON.stringify(formDataIngredient)
         })
@@ -52,7 +54,9 @@ const Admin = () => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/addachievement`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL
             },
             body: JSON.stringify(formDataAchievement)
         })
@@ -61,7 +65,9 @@ const Admin = () => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/addstretch`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL
             },
             body: JSON.stringify(formDataStretch)
         })

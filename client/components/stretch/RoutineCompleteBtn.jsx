@@ -16,7 +16,9 @@ const RoutineCompleteBtn = ({ user, routine }) => {
         const markCompleteReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/stretch/complete/${routine._id}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL
             },
             body: JSON.stringify({ 'authUser': user.id })
         })
