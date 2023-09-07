@@ -17,6 +17,7 @@ const useProvideAuth = () => {
 			// 	},
 			// 	credentials: 'include'
 			// })
+			Axios.defaults.withCredentials = true
 			Axios({
 				method: 'GET',
 				withCredentials: true,
