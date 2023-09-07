@@ -16,7 +16,7 @@ const StretchRoutine = () => {
 
     useEffect(() => {
         const fetchStretches = async () => {
-            const stretchData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/stretch`)
+            const stretchData = await fetch(`/server/stretch`)
             const stretchJSON = await stretchData.json()
             setStretches(stretchJSON)
         }
@@ -38,7 +38,7 @@ const StretchRoutine = () => {
         e.preventDefault()
         if (routine.stretches.length >= 1) {
             setSubmitDisabled(true)
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/stretch/routine/create`, {
+            const response = await fetch(`/server/stretch/routine/create`, {
                 method: 'POST',
                 body: JSON.stringify(routine),
                 headers: {

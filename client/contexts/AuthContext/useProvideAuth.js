@@ -8,7 +8,7 @@ const useProvideAuth = () => {
 
 	useEffect(() => {
 		// const fetchCurrentUser = async () => {
-			// const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/getuser`, {
+			// const response = await fetch(`/auth/getuser`, {
 			// 	method: 'GET',
 			// 	headers: {
 			// 		'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ const useProvideAuth = () => {
 			Axios({
 				method: 'GET',
 				withCredentials: true,
-				url: `${process.env.NEXT_PUBLIC_API_URL}/server/auth/getuser`,
+				url: `/server/auth/getuser`,
 			}).then((res) => {
 				try {
 					if (process.env.NEXT_PUBLIC_ENV === 'local') console.log('Current user:', res.data)
@@ -49,7 +49,7 @@ const useProvideAuth = () => {
 
 	const logout = async () => {
 		console.log('Logging out...')
-		const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/auth/logout`, {
+		const response = await fetch(`/server/auth/logout`, {
 			method: 'POST',
 			credentials: 'include'
 		})

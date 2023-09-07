@@ -8,7 +8,7 @@ const ProfileDescription = ({ user }) => {
 
     const submitDescription = async (e) => {
         e.preventDefault()
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/settings/description`, {
+        const response = await fetch(`/server/settings/description`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -14,7 +14,7 @@ const StretchTracker = () => {
 
     useEffect(() => {
         const fetchRoutines = async () => {
-            const getRoutines = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/stretch/getroutine/${auth.user.id}`)
+            const getRoutines = await fetch(`/server/stretch/getroutine/${auth.user.id}`)
             const routineData = await getRoutines.json()
             setRoutines(routineData)
         }
@@ -23,7 +23,7 @@ const StretchTracker = () => {
 
     useEffect(() => {
         const fetchStretches = async () => {
-            const getStretches = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/stretch/getstretches/${auth.user.id}`)
+            const getStretches = await fetch(`/server/stretch/getstretches/${auth.user.id}`)
             const stretchData = await getStretches.json()
             setStretches(stretchData)
         }

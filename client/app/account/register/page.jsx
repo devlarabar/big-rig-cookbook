@@ -22,7 +22,7 @@ function Register() {
                 email: registerEmail,
             },
             withCredentials: true,
-            url: `${process.env.NEXT_PUBLIC_API_URL}/server/auth/register`,
+            url: `/server/auth/register`,
         })
             .then(res => {
                 console.log(res)

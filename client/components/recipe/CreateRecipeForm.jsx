@@ -42,7 +42,7 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect, editRecipeId }) => {
                     ...recipe
                 }
                 if (!editRecipeId) {
-                    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/recipe/create`, {
+                    const response = await fetch(`/server/recipe/create`, {
                         method: 'POST',
                         body: JSON.stringify(recipeInfo),
                         headers: {
@@ -54,7 +54,7 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect, editRecipeId }) => {
                     })
                     if (response.ok) setDoRedirect(true)
                 } else {
-                    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/recipe/edit`, {
+                    const response = await fetch(`/server/recipe/edit`, {
                         method: 'PUT',
                         body: JSON.stringify(recipeInfo),
                         headers: {

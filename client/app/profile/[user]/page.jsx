@@ -32,7 +32,7 @@ const UserProfile = () => {
             setUserAchievements('')
             setSection(defaultSection)
 
-            const fetchUserInfo = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/user/userprofile/${user}`)
+            const fetchUserInfo = await fetch(`/server/user/userprofile/${user}`)
             const info = await fetchUserInfo.json()
             setUserProfileDetails(info.profile)
             setUserRecipes(info.recipes)

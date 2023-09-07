@@ -11,7 +11,7 @@ const Remacc = () => {
     const [doRedirect, setDoRedirect] = useState(false)
 
     const remacc = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/remacc`, {
+        const response = await fetch(`/user/remacc`, {
             method: 'DELETE',
             body: JSON.stringify({ user: auth.user }),
             headers: {

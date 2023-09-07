@@ -13,7 +13,7 @@ const RoutineCompleteBtn = ({ user, routine }) => {
     }, [])
 
     const markRoutineComplete = async () => {
-        const markCompleteReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/stretch/complete/${routine._id}`, {
+        const markCompleteReq = await fetch(`/server/stretch/complete/${routine._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

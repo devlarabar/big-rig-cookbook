@@ -40,7 +40,7 @@ const Admin = () => {
         user: auth?.user
     }
     function addIngredient() {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/admin/addingredient`, {
+        fetch(`/server/admin/addingredient`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const Admin = () => {
         })
     }
     function addAchievement() {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/admin/addachievement`, {
+        fetch(`/server/admin/addachievement`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ const Admin = () => {
         })
     }
     function addStretch() {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/admin/addstretch`, {
+        fetch(`/server/admin/addstretch`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

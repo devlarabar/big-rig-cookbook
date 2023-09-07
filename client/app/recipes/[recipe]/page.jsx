@@ -15,7 +15,7 @@ const RecipeDetails = () => {
 
     useEffect(() => {
         const fetchRecipe = async () => {
-            const recipeData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/recipe/edit/${id}`)
+            const recipeData = await fetch(`/server/recipe/edit/${id}`)
             const recipeJSON = await recipeData.json()
             setRecipe(recipeJSON ? recipeJSON : 404)
         }
@@ -25,7 +25,7 @@ const RecipeDetails = () => {
     async function deleteRecipe() {
         const confirm = window.confirm('Are you sure you want to delete this recipe? This action is permanent!')
         if (confirm) {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/recipe/delete/${id}`, {
+            const response = await fetch(`/server/recipe/delete/${id}`, {
                 method: 'DELETE',
                 body: JSON.stringify({ id: id }),
                 headers: {
