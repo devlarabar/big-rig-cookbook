@@ -9,6 +9,11 @@ const useProvideAuth = () => {
 		const fetchCurrentUser = async () => {
 			const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/getuser`, {
 				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept': 'application/json',
+					'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL
+				},
 				credentials: 'include'
 			})
 			try {
