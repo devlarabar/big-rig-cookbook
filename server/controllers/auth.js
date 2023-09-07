@@ -46,7 +46,7 @@ module.exports = {
         })
     },
     getUser: (req, res) => {
-        console.log('getUser function is running...', req, req.cookies)
+        console.log('getUser function is running...', req.sessionID, req.session)
         console.log('getUser:', req.user || 'None')
         res.send(req.user)
     },
