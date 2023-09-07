@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === 'local') {
             saveUninitialized: false,
             store: new MongoStore({ mongooseConnection: mongoose.connection }),
             cookie: {
-                secure: true, // Set to true if you're using HTTPS
+                secure: false, // Set to true if you're using HTTPS
                 // httpOnly: true,
                 maxAge: 1000 * 60 * 60 * 24, // 1 day
                 sameSite: "none",
