@@ -30,7 +30,7 @@ const SaveButton = ({ user, recipe, stretch }) => {
 
     async function saveRecipe(recipe_id) {
         console.log(user.id)
-        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe/save`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/recipe/save`, {
             method: 'PUT',
             body: JSON.stringify({ recipe: recipe_id, user: user.id }),
             headers: {
@@ -44,7 +44,7 @@ const SaveButton = ({ user, recipe, stretch }) => {
     }
 
     async function saveStretch(stretch_id) {
-        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/stretch/save`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/stretch/save`, {
             method: 'PUT',
             body: JSON.stringify({ stretch: stretch_id, user: user.id }),
             headers: {

@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/server/:path*",
+			"destination": "https://brc-backend.vercel.app/server/:path*"
+        }
+      ]
+}

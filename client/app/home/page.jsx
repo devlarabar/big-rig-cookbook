@@ -12,7 +12,7 @@ const Home = () => {
 
     useEffect(() => {
         const fetchRecipes = async () => {
-            const recipesData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe/viewrecipes`)
+            const recipesData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/recipe/viewrecipes`)
             const recipesJSON = await recipesData.json()
             setRecipes(recipesJSON)
         }

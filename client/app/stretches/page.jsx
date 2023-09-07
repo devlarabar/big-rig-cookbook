@@ -13,7 +13,7 @@ const StretchIndex = () => {
 
     useEffect(() => {
         const fetchStretches = async () => {
-            const stretchData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/stretch`)
+            const stretchData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/stretch`)
             const stretchJSON = await stretchData.json()
             setStretches(stretchJSON)
         }

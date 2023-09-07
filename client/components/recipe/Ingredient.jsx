@@ -29,7 +29,7 @@ const Ingredient = (props) => {
 
     useEffect(() => {
         (async () => {
-            const itemsData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/data/ingredients`)
+            const itemsData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/server/data/ingredients`)
             const itemsDataJSON = await itemsData.json()
             setItems(itemsDataJSON)
         })()
