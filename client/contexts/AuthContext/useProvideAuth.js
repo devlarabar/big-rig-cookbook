@@ -21,11 +21,11 @@ const useProvideAuth = () => {
 				method: 'GET',
 				withCredentials: true,
 				url: `${process.env.NEXT_PUBLIC_API_URL}/auth/getuser`,
-			}).then((userData) => {
+			}).then((res) => {
 				try {
-					if (process.env.NEXT_PUBLIC_ENV === 'local') console.log('Current user:', userData)
-					console.log('Axios userData:', userData)
-					setUser(userData)
+					if (process.env.NEXT_PUBLIC_ENV === 'local') console.log('Current user:', res.data)
+					console.log('Axios userData:', res.data)
+					setUser(res.data)
 				} catch (err) {
 					// No user
 					setUser(null)
