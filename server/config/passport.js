@@ -8,7 +8,6 @@ module.exports = function (passport) {
             const user = await User.findOne({ username: username })
             if (!user) return done(null, false)
             console.log(user)
-            console.log(user.password)
             bcrypt.compare(password, user.password, (err, result) => {
                 if (err) throw err;
                 if (result === true) {
@@ -19,11 +18,10 @@ module.exports = function (passport) {
             })
         })
     )
-
     passport.serializeUser((user, cb) => {
         console.log('PassportJS: Serializing user...')
         cb(null, user.id);
-    });
+    })
     passport.deserializeUser(async (id, cb) => {
         console.log('PassportJS: Deserializing user...')
         const user = await User.findOne({ _id: id })

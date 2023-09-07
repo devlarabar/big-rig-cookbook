@@ -28,7 +28,7 @@ module.exports = {
                 req.logIn(user, (err) => {
                     if (err) throw err
                     res.send('Successfully Authenticated')
-                    console.log(req.user)
+                    console.log('Successfully Authenticated', req.user)
                 })
             }
         })(req, res)
