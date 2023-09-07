@@ -46,6 +46,7 @@ module.exports = {
         })
     },
     getUser: (req, res) => {
+        console.log('getUser function is running...', req)
         console.log('getUser:', req.user || 'None')
         res.send(req.user)
     },
