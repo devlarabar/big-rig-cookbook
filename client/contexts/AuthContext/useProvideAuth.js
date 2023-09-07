@@ -24,6 +24,7 @@ const useProvideAuth = () => {
 			}).then((userData) => {
 				try {
 					if (process.env.NEXT_PUBLIC_ENV === 'local') console.log('Current user:', userData)
+					console.log('Axios userData:', userData)
 					setUser(userData)
 				} catch (err) {
 					// No user
