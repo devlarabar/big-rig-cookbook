@@ -20,7 +20,7 @@ const useProvideAuth = () => {
 			Axios({
 				method: 'GET',
 				withCredentials: true,
-				url: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+				url: `${process.env.NEXT_PUBLIC_API_URL}/auth/getuser`,
 			}).then((userData) => {
 				try {
 					if (process.env.NEXT_PUBLIC_ENV === 'local') console.log('Current user:', userData)
