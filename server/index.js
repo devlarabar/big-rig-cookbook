@@ -27,6 +27,7 @@ app.use(
 
 // ***************************** Setup Sessions - stored in MongoDB
 app.use(cookieParser('keyboard cat'))
+app.enable('trust proxy')
 app.set('trust proxy', 1)
 
 if (process.env.NODE_ENV === 'local') {
@@ -46,8 +47,8 @@ if (process.env.NODE_ENV === 'local') {
             saveUninitialized: false,
             store: new MongoStore({ mongooseConnection: mongoose.connection }),
             cookie: {
-                // secure: true, // Set to true if you're using HTTPS
-                httpOnly: true,
+                secure: true, // Set to true if you're using HTTPS
+                // httpOnly: true,
                 maxAge: 1000 * 60 * 60 * 24, // 1 day
                 sameSite: "none",
             }
