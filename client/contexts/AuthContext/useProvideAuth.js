@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import Axios from 'axios'
 
 const useProvideAuth = () => {
 	const [user, setUser] = useState(null)
@@ -17,21 +16,6 @@ const useProvideAuth = () => {
 				},
 				credentials: 'include'
 			})
-			// Axios.defaults.withCredentials = true
-			// Axios({
-			// 	method: 'GET',
-			// 	withCredentials: true,
-			// 	url: `/server/auth/getuser`,
-			// }).then((res) => {
-			// 	try {
-			// 		if (process.env.NEXT_PUBLIC_ENV === 'local') console.log('Current user:', res.data)
-			// 		console.log('Axios userData:', res.data)
-			// 		setUser(res.data)
-			// 	} catch (err) {
-			// 		// No user
-			// 		setUser(null)
-			// 	}
-			// })
 			try {
 				const userData = await response.json()
 				if (process.env.NEXT_PUBLIC_ENV === 'local') console.log('Current user:', userData)

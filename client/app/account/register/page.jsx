@@ -22,7 +22,7 @@ function Register() {
                 email: registerEmail,
             },
             withCredentials: true,
-            url: `/server/auth/register`,
+            url: '/server/auth/register',
         })
             .then(res => {
                 console.log(res)
@@ -34,7 +34,7 @@ function Register() {
     const togglePwVisibility = (e) => setShowPassword(e.target.checked)
 
     if (doRedirect) {
-        window.location = 'auth/login'
+        window.location = 'account/login'
     }
 
     if (auth?.user && auth.user !== "unauthenticated") return (
