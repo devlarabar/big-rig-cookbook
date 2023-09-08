@@ -34,7 +34,7 @@ function Register() {
     const togglePwVisibility = (e) => setShowPassword(e.target.checked)
 
     if (doRedirect) {
-        window.location = 'account/login'
+        window.location = '/account/login'
     }
 
     if (auth?.user && auth.user !== "unauthenticated") return (
