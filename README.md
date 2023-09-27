@@ -21,9 +21,9 @@ I believe that health and fitness doesn't have to be a chore, and it can be acce
 The project is in its early stages of development. The plan is to make it easily accessible on mobile devices (as most truckers have limited access to computers), with a simple and intuitive interface. The styling is a work in progress. Many components are styled using TailwindCSS and DaisyUI.
 
 <p align="center">
-<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/970836bf-4aca-484e-86aa-10adc5f69b01" width="31%">
-<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/a549ecbb-b9c8-43ce-8ec2-2a115367130d" width="31%">
-<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/8e21a1b5-6938-4d5b-bafc-edbb1ee216be" width="31%">
+<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/5baa8674-165e-4d4a-8379-3ba6e16c079d" width="31%">
+<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/58fa36fe-4d2c-4cb8-a5f5-623a268a5910" width="31%">
+<img src="https://github.com/devlarabar/big-rig-cookbook/assets/122644200/f4ce480d-d734-4ad3-8b57-57722f1faab5" width="31%">
 </p>
 
 Milestones accomplished:
