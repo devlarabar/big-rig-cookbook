@@ -67,7 +67,7 @@ label {
 }
 
 input[type="text"], input[type="search"], input[type="email"], input[type="password"] {
-    @apply input input-bordered w-full;
+    @apply input border input-bordered w-full;
 }
 
 /* Nav Component */
@@ -82,8 +82,8 @@ input[type="text"], input[type="search"], input[type="email"], input[type="passw
 
 /* Recipes */
 
-.recipe-feed {
-    @apply flex sm:flex-wrap sm:flex-row gap-5 w-full flex-col mb-5 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+.recipe-feed, .stretch-feed {
+    @apply flex sm:flex-wrap sm:flex-row gap-5 w-full flex-col mb-5 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-stretch;
 }
 
 .recipe-card {
@@ -102,7 +102,7 @@ input[type="text"], input[type="search"], input[type="email"], input[type="passw
 /* Stretches */
 
 .stretch-card, .profile-cards .recipe-card {
-    @apply rounded-xl bg-slate-100 dark:bg-base-100 w-full lg:w-96;
+    @apply rounded-xl bg-slate-100 dark:bg-base-100 w-full lg:w-auto flex flex-col justify-between;
 }
 
 /* Profile */

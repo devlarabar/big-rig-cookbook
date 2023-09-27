@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import { redirect } from 'next/navigation'
+import { ChevronDownIcon } from '@heroicons/react/24/solid'
 
 import { useAuthContext } from "@contexts/AuthContext"
 
@@ -56,14 +57,18 @@ const Header = () => {
 
             <div className="flex relative">
                 {auth?.user ? (
-                    <div className="flex">
-                        <Image src={auth?.user.image || "/assets/images/grey.png"}
-                            width={37}
-                            height={37}
-                            className="rounded-full hover:cursor-pointer hover:outline-2 hover:outline-current"
-                            alt="Profile"
-                            onClick={() => setToggleDropdown((prev) => !prev)}
-                        />
+                    <div className="flex gap-5 items-center">
+                        <div className="flex gap-1 w-fit">
+                            {/* <ChevronDownIcon width={18} className="hover:cursor-pointer dropdown-trigger" 
+                                onClick={() => setToggleDropdown((prev) => !prev)} /> */}
+                            <Image src={auth?.user.image || "/assets/images/grey.png"}
+                                width={37}
+                                height={37}
+                                className="rounded-full hover:cursor-pointer hover:outline-2 hover:outline-current dropdown-trigger"
+                                alt="Profile"
+                                onClick={() => setToggleDropdown((prev) => !prev)}
+                            />
+                        </div>
 
                         {toggleDropdown && (
                             <div className="dropdown z-10" ref={dropdown}>

@@ -21,7 +21,7 @@ const config = {
 		themes: [{
 			light: {
 				...require("daisyui/src/theming/themes")["[data-theme=cupcake]"],
-				"base-100": "#F1F1FF",
+				"base-100": "#F2F2FF",
 				"neutral": "#BFC0D4",
 				"base-200": "#CBDBF1",
 				"base-300": "#D7E3F3",

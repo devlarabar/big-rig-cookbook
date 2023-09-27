@@ -29,13 +29,13 @@ const StretchIndex = () => {
             <section className="mb-4">
                 <Link href="/stretches/routine">Click here</Link> to create your own stretch routines!
             </section>
-            {stretches.length > 0 && stretches.map((stretch, index) => {
-                return (
-                    <div className="stretch" key={index}>
-                        <StretchCard stretch={stretch} user={auth.user} />
-                    </div>
-                )
-            })}
+            <section className="recipe-feed md:flex md:flex-col lg:grid lg:grid-cols-2 xl:grid-cols-3">
+                {stretches.length > 0 && stretches.map((stretch, index) => {
+                    return (
+                        <StretchCard stretch={stretch} user={auth.user} key={index} />
+                    )
+                })}
+            </section>
         </section>
     )
 }
