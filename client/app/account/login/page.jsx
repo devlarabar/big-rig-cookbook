@@ -14,17 +14,21 @@ function Authentication() {
 
     const login = (e) => {
         e.preventDefault()
-        Axios({
-            method: 'POST',
-            data: {
-                username: loginUsername,
-                password: loginPassword,
-            },
-            withCredentials: true,
-            url: `/server/auth/login`,
-        }).then((res) => {
-            setDoRedirect(true)
-        })
+        try {
+            Axios({
+                method: 'POST',
+                data: {
+                    username: loginUsername,
+                    password: loginPassword,
+                },
+                withCredentials: true,
+                url: `/server/auth/login`,
+            }).then((res) => {
+                setDoRedirect(true)
+            })
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     const togglePwVisibility = (e) => setShowPassword(e.target.checked)

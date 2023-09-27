@@ -13,7 +13,15 @@ const nextConfig = {
             topLevelAwait: true,
         }
         return config
-    }
+    },
+    async rewrites() {
+        return [
+          {
+            source: '/server/:path*',
+            destination: `${process.env.NEXT_PUBLIC_API_URL}/server/:path*`,
+          },
+        ]
+      },
 }
 
 module.exports = nextConfig
