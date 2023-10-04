@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
+import { CheckIcon, CheckBadgeIcon } from '@heroicons/react/24/solid'
 
 const RoutineCompleteBtn = ({ user, routine }) => {
     const [complete, setComplete] = useState(true)
@@ -35,8 +36,15 @@ const RoutineCompleteBtn = ({ user, routine }) => {
     }
 
     return (
-        <div>
-            <button onClick={markRoutineComplete} disabled={complete}>{complete ? 'Completed!' : 'Mark Complete'}</button>
+        <div className="flex gap-4 items-center">
+            <button
+                onClick={markRoutineComplete}
+                disabled={complete}
+                className="btn btn-primary p-3 rounded-full"
+            >
+                {complete ? <CheckBadgeIcon className="w-6 h-6" /> : <CheckIcon className="w-6 h-6" />}
+            </button>
+            {complete && <span>Completed!</span>}
         </div>
     )
 }

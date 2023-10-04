@@ -23,7 +23,8 @@ const RecipeCard = ({ user, recipe }) => {
 				<div className="w-full">
 					<span className="flex flex-between gap-5 w-full">
 						<Link href={`/profile/${recipe.author.username}`}>{recipe.author.username}</Link>
-						<time>{format(new Date(recipe.createdAt), 'MMM d, yyyy HH:mm')}</time></span>
+						<time className="max-xs:hidden">{format(new Date(recipe.createdAt), 'MMM d, yyyy HH:mm')}</time>
+						<time className="xs:hidden">{format(new Date(recipe.createdAt), 'MMM d, HH:mm')}</time></span>
 				</div>
 				<IngredientIcons ingredients={recipe.ingredients} />
 				<div className="card-actions justify-between items-center w-full">

@@ -6,6 +6,14 @@ const config = {
 		'./app/**/*.{js,ts,jsx,tsx,mdx}',
 	],
 	theme: {
+		screens: {
+			'sm': '640px',
+			'md': '768px',
+			'lg': '1024px',
+			'xl': '1280px',
+			'2xl': '1536px',
+			'xs': '450px',
+		},
 		extend: {
 			fontFamily: {
 				satoshi: ['Satoshi', 'sans-serif'],
@@ -20,12 +28,16 @@ const config = {
 	daisyui: {
 		themes: [{
 			light: {
-				...require("daisyui/src/theming/themes")["[data-theme=cupcake]"],
-				"base-100": "#F2F2FF",
-				"neutral": "#BFC0D4",
-				"base-200": "#CBDBF1",
-				"base-300": "#D7E3F3",
-			}
+				"primary": "#56ce44",
+				"secondary": "#94a2e0",
+				"accent": "#3ec9d8",
+				"neutral": "#1d232b",
+				"base-100": "#eef2f6",
+				"info": "#94a0e1",
+				"success": "#3be39a",
+				"warning": "#d7b20f",
+				"error": "#e85e7a",
+			},
 		}, {
 			dark: {
 				...require("daisyui/src/theming/themes")["[data-theme=night]"],

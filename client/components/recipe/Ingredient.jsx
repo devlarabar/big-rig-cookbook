@@ -24,8 +24,8 @@ import { useEffect, useState } from 'react'
 
 const Ingredient = (props) => {
 
-    const [ items, setItems ] = useState('')
-    const [ disabled, setDisabled ] = useState(true)
+    const [items, setItems] = useState('')
+    const [disabled, setDisabled] = useState(true)
 
     useEffect(() => {
         (async () => {
@@ -63,8 +63,9 @@ const Ingredient = (props) => {
                             {...getRootProps({}, { suppressRefError: true })}
                         >
                             <input {...getInputProps()}
+                                type="text"
                                 className="input input-bordered w-full"
-                                placeholder="ingredient (i.e. beef - ground)" 
+                                placeholder="ingredient (i.e. beef - ground)"
                                 disabled={disabled}
                                 key={props.keyIng}
                                 required={props.ingInputRequired}
@@ -81,7 +82,7 @@ const Ingredient = (props) => {
                                                 index,
                                                 item,
                                             })}
-                                            className="py-1 px-3 bg-base-100 hover:bg-primary"
+                                            className="py-1 px-3 bg-base-200 hover:bg-primary"
                                         >
                                             {item.name}
                                         </li>

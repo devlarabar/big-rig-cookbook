@@ -53,8 +53,8 @@ const UserProfile = () => {
     if (userProfileDetails === '404') return (<>This user does not exist!</>)
 
     return (
-        <section className="flex flex-col gap-5 md:grid md:grid-cols-2 md:gap-6">
-            <aside className="flex flex-col items-center">
+        <section className="flex flex-col gap-6 w-full">
+            <aside className="flex flex-col items-center px-3">
                 <h2 className="big-heading flex flex-center gap-2">
                     <span className="user-username">{user}</span>
                     {isViewersProfile && <Link href="/profile/settings"><button className="btn-profile-edit"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">

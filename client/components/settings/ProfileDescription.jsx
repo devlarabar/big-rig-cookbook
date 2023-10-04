@@ -29,7 +29,7 @@ const ProfileDescription = ({ user }) => {
     if (doRedirect) redirect('/profile/settings')
 
     return (
-        <form 
+        <form
             onSubmit={(e) => submitDescription(e)}
             className="flex flex-col gap-5 mt-5 w-full"
         >
@@ -39,7 +39,7 @@ const ProfileDescription = ({ user }) => {
                 placeholder="Tell other truckers about yourself!"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="input input-bordered w-full rounded-md border border-gray-400 p-2"
+                className="w-full rounded-md border border-gray-400 p-2"
             />
             <button
                 type="submit"

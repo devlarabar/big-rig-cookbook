@@ -3,6 +3,9 @@ import Header from '@components/ui/Header'
 import AuthProvider from '@contexts/AuthContext'
 import ToggleThemeProvider from '@contexts/ThemeContext/useProvideTheme'
 import ThemeToggle from '@components/ui/ThemeToggle'
+import Link from 'next/link'
+import Image from 'next/image'
+import Sidebar from '../components/ui/Sidebar'
 
 export const metadata = {
     title: 'Big Rig Cookbook',
@@ -12,16 +15,16 @@ export const metadata = {
 const RootLayout = ({ children, recipeModal }) => {
     return (
         <html lang="en">
-            <body>
+            <body className="md:flex flex-between">
                 <ToggleThemeProvider>
-                    <main className="app">
-                        <AuthProvider>
-                            <ThemeToggle />
-                            <Header />
-                            {recipeModal}
-                            {children}
-                        </AuthProvider>
-                    </main>
+
+                    <AuthProvider>
+                        <ThemeToggle />
+                        {recipeModal}
+
+                        <Sidebar children={children} />
+                    </AuthProvider>
+
                 </ToggleThemeProvider>
             </body>
         </html>

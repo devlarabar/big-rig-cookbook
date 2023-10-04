@@ -34,9 +34,9 @@ const StretchTracker = () => {
     if (auth?.user === "unauthenticated") return redirect('/')
 
     return (
-        <section>
-            <section>
-                <h2 className="big-heading mb-5">Stretch Routine Tracker</h2>
+        <section className="w-full">
+            <h2 className="big-heading mb-5">Stretch Routine Tracker</h2>
+            <section className="stretch-feed">
                 {routines && routines.map((routine, i) => {
                     return (
                         <RoutineCard routine={routine} user={auth.user} key={i} />

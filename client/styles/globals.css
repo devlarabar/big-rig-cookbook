@@ -8,11 +8,13 @@
 body {
     height: 100%;
     min-height: 100vh;
-    @apply bg-[#EAEAF9] dark:bg-black;
+    @apply dark:bg-black;
     /* background-image: radial-gradient(#b3b4ca 0.5px, transparent 0.5px), radial-gradient(#b3b4ca 0.5px, #e5e5f7 0.5px); */
     /* background-size: 20px 20px;
     background-position: 0 0, 10px 10px; */
 }
+
+/* bg-[#EAEAF9] */
 
 .dark-toggle {
     position: fixed;
@@ -30,8 +32,7 @@ body {
 /* Tailwind Styles */
 
 .app {
-    padding-bottom: 2em;
-    @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+    @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto md:px-0 px-6 md:flex-row;
 }
 
 .flex-center {
@@ -66,8 +67,15 @@ label {
     @apply font-semibold;
 }
 
-input[type="text"], input[type="search"], input[type="email"], input[type="password"] {
-    @apply input border input-bordered w-full;
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select,
+.select {
+    @apply input border input-bordered w-full bg-[#ffffff] dark:bg-base-100;
 }
 
 /* Nav Component */
@@ -82,13 +90,19 @@ input[type="text"], input[type="search"], input[type="email"], input[type="passw
 
 /* Recipes */
 
-.recipe-feed, .stretch-feed {
-    @apply flex sm:flex-wrap sm:flex-row gap-5 w-full flex-col mb-5 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-stretch;
+.recipe-feed,
+.stretch-feed,
+.profile-cards {
+    @apply flex sm:flex-wrap sm:flex-row gap-5 w-full flex-col mb-5 md:grid md:grid-cols-2 items-stretch py-6 max-xs:px-3;
+}
+
+.recipe-feed {
+    @apply xl:grid-cols-3;
 }
 
 .recipe-card {
     overflow: hidden;
-    @apply rounded-xl bg-slate-100 dark:bg-base-100 w-full md:w-auto h-52;
+    @apply rounded-xl bg-[#F9F9F9] dark:bg-base-100 w-full md:w-auto h-52 border;
 }
 
 .ing-svg {
@@ -101,15 +115,15 @@ input[type="text"], input[type="search"], input[type="email"], input[type="passw
 
 /* Stretches */
 
-.stretch-card, .profile-cards .recipe-card {
-    @apply rounded-xl bg-slate-100 dark:bg-base-100 w-full lg:w-auto flex flex-col justify-between;
+.stretch-card {
+    @apply rounded-xl bg-[#F9F9F9] dark:bg-base-100 w-full lg:w-auto flex flex-col justify-between border;
 }
 
 /* Profile */
 
-.profile-cards {
+/* .profile-cards {
     @apply flex flex-col gap-5 mt-3;
-}
+} */
 
 /* Typography */
 
@@ -131,4 +145,5 @@ h3 {
 
 hr {
     height: 2px !important;
+    @apply bg-primary border-none rounded-full w-3/4 mx-auto;
 }

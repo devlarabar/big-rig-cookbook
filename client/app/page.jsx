@@ -1,5 +1,5 @@
-
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Home = () => {
     return (
@@ -19,6 +19,14 @@ const Home = () => {
                 <p className="desc text-center mt-5 max-w-[640px]">
                     Join your fellow truckers in improving your health and wellness on the road! Share your unique and creative <em>big rig recipes</em> with other drivers, save stretch routines, and earn achievements by maintaining healthy habits.
                 </p>
+                <Link href="/account/login" className="mx-auto mt-6">
+                    <button
+                        type="button"
+                        className="btn btn-primary w-48"
+                    >
+                        Sign In
+                    </button>
+                </Link>
             </section>
             <section>
                 <p></p>

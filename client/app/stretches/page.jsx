@@ -24,12 +24,12 @@ const StretchIndex = () => {
     if (auth?.user === "unauthenticated") return redirect('/')
 
     return (
-        <section>
+        <section className="w-full">
             <h2 className="big-heading mb-4">Stretches</h2>
             <section className="mb-4">
                 <Link href="/stretches/routine">Click here</Link> to create your own stretch routines!
             </section>
-            <section className="recipe-feed md:flex md:flex-col lg:grid lg:grid-cols-2 xl:grid-cols-3">
+            <section className="stretch-feed md:flex md:flex-col lg:grid lg:grid-cols-2 xl:grid-cols-3">
                 {stretches.length > 0 && stretches.map((stretch, index) => {
                     return (
                         <StretchCard stretch={stretch} user={auth.user} key={index} />
