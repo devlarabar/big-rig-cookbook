@@ -8,7 +8,7 @@ import { redirect } from 'next/navigation'
 const Home = () => {
     const auth = useAuthContext()
 
-    if (auth?.user) return redirect('/home')
+    //if (auth?.user) return redirect('/home')
 
     return (
         <section>
@@ -26,7 +26,14 @@ const Home = () => {
                 <p className="desc text-center mt-5 max-w-[640px]">
                     Join your fellow truckers in improving your health and wellness on the road! Share your unique and creative <em>big rig recipes</em> with other drivers, save stretch routines, and earn achievements by maintaining healthy habits.
                 </p>
-                <Link href="/account/login" className="mx-auto mt-6">
+                {auth?.user ? <Link href="/home" className="mx-auto mt-6">
+                    <button
+                        type="button"
+                        className="btn btn-primary w-48"
+                    >
+                        Get started!
+                    </button>
+                </Link> : <Link href="/account/login" className="mx-auto mt-6">
                     <button
                         type="button"
                         className="btn btn-primary w-48"
@@ -34,6 +41,8 @@ const Home = () => {
                         Sign In
                     </button>
                 </Link>
+                }
+
             </section>
         </section>
     )
