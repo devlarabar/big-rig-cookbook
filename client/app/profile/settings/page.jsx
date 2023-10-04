@@ -4,6 +4,7 @@ import { useAuthContext } from 'contexts/AuthContext'
 import Spinner from '@components/ui/Spinner'
 import ProfileDescription from '@components/settings/ProfileDescription'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 
 const ProfileSettings = () => {
     const auth = useAuthContext()
