@@ -30,8 +30,8 @@ const StretchTracker = () => {
         if (auth?.user) fetchStretches()
     }, [auth?.user])
 
-    if (!auth?.user) return <Spinner />
-    if (auth?.user === "unauthenticated") return redirect('/')
+    if (!auth?.checkAuth) return <Spinner />
+    if (auth?.isAuthenticated() === "unauthenticated" || auth?.user === null) return redirect('/')
 
     return (
         <section className="w-full">

@@ -14,12 +14,12 @@ const CreateRecipe = () => {
         if (doRedirect) redirect('/home')
     }, [doRedirect])
 
-    if (!auth?.user) return <Spinner />
-    if (auth?.user === "unauthenticated") return redirect('/')
-    
+    if (!auth?.checkAuth) return <Spinner />
+    if (auth?.isAuthenticated() === "unauthenticated" || auth?.user === null) return redirect('/')
+
     return (
         <div className="w-full max-w-screen-sm flex flex-center">
-            <CreateRecipeForm setDoRedirect={setDoRedirect} editRecipeId={null}/>
+            <CreateRecipeForm setDoRedirect={setDoRedirect} editRecipeId={null} />
         </div>
     )
 }

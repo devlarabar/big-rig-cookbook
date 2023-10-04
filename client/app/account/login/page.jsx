@@ -4,12 +4,14 @@ import { useState } from 'react'
 import Axios from 'axios'
 import Link from 'next/link'
 import { useAuthContext } from 'contexts/AuthContext'
+import { useRouter } from 'next/navigation'
 
 function Authentication() {
     const auth = useAuthContext()
     const [loginUsername, setLoginUsername] = useState('')
     const [loginPassword, setLoginPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
+    const [error, setError] = useState(false)
     const [doRedirect, setDoRedirect] = useState(false)
 
     const login = (e) => {
@@ -24,9 +26,10 @@ function Authentication() {
                 withCredentials: true,
                 url: `/server/auth/login`,
             }).then((res) => {
-                setDoRedirect(true)
+                if (res.data === 'Successfully Authenticated') setDoRedirect(true)
+                else setError(true)
             })
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -45,6 +48,7 @@ function Authentication() {
     return (
         <form onSubmit={(e) => login(e)} className="flex flex-col gap-5 w-2/3 max-w-[300px]">
             <h2>Login</h2>
+            {error && <p className="text-error">Invalid credentials.</p>}
             <label>Username
                 <input
                     type="text"

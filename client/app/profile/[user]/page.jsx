@@ -48,8 +48,8 @@ const UserProfile = () => {
 
     const changeSection = (x) => setSection(x)
 
-    if (!auth?.user) return <Spinner />
-    if (auth?.user === "unauthenticated") return redirect('/')
+    if (!auth?.checkAuth) return <Spinner />
+    if (auth?.isAuthenticated() === "unauthenticated" || auth?.user === null) return redirect('/')
     if (userProfileDetails === '404') return (<>This user does not exist!</>)
 
     return (

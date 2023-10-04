@@ -1,11 +1,18 @@
+"use client"
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { useAuthContext } from '@contexts/AuthContext'
+import { redirect } from 'next/navigation'
 
 const Home = () => {
+    const auth = useAuthContext()
+
+    if (auth?.user) return redirect('/home')
+
     return (
         <section>
             <section className="w-full flex-center flex-col">
-
                 <h1 className="header_text text-center">Big Rig Cookbook:
                     <br className="max-md:hidden" />
                     <span className="header_gradient text-center"> Take Charge of Your Health</span></h1>
@@ -27,9 +34,6 @@ const Home = () => {
                         Sign In
                     </button>
                 </Link>
-            </section>
-            <section>
-                <p></p>
             </section>
         </section>
     )

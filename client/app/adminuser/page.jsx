@@ -73,8 +73,8 @@ const Admin = () => {
         })
     }
 
-    if (!auth?.user) return <Spinner />
-    if (auth?.user === "unauthenticated") return redirect('/')
+    if (!auth?.checkAuth) return <Spinner />
+    if (auth?.isAuthenticated() === "unauthenticated" || auth?.user === null) return redirect('/')
     if (auth?.user) {
         if (!auth?.user.admin) return redirect('/home')
     }

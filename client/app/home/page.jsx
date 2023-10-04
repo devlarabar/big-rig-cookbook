@@ -19,8 +19,8 @@ const Home = () => {
         fetchRecipes()
     }, [])
 
-    if (!auth?.user) return <Spinner />
-    if (auth?.user === "unauthenticated") return redirect('/')
+    if (!auth?.checkAuth) return <Spinner />
+    if (auth?.isAuthenticated() === "unauthenticated" || auth?.user === null) return redirect('/')
 
     return (
         <div className="recipe-feed">

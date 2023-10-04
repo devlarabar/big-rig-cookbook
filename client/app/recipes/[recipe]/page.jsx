@@ -47,8 +47,8 @@ const RecipeDetails = () => {
         return redirect('/home')
     }
 
-    if (!auth?.user) return <Spinner />
-    if (auth?.user === "unauthenticated") return redirect('/')
+    if (!auth?.checkAuth) return <Spinner />
+    if (auth?.isAuthenticated() === "unauthenticated" || auth?.user === null) return redirect('/')
     if (!recipe) return <Spinner />
     if (recipe === '404') return <p>Recipe not found.</p>
 
