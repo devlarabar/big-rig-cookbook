@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useRef } from 'react'
-import { redirect } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useAuthContext } from "@contexts/AuthContext"
 
 const Header = () => {
@@ -29,7 +29,7 @@ const Header = () => {
     }
 
     if (doRedirect) {
-        redirect('/')
+        window.location = '/'
     }
 
     return (

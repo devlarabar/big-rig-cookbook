@@ -18,7 +18,7 @@ const UI = ({ children }) => {
         if (pathname !== "/" && !pathname.includes("account") && auth?.isAuthenticated() !== "unauthenticated") {
             setDrawer("drawer lg:drawer-open")
         }
-    }, [pathname])
+    }, [pathname, auth?.isAuthenticated()])
 
     if (doRedirect) {
         redirect('/')
