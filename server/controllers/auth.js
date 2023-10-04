@@ -11,9 +11,9 @@ module.exports = {
             const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
             const newUser = new User({
-                username: req.body.username,
+                username: req.body.username.toLowerCase(),
                 password: hashedPassword,
-                email: req.body.email,
+                email: req.body.email.toLowerCase(),
                 admin: false
             })
             await newUser.save()

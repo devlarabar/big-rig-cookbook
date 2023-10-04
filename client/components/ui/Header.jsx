@@ -25,7 +25,7 @@ const Header = () => {
 
     const logOut = async (event) => {
         auth.logout()
-        setDoRedirect(true)
+        if (auth.isAuthenticated() !== true) setDoRedirect(true)
     }
 
     if (doRedirect) {
