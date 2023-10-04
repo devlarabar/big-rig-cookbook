@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 import { useAuthContext } from "@contexts/AuthContext"
 import Spinner from '@components/ui/Spinner'
 
-const Sidebar = ({ children }) => {
+const UI = ({ children }) => {
     const auth = useAuthContext()
     const pathname = usePathname()
     const [drawer, setDrawer] = useState("drawer")
@@ -19,11 +19,6 @@ const Sidebar = ({ children }) => {
             setDrawer("drawer lg:drawer-open")
         }
     }, [pathname])
-
-    const logOut = async (event) => {
-        auth.logout()
-        setDoRedirect(true)
-    }
 
     if (doRedirect) {
         redirect('/')
@@ -39,7 +34,6 @@ const Sidebar = ({ children }) => {
                 </div>
             </main>
             <aside className="drawer-side">
-                <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                     <Link href="/home" className="max-[450px]:hidden">
                         <Image
@@ -64,30 +58,22 @@ const Sidebar = ({ children }) => {
                         <span className="mx-auto font-extrabold text-lg">Welcome, {auth.user.username}</span>
                         <hr className="my-6" />
                         <li>
-                            <Link
-                                href={`/profile/${auth.user.username}`}
-                            >
+                            <Link href={`/profile/${auth.user.username}`}>
                                 My Profile
                             </Link>
                         </li>
                         <li>
-                            <Link
-                                href="/recipes/create"
-                            >
+                            <Link href="/recipes/create">
                                 New Recipe
                             </Link>
                         </li>
                         <li>
-                            <Link
-                                href="/stretches"
-                            >
+                            <Link href="/stretches">
                                 Stretches
                             </Link>
                         </li>
                         <li>
-                            <Link
-                                href="/stretches/tracker"
-                            >
+                            <Link href="/stretches/tracker">
                                 Stretch Tracker
                             </Link>
                         </li>
@@ -107,4 +93,4 @@ const Sidebar = ({ children }) => {
     )
 }
 
-export default Sidebar
+export default UI
