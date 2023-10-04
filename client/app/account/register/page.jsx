@@ -13,7 +13,8 @@ function Register() {
     const [showPassword, setShowPassword] = useState(false)
     const [doRedirect, setDoRedirect] = useState(false)
 
-    const register = () => {
+    const register = (e) => {
+        e.preventDefault()
         Axios({
             method: 'POST',
             data: {
@@ -43,7 +44,7 @@ function Register() {
         </section>
     )
     return (
-        <form className='flex flex-col gap-5 w-2/3 max-w-[300px]'>
+        <form className='flex flex-col gap-5 w-2/3 max-w-[300px]' onSubmit={(e) => register(e)}>
             <h2>Register</h2>
             <label>Username
                 <input
@@ -69,7 +70,7 @@ function Register() {
             <label className="flex items-center gap-5">Show Password
                 <input type="checkbox" className="checkbox checkbox-primary" onChange={(e) => togglePwVisibility(e)} />
             </label>
-            <button className='btn btn-secondary' onClick={register}>Submit</button>
+            <button className='btn btn-secondary' type="submit">Submit</button>
             <p className="flex justify-center gap-1"><span>Already have an account? <Link href="/account/login">Sign in</Link>!</span></p>
         </form>
     )
