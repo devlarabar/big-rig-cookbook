@@ -24,12 +24,12 @@ const Header = () => {
     }
 
     const logOut = async (event) => {
-        auth.logout()
-        if (auth.isAuthenticated() !== true) setDoRedirect(true)
+        await auth.logout()
+        setDoRedirect(true)
     }
 
     if (doRedirect) {
-        window.location = '/'
+        redirect("/")
     }
 
     return (
