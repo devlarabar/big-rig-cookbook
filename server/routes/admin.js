@@ -6,5 +6,6 @@ router.get('/isadmin', adminController.adminView)
 router.post('/addingredient', adminController.addIngredient)
 router.post('/addachievement', adminController.addAchievement)
 router.post('/addstretch', adminController.addStretch)
+router.post('/deleteuser', adminController.deleteUser)
 
 module.exports = router

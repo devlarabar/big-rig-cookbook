@@ -4,20 +4,26 @@ import { useState } from 'react'
 import { useAuthContext } from '@contexts/AuthContext'
 import { redirect } from 'next/navigation'
 import Spinner from '@components/ui/Spinner'
+import Alert from '@components/ui/Alert'
 
 const Admin = () => {
 
     const auth = useAuthContext()
+    const [message, setMessage] = useState(null)
 
     const [ingName, setIngName] = useState('')
     const [ingType, setIngType] = useState('')
+
     const [achievementName, setAchievementName] = useState('')
     const [recipeReq, setRecipeReq] = useState('')
     const [stretchReq, setStretchReq] = useState('')
+
     const [stretchName, setStretchName] = useState('')
     const [stretchDesc, setStretchDesc] = useState('')
     const [stretchPos, setStretchPos] = useState('')
     const [stretchMusc, setStretchMusc] = useState('')
+
+    const [username, setUsername] = useState('')
 
     const formDataIngredient = {
         name: ingName,
@@ -39,7 +45,8 @@ const Admin = () => {
         muscle: stretchMusc,
         user: auth?.user
     }
-    function addIngredient() {
+    const addIngredient = (e) => {
+        e.preventDefault()
         fetch(`/server/admin/addingredient`, {
             method: 'POST',
             headers: {
@@ -50,7 +57,8 @@ const Admin = () => {
             body: JSON.stringify(formDataIngredient)
         })
     }
-    function addAchievement() {
+    const addAchievement = (e) => {
+        e.preventDefault()
         fetch(`/server/admin/addachievement`, {
             method: 'POST',
             headers: {
@@ -61,7 +69,8 @@ const Admin = () => {
             body: JSON.stringify(formDataAchievement)
         })
     }
-    function addStretch() {
+    const addStretch = (e) => {
+        e.preventDefault()
         fetch(`/server/admin/addstretch`, {
             method: 'POST',
             headers: {
@@ -73,6 +82,29 @@ const Admin = () => {
         })
     }
 
+    const deleteUser = async (e) => {
+        e.preventDefault()
+        const confirmation = confirm("Are you sure you want to delete this user? This action is irreversible.")
+        if (confirmation) {
+            const response = await fetch('/server/admin/deleteuser', {
+                method: 'POST',
+                body: JSON.stringify({ username: username }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL
+                },
+                credentials: 'include'
+            })
+            const info = await response.json()
+            if (info.success) {
+                setMessage({ message: `Successfully deleted user: ${username}`, type: 'success' })
+            } else {
+                setMessage({ message: info.error, type: 'error' })
+            }
+        }
+    }
+
     if (!auth?.checkAuth) return <Spinner />
     if (auth?.isAuthenticated() === "unauthenticated" || auth?.user === null) return redirect('/')
     if (auth?.user) {
@@ -81,7 +113,8 @@ const Admin = () => {
 
     return (
         <div className="sm:w-3/4 max-w-[500px] w-full mb-5 p-x-3">
-            <form onSubmit={addIngredient} className="flex flex-col gap-5 w-full">
+            {message && <aside className="mb-3 w-full"><Alert message={message.message} alertType={message.type} /></aside>}
+            <form onSubmit={(e) => addIngredient(e)} className="flex flex-col gap-5 w-full">
                 <h2>Add Ingredients</h2>
                 <input
                     type="text"
@@ -112,7 +145,7 @@ const Admin = () => {
                 <button type="submit" className="btn btn-primary w-full">Submit</button>
             </form>
 
-            <form onSubmit={addAchievement} className="flex flex-col gap-5 w-full mt-5">
+            <form onSubmit={(e) => addAchievement(e)} className="flex flex-col gap-5 w-full mt-5">
                 <h2>Add Achievements</h2>
                 <input
                     type="text"
@@ -138,7 +171,7 @@ const Admin = () => {
                 <button type="submit" className="btn btn-primary w-full">Submit</button>
             </form>
 
-            <form onSubmit={addStretch} className="flex flex-col gap-5 w-full mt-5">
+            <form onSubmit={(e) => addStretch(e)} className="flex flex-col gap-5 w-full mt-5">
                 <h2>Add Stretches</h2>
                 <input
                     type="text"
@@ -184,6 +217,18 @@ const Admin = () => {
                     <option value="ankle">Ankle</option>
                 </select>
                 <button type="submit" className="btn btn-primary w-full">Submit</button>
+            </form>
+
+            <form onSubmit={(e) => deleteUser(e)} className="flex flex-col gap-5 w-full mt-5">
+                <h2>Delete User</h2>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    onChange={e => setUsername(e.target.value)}
+                    className="input input-bordered w-full"
+                    required
+                />
+                <button type="submit" className="btn btn-error w-full">Delete</button>
             </form>
         </div>
     )

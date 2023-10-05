@@ -27,7 +27,7 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect, editRecipeId }) => {
         && recipe.cookware[0] !== ''
         && recipe.directions[0] !== ''
         && recipe.prepTime >= 1
-        && recipe.cookTime >= 1
+        && recipe.cookTime >= 0
         && auth?.user.id)
 
     const createRecipe = async (e) => {
@@ -102,7 +102,7 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect, editRecipeId }) => {
                         type="number"
                         id="cooktime"
                         placeholder="20"
-                        min={1}
+                        min={0}
                         required
                         value={recipe.cookTime}
                         onChange={(e) => setRecipe({ ...recipe, cookTime: e.target.value })}
@@ -110,14 +110,14 @@ const CreateRecipeForm = ({ recipeData, setDoRedirect, editRecipeId }) => {
                     />
                 </div>
             </div>
-            
-            <hr className="divider"/>
+
+            <hr className="divider" />
             <Ingredients recipe={recipe} setRecipe={setRecipe} />
-            
-            <hr className="divider"/>
+
+            <hr className="divider" />
             <Cookware recipe={recipe} setRecipe={setRecipe} />
-            
-            <hr className="divider"/>
+
+            <hr className="divider" />
             <Directions recipe={recipe} setRecipe={setRecipe} />
 
             {submitDisabled && <p className="text-xs mt-0">Please ensure all the required fields are filled.</p>}

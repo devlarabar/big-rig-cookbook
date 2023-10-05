@@ -2,6 +2,7 @@ const Ingredient = require('../models/Ingredient')
 const Achievement = require('../models/Achievement')
 const Stretch = require('../models/Stretch')
 const User = require('../models/User')
+const userHelpers = require('./user.helpers')
 
 module.exports = {
     adminView: async (req, res) => {
@@ -58,6 +59,21 @@ module.exports = {
             res.json({ stretch })
         } else {
             throw 'You are not authorized to modify the database.'
+        }
+    },
+    deleteUser: async (req, res) => {
+        const user = await User.findOne({ username: req.body.username })
+        if (!user) {
+            res.send({ success: false, error: "User does not exist" })
+        } else {
+            try {
+                await userHelpers.removeUserReferences(user)
+                await User.deleteOne({ username: req.body.username })
+                console.log(`Deleted user: ${req.body.username}`)
+                res.send({ success: true })
+            } catch (err) {
+                res.send({ success: false, error: err })
+            }
         }
     }
 }
