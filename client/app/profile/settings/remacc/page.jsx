@@ -11,7 +11,7 @@ const Remacc = () => {
     const [doRedirect, setDoRedirect] = useState(false)
 
     const remacc = async () => {
-        const response = await fetch(`/user/remacc`, {
+        const response = await fetch('/server/user/remacc', {
             method: 'DELETE',
             body: JSON.stringify({ user: auth.user }),
             headers: {
@@ -21,9 +21,8 @@ const Remacc = () => {
             },
         })
         if (response.ok) {
-            signOut()
+            await auth.logout()
             setDoRedirect(true)
-
         }
     }
 

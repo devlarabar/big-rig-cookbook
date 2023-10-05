@@ -24,7 +24,7 @@ function Authentication() {
                     password: loginPassword,
                 },
                 withCredentials: true,
-                url: `/server/auth/login`,
+                url: '/server/auth/login',
             }).then((res) => {
                 if (res.data === 'Successfully Authenticated') setDoRedirect(true)
                 else setError(true)

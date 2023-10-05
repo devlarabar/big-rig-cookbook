@@ -7,7 +7,6 @@ module.exports = function (passport) {
         new localStrategy(async (username, password, done) => {
             const user = await User.findOne({ username: username.toLowerCase() })
             if (!user) return done(null, false)
-            console.log(user)
             bcrypt.compare(password, user.password, (err, result) => {
                 if (err) throw err;
                 if (result === true) {

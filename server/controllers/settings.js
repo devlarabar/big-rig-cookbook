@@ -7,10 +7,10 @@ module.exports = {
         const user = req.body.user
         const description = req.body.description
         if (!filter.isProfane(description)) {
-            await User.findOneAndUpdate({ _id: user.id }, { description: description})
+            await User.findOneAndUpdate({ _id: user.id }, { description: description })
             res.json(description)
         } else {
-            res.json({profane: true}).status(400)
+            res.json({ profane: true }).status(400)
         }
     }
 }

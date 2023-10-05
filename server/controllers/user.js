@@ -40,7 +40,7 @@ module.exports = {
                 .find({ savedBy: { "$in": [userDoc] } })
                 .sort({ createdAt: -1 }))
             const achievements = (await UserAchievement
-                .find({user: userDoc})
+                .find({ user: userDoc })
                 .populate('achievement', ['name']))
             const response = {
                 profile: {
@@ -75,6 +75,12 @@ module.exports = {
         try {
             await helpers.removeUserReferences(user)
             await User.deleteOne({ _id: req.user.id })
+            req.session.destroy(err => {
+                if (err && process.env.NODE_ENV !== "test") {
+                    console.log('Error: Failed to destroy the session during account deletion.')
+                }
+                req.user = null
+            })
             res.json(`User "${username}" has been deleted.`)
         } catch (err) {
             res.status(500).json(err)
