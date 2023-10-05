@@ -46,7 +46,7 @@ function Authentication() {
         </section>
     )
     return (
-        <form onSubmit={(e) => login(e)} className="flex flex-col gap-5 w-2/3 max-w-[300px]">
+        <form onSubmit={(e) => login(e)} className="flex flex-col gap-5 w-2/3 max-w-[350px]">
             <h2>Login</h2>
             {error && <p className="text-error">Invalid credentials.</p>}
             <label>Username
@@ -67,6 +67,8 @@ function Authentication() {
                 <input type="checkbox" className="checkbox checkbox-primary" onChange={(e) => togglePwVisibility(e)} />
             </label>
             <button className='btn btn-secondary' type="submit">Submit</button>
+            <p className="flex justify-center"><Link href="/account/forgot">Forgot your password?</Link></p>
+            <hr />
             <p className="flex justify-center"><span>Don't have an account? <Link href="/account/register">Register</Link>!</span></p>
         </form>
     )

@@ -29,7 +29,7 @@ const UI = ({ children }) => {
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <main className="drawer-content flex flex-col items-center justify-between min-h-[100vh]">
                 <Header />
-                <div className="w-full flex-1 flex flex-col items-center justify-between px-3 lg:px-10">
+                <div className="w-full flex-1 flex flex-col items-center justify-between px-3 pb-5 lg:px-10">
                     {children}
                 </div>
             </main>
