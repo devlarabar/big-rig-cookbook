@@ -49,6 +49,10 @@ function Authentication() {
         <form onSubmit={(e) => login(e)} className="flex flex-col gap-5 w-2/3 max-w-[350px]">
             <h2>Login</h2>
             {error && <p className="text-error">Invalid credentials.</p>}
+            <p className="center flex flex-col text-sm bg-base-200 p-4 rounded-xl">
+                <span className="font-bold">Demo User:</span>
+                <span>Username: demo</span>
+                <span>Password: demo</span></p>
             <label>Username
                 <input
                     type="text"
